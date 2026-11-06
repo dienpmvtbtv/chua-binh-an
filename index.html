@@ -74,6 +74,32 @@
 .abbot-chat-box .smallnote{margin:0;font-size:10px;color:#917e64}
 @media(max-width:380px){#hall .offering-board{width:93px}.prayer-board{width:96px}.visitor-board{width:125px}}
 
+
+/* ===== V14 upgrades ===== */
+#yard .screen-footer{justify-content:center;gap:10px;padding:10px 14px}
+#yard .tool{width:92px;min-width:92px;height:70px}
+#yard .tool span:last-child{font-size:10px}
+#yard .visitor-board{top:18%;left:10px;height:clamp(150px,23dvh,205px);background:linear-gradient(145deg,#fffef7f0,#ece5cff3)}
+#yard .room-bubble{bottom:102px}
+.hall-scene .room-art{transform:translateY(-80px) scale(1.03);transform-origin:center top}
+.hall-scene .buddha-real{top:57.2%;width:clamp(245px,71vw,330px);max-width:330px;z-index:6}
+.hall-scene .buddha-glow{top:55%;width:min(49vw,250px);height:min(49vw,250px)}
+.hall-scene .hall-title{top:22%}
+.hall-scene .prayer-board{top:39%;height:min(33dvh,276px)}
+.hall-scene .offering-board{top:39%;max-height:min(29dvh,240px)}
+.hall-scene .prayer-item strong,.hall-scene .prayer-item p{font-size:8px;line-height:1.32}
+.karma-scene{background:linear-gradient(180deg,#dbecd9,#f1ebd5 48%,#ceb897 100%)}
+.karma-hint{position:absolute;top:calc(78px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);font-size:11px;white-space:nowrap;color:#5d6645;background:#fff8e0cc;border:1px solid #ead9a5;padding:5px 10px;border-radius:999px;z-index:5}
+.karma-layer{position:absolute;inset:0;z-index:4;pointer-events:none}
+.bodhi-leaf{position:absolute;font-size:24px;line-height:1;filter:drop-shadow(0 2px 2px rgba(0,0,0,.15));transition:transform .45s ease, opacity .45s ease}
+.bodhi-leaf.gone{opacity:0;transform:scale(.3) rotate(-40deg)}
+.broom-anim{position:absolute;left:12%;top:74%;font-size:30px;z-index:8;opacity:0;transform:translate(-50%,-50%) rotate(-18deg);pointer-events:none}
+.broom-anim.show{animation:broomSweep 1.25s ease forwards}
+@keyframes broomSweep{0%{opacity:0;transform:translate(-40px,10px) rotate(-28deg)}18%{opacity:1}55%{opacity:1;transform:translate(80px,-6px) rotate(-8deg)}100%{opacity:0;transform:translate(150px,-22px) rotate(10deg)}}
+.karma-scene .screen-footer{justify-content:center;gap:10px}
+.karma-scene .tool{width:92px;min-width:92px}
+.abbot-quote-note{position:absolute;left:50%;top:calc(82px + env(safe-area-inset-top));transform:translateX(-50%);font-size:11px;color:#6a5c48;background:#fff6e7d9;border:1px solid #e7cfa4;padding:4px 10px;border-radius:999px;z-index:6;white-space:nowrap}
+
 </style>
 </head>
 <body>
@@ -103,75 +129,90 @@
 <section id="yard" class="view room" aria-label="Sân chùa">
   <svg class="room-art" viewBox="0 0 470 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
    <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#a8d8f3"/><stop offset=".75" stop-color="#e4efd6"/><stop offset="1" stop-color="#e5e6b7"/></linearGradient>
-    <linearGradient id="plaza" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d4c6a0"/><stop offset="1" stop-color="#bda478"/></linearGradient>
-    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d68963"/><stop offset="1" stop-color="#af593f"/></linearGradient>
-    <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#314a56"/><stop offset="1" stop-color="#1c3a49"/></linearGradient>
-    <pattern id="tiles" width="18" height="14" patternUnits="userSpaceOnUse"><path d="M0 8Q9 4 18 8M9 0v14" fill="none" stroke="#b9cdd1" stroke-width=".9" opacity=".42"/></pattern>
-    <pattern id="paving" width="66" height="30" patternUnits="userSpaceOnUse"><path d="M0 0H66V30H0ZM33 0V15M0 15h66" stroke="#968769" stroke-width="1" fill="none" opacity=".38"/></pattern>
+    <linearGradient id="skyYard14" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b7dcf6"/><stop offset=".68" stop-color="#e7efdb"/><stop offset="1" stop-color="#e8dfbe"/></linearGradient>
+    <linearGradient id="groundYard14" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ccb891"/><stop offset="1" stop-color="#ae946f"/></linearGradient>
+    <linearGradient id="wallTemple14" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e0a27e"/><stop offset="1" stop-color="#b8674c"/></linearGradient>
+    <linearGradient id="roofTemple14" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#315062"/><stop offset="1" stop-color="#1a3744"/></linearGradient>
+    <linearGradient id="towerWall14" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d89472"/><stop offset="1" stop-color="#a5553b"/></linearGradient>
+    <radialGradient id="gemGlow14" cx=".5" cy=".5" r=".5"><stop stop-color="#fffed6" stop-opacity="1"/><stop offset=".4" stop-color="#fff094" stop-opacity=".92"/><stop offset="1" stop-color="#fff094" stop-opacity="0"/></radialGradient>
+    <pattern id="yardPavers14" width="70" height="34" patternUnits="userSpaceOnUse"><path d="M0 0H70V34H0ZM35 0V17M0 17H70" stroke="#8f7d5f" stroke-width="1.2" fill="none" opacity=".3"/></pattern>
    </defs>
-   <rect width="470" height="900" fill="url(#sky)"/>
-   <circle cx="362" cy="226" r="34" fill="#fff2af" opacity=".9"/>
-   <g fill="#fff" opacity=".65"><ellipse cx="62" cy="220" rx="47" ry="13"/><ellipse cx="343" cy="169" rx="39" ry="12"/><ellipse cx="386" cy="176" rx="48" ry="14"/></g>
-   <path d="M0 515q66-133 138-35 39-77 95 0 66-140 145-27 43-47 92-5v180H0z" fill="#a7c7a8"/>
-   <path d="M0 562Q92 444 182 531q70-74 126-22 81-94 162 19v126H0z" fill="#8eae84"/>
-   <rect x="0" y="612" width="470" height="288" fill="url(#plaza)"/>
-   <rect x="0" y="612" width="470" height="288" fill="url(#paving)"/>
-   <path d="M176 670L294 670 470 900H0Z" fill="#d8cba7" opacity=".73"/>
-   <path d="M234 665v235M178 725H297M117 794H355M40 865H433" stroke="#a99c7f" stroke-width="2" opacity=".6"/>
-   <!-- Temple inspired by the actual photographed multi-tier pagoda, blue roofs and red walls -->
-   <g transform="translate(9,0)">
-     <path d="M143 417h174v118H143z" fill="url(#wall)" stroke="#9c593d" stroke-width="4"/>
-     <path d="M125 427Q141 428 151 401H312Q330 428 343 416Q335 443 309 447H153Q137 446 125 427Z" fill="#193e49"/>
-     <path d="M133 429H333l-16 12H146z" fill="#384f54"/>
-     <path d="M155 399q81-31 158 0l14 14H143Z" fill="url(#roof)"/>
-     <path d="M155 399q81-31 158 0l14 14H143Z" fill="url(#tiles)"/>
-     <path d="M179 360H285V507H179z" fill="#c16f4b"/>
-     <path d="M158 375q14 6 25-16h101q11 22 27 12-6 27-29 31h-96q-19-3-28-27z" fill="#203c4b"/>
-     <path d="M176 358q55-29 112 0l12 8H166z" fill="url(#roof)"/>
-     <path d="M176 358q55-29 112 0l12 8H166z" fill="url(#tiles)"/>
-     <path d="M192 326H274V363H192z" fill="#c98261"/>
-     <path d="M178 343q12 1 20-20h73q6 17 18 16-7 23-27 24h-66q-14-4-18-20z" fill="#264b54"/>
-     <path d="M194 324q40-27 80 0l12 8H181z" fill="url(#roof)"/>
-     <path d="M194 324q40-27 80 0l12 8H181z" fill="url(#tiles)"/>
-     <path d="M128 427q-22 6-35-12M340 429q19 2 27-15" stroke="#b9895d" stroke-width="6" fill="none" stroke-linecap="round"/>
-     <path d="M163 404q-15-1-21-14M324 408q14-3 21-17M190 359q-12-1-16-15M286 362q11-2 15-16" stroke="#c39468" stroke-width="5" fill="none" stroke-linecap="round"/>
-     <path d="M104 451H358v112H104z" fill="#c46b52"/>
-     <rect x="108" y="452" width="246" height="20" fill="#9e573e"/>
-     <g fill="#e8c997"><rect x="124" y="482" width="27" height="57"/><rect x="312" y="482" width="27" height="57"/><rect x="166" y="481" width="21" height="58"/><rect x="275" y="481" width="21" height="58"/></g>
-     <rect x="196" y="474" width="68" height="88" rx="4" fill="#502f2a" stroke="#edc087" stroke-width="5"/>
-     <path d="M231 474v88" stroke="#b77d57" stroke-width="3"/>
-     <g fill="#dd9e5c"><rect x="112" y="468" width="12" height="96"/><rect x="154" y="468" width="12" height="96"/><rect x="297" y="468" width="12" height="96"/><rect x="340" y="468" width="12" height="96"/></g>
-     <rect x="80" y="547" width="304" height="17" rx="2" fill="#8c6a52"/>
-     <path d="M183 560H280L330 664H132Z" fill="#9b9383"/>
-     <g stroke="#d1c6b0" stroke-width="6"><path d="M177 571H284M169 586H292M161 602H300M153 619H307M145 636H315M135 654H327"/></g>
-     <rect x="65" y="558" width="334" height="10" fill="#c1aa80"/>
+   <rect width="470" height="900" fill="url(#skyYard14)"/>
+   <circle cx="384" cy="188" r="40" fill="#fff3ba" opacity=".9"/>
+   <g fill="#fff" opacity=".62"><ellipse cx="74" cy="156" rx="46" ry="12"/><ellipse cx="314" cy="133" rx="36" ry="10"/><ellipse cx="372" cy="146" rx="48" ry="13"/></g>
+   <path d="M0 528q74-120 144-18 50-57 106 1 48-82 112-34 52-44 108 8v163H0z" fill="#9bbb95"/>
+   <path d="M0 582Q92 488 178 564q78-68 144-6 67-72 148 7v111H0z" fill="#82a67d"/>
+   <rect x="0" y="626" width="470" height="274" fill="url(#groundYard14)"/>
+   <rect x="0" y="626" width="470" height="274" fill="url(#yardPavers14)"/>
+   <path d="M130 676H340L470 900H0Z" fill="#deceb0" opacity=".75"/>
+   <path d="M236 678v222M177 738H295M117 808H355M60 872H411" stroke="#a89575" stroke-width="2" opacity=".52"/>
+   <!-- main temple -->
+   <g transform="translate(24,10)">
+     <path d="M86 486H328V596H86z" fill="url(#wallTemple14)" stroke="#94543d" stroke-width="4"/>
+     <path d="M62 492q18 0 30-27h233q14 28 37 18-7 36-42 42H100q-28-2-38-33z" fill="#244451"/>
+     <path d="M88 464q108-46 240 0l23 18H63z" fill="url(#roofTemple14)"/>
+     <path d="M115 418H299V510H115z" fill="#cb7b58"/>
+     <path d="M95 425q16 5 27-20h171q12 27 32 16-6 31-35 36H127q-22-2-32-32z" fill="#23424f"/>
+     <path d="M113 401q86-44 188 0l20 16H92z" fill="url(#roofTemple14)"/>
+     <path d="M144 352H270V428H144z" fill="#d58d66"/>
+     <path d="M124 362q14 3 22-16h121q9 20 24 14-6 25-26 30H151q-19-2-27-28z" fill="#254551"/>
+     <path d="M141 343q58-36 128 0l18 15H123z" fill="url(#roofTemple14)"/>
+     <path d="M170 300H242V353H170z" fill="#dfa17a"/>
+     <path d="M155 309q10 2 18-16h67q8 18 18 13-4 22-20 25h-62q-13-2-21-22z" fill="#2c4c57"/>
+     <path d="M169 291q36-28 74 0l14 11H156z" fill="url(#roofTemple14)"/>
+     <rect x="99" y="500" width="214" height="18" fill="#9e5a40"/>
+     <g fill="#efcb9b"><rect x="115" y="533" width="24" height="54"/><rect x="275" y="533" width="24" height="54"/><rect x="152" y="528" width="18" height="59"/><rect x="244" y="528" width="18" height="59"/></g>
+     <rect x="185" y="516" width="45" height="75" rx="4" fill="#532d26" stroke="#e5b477" stroke-width="4"/>
+     <rect x="139" y="479" width="136" height="26" rx="4" fill="#5a3a2f" stroke="#e0c18c" stroke-width="3"/>
+     <text x="207" y="497" fill="#fbe39d" font-size="14" font-weight="700" text-anchor="middle">CHÙA BÌNH AN</text>
+     <path d="M164 594H250L306 684H108z" fill="#9a9183"/>
+     <g stroke="#d1c5b1" stroke-width="6"><path d="M159 606H254M149 622H264M139 640H274M129 658H284"/></g>
+     <rect x="84" y="597" width="246" height="11" fill="#b89d75"/>
    </g>
-   <!-- side tree -->
-   <path d="M54 900Q65 734 59 579Q53 544 67 511" fill="none" stroke="#795b39" stroke-width="23" stroke-linecap="round"/>
-   <path d="M66 651q-39-25-46-60M68 594q44-53 72-56" fill="none" stroke="#795b39" stroke-width="12" stroke-linecap="round"/>
-   <g fill="#638f61"><circle cx="45" cy="499" r="58"/><circle cx="97" cy="478" r="59"/><circle cx="136" cy="521" r="50"/><circle cx="39" cy="578" r="65"/><circle cx="104" cy="563" r="55"/><circle cx="2" cy="530" r="43"/></g>
-   <g fill="#82b26e" opacity=".95"><circle cx="27" cy="488" r="39"/><circle cx="82" cy="460" r="38"/><circle cx="114" cy="507" r="35"/><circle cx="66" cy="548" r="43"/><circle cx="15" cy="565" r="43"/></g>
-   <g fill="#397b4b" opacity=".75"><path d="M52 479q-9 8 0 20 12-12 0-20M98 508q-8 9 2 19 9-10-2-19M30 536q-10 9-1 19 12-12 1-19M74 555q-8 8 1 18 11-8-1-18M128 548q-9 6-2 17 11-7 2-17"/></g>
-   <g transform="translate(354 692)"><rect x="10" y="16" width="9" height="93" fill="#80502e"/><rect x="76" y="16" width="9" height="93" fill="#80502e"/><path d="M-1 23q19-18 45-25 26 8 46 25l-9 12H8z" fill="#9c4f36"/><rect x="5" y="26" width="80" height="7" fill="#e3ae72"/><path d="M40 38v12" stroke="#986e37" stroke-width="3"/><path d="M30 75V64q0-20 13-20t14 20v11z" fill="#d6a459" stroke="#9b713e" stroke-width="2"/><rect x="25" y="72" width="38" height="5" rx="2" fill="#b7833d"/><circle cx="44" cy="80" r="5" fill="#855b32"/></g>
-   <g><path d="M178 713l13-12 13 12z" fill="#9b9f83"/><rect x="184" y="713" width="7" height="34" fill="#b9b9a4"/><path d="M288 711l13-12 13 12z" fill="#9b9f83"/><rect x="295" y="711" width="7" height="34" fill="#b9b9a4"/></g>
-   <g transform="translate(248 728)"><path d="M-21 14h42l-8 30h-26z" fill="#b9aca0"/><ellipse rx="24" ry="7" cy="15" fill="#d6c4a3"/><path d="M-10 10v-30M0 10v-38M10 10v-26" stroke="#9a633c" stroke-width="3"/></g>
-   <path d="M27 823q7 0 11 6-10 8-16-1M443 856q8-4 14 2-5 9-15 5" fill="#85ab68"/>
+   <!-- tower 9 levels -->
+   <g transform="translate(350,350)">
+     <ellipse cx="35" cy="-6" rx="42" ry="28" fill="url(#gemGlow14)" opacity=".95"/>
+     <circle cx="35" cy="-6" r="9" fill="#f7f2a9"/>
+     <circle cx="35" cy="-6" r="4.3" fill="#fff" opacity=".9"/>
+     <g opacity=".88" fill="#fff5b4"><circle cx="18" cy="-19" r="2.4"/><circle cx="50" cy="-23" r="2.1"/><circle cx="55" cy="8" r="2.2"/><circle cx="12" cy="4" r="2.1"/></g>
+     <path d="M28 -2h14v32H28z" fill="#8f5b39"/>
+     <g transform="translate(0,10)">
+       <g id="tier9">
+         <rect x="18" y="0" width="34" height="18" rx="2" fill="url(#towerWall14)" stroke="#944f38" stroke-width="2"/>
+         <path d="M9 1q8 0 15-10h22q7 10 15 10l-6 8H15z" fill="#284754"/>
+       </g>
+       <use href="#tier9" y="22"/>
+       <use href="#tier9" y="44"/>
+       <use href="#tier9" y="66"/>
+       <use href="#tier9" y="88"/>
+       <use href="#tier9" y="110"/>
+       <use href="#tier9" y="132"/>
+       <use href="#tier9" y="154"/>
+       <use href="#tier9" y="176"/>
+       <rect x="28" y="196" width="14" height="68" fill="#8b5a39"/>
+       <path d="M0 267H70l-11 20H11z" fill="#8d7559"/>
+     </g>
+   </g>
+   <!-- garden trees and flags -->
+   <path d="M52 900Q65 740 58 586q-3-26 12-56" fill="none" stroke="#7b5d39" stroke-width="20" stroke-linecap="round"/>
+   <path d="M64 650q-40-23-47-58M68 610q38-46 69-53" fill="none" stroke="#7b5d39" stroke-width="10" stroke-linecap="round"/>
+   <g fill="#6e9b61"><circle cx="44" cy="507" r="56"/><circle cx="95" cy="485" r="59"/><circle cx="130" cy="534" r="45"/><circle cx="38" cy="579" r="60"/><circle cx="95" cy="560" r="54"/></g>
+   <g fill="#8abc72" opacity=".92"><circle cx="28" cy="492" r="39"/><circle cx="82" cy="467" r="37"/><circle cx="115" cy="516" r="33"/><circle cx="62" cy="550" r="40"/><circle cx="18" cy="562" r="40"/></g>
+   <g transform="translate(245 732)"><path d="M-20 12h40l-6 30h-28z" fill="#b9aca0"/><ellipse cx="0" cy="13" rx="23" ry="7" fill="#d8c7a7"/><path d="M-11 8v-28M0 8v-38M11 8v-25" stroke="#9a633c" stroke-width="3"/></g>
   </svg>
   <img class="room-photo" id="yardPhoto" alt="Ảnh chùa thực tế" src="chua-binh-an.jpg">
   <div class="gradient-top"></div>
   <div class="room-header"><button class="where" id="yardWho">🙏 Sân chùa · xem thử</button><div class="header-actions"><button class="round" id="yardPhotoToggle" aria-label="Bật tắt ảnh chùa gốc" title="Xem ảnh ngôi chùa gốc">📷</button><button class="round" data-sound aria-label="Bật tắt nhạc nền và âm thanh" title="Bật/tắt nhạc">♫</button></div></div>
-  <button class="entrance-hotspot" id="enterHall">🚪 Vào chánh điện →</button>
   <aside class="visitor-board" id="visitorBoard" aria-label="Danh sách Phật tử từng vào chùa">
    <h3>📜 DANH SÁCH PHẬT TỬ <span id="visitorCount"></span></h3>
    <div class="visitor-board-list" id="visitorBoardList"><div class="board-small">Chưa có người tham gia</div></div>
    <button class="board-action" id="openVisitorList" type="button">Xem tất cả</button>
   </aside>
-  <button type="button" class="meet-abbot-button" id="meetAbbot">🍵 Gặp mặt Trụ trì chùa</button>
   <div class="people-layer" id="yardPeople"></div>
-  <div class="room-bubble" id="yardBubble">🌿 Một chút an yên giữa ngày bận rộn</div>
-  <div class="screen-footer"><button class="tool" data-bell><span class="tool-icon">🔔</span><span>Chuông</span></button><button class="tool" data-incense><span class="tool-icon">🪔</span><span>Thắp hương</span></button><button class="tool" data-wishes><span class="tool-icon">📜</span><span>Lời nguyện</span></button><button class="tool important" id="yardHall"><span class="tool-icon">⛩️</span><span>Chánh điện</span></button><button class="tool" data-home><span class="tool-icon">🏡</span><span>Trang chủ</span></button></div>
+  <div class="room-bubble" id="yardBubble">🌿 Mái chùa khang trang, cổ kính và thanh tịnh</div>
+  <div class="screen-footer"><button class="tool important" id="yardHall"><span class="tool-icon">⛩️</span><span>Vào Chánh điện</span></button><button class="tool" id="yardAbbot"><span class="tool-icon">🍵</span><span>Gặp Trụ Trì</span></button><button class="tool highlight" id="yardWork"><span class="tool-icon">🧹</span><span>Làm Công quả</span></button></div>
 </section>
+<!-- SCREEN 3: HALL -->
 <!-- SCREEN 3: HALL -->
 <section id="hall" class="view room hall-scene" aria-label="Chánh điện">
  <svg class="room-art" viewBox="0 0 470 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -242,6 +283,35 @@
  <div class="room-bubble" id="hallBubble">🪷 Tâm an, việc thuận, ngày thêm vui</div>
  <div class="screen-footer"><button class="tool" data-bell><span class="tool-icon">🔔</span><span>Chuông</span></button><button class="tool" data-incense><span class="tool-icon">🪔</span><span>Thắp hương</span></button><button class="tool highlight" data-prayer><span class="tool-icon">🙏</span><span>Cầu nguyện</span></button><button class="tool" data-bow><span class="tool-icon">🙇</span><span>Lạy Phật</span></button><button class="tool" data-meditate><span class="tool-icon">🧘</span><span>Ngồi thiền</span></button><button class="tool" data-chant><span class="tool-icon">📿</span><span>Niệm Phật</span></button><button class="tool" data-mala><span class="tool-icon">📿</span><span>Tràng hạt</span></button><button class="tool highlight" id="openOffering" type="button"><span class="tool-icon">🌸</span><span>Cúng dường</span></button><button class="tool important" data-exit><span class="tool-icon">⛩️</span><span>Ra sân</span></button></div>
 </section>
+<!-- SCREEN 4: Làm Công quả -->
+<section id="karma" class="view room karma-scene" aria-label="Làm công quả">
+  <svg class="room-art" viewBox="0 0 470 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="karmaSky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d6ecdc"/><stop offset=".68" stop-color="#f2ead7"/><stop offset="1" stop-color="#cfba96"/></linearGradient>
+      <linearGradient id="karmaGround" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d7c69e"/><stop offset="1" stop-color="#b89770"/></linearGradient>
+    </defs>
+    <rect width="470" height="900" fill="url(#karmaSky)"/>
+    <path d="M0 570q98-88 188-14 59-58 118-20 67-49 164 25v339H0z" fill="#9bb88a"/>
+    <rect x="0" y="618" width="470" height="282" fill="url(#karmaGround)"/>
+    <path d="M18 900Q66 757 82 533" fill="none" stroke="#795936" stroke-width="30" stroke-linecap="round"/>
+    <path d="M77 590q-61-17-69-62M86 543q64-43 120-40M83 493q-31-53 20-99M95 457q68 9 109-14" fill="none" stroke="#7a5a37" stroke-width="14" stroke-linecap="round"/>
+    <g fill="#79a964"><circle cx="84" cy="420" r="74"/><circle cx="150" cy="403" r="82"/><circle cx="204" cy="453" r="70"/><circle cx="56" cy="497" r="64"/><circle cx="140" cy="508" r="84"/><circle cx="223" cy="514" r="68"/><circle cx="120" cy="350" r="64"/></g>
+    <g fill="#92c670" opacity=".95"><circle cx="74" cy="404" r="44"/><circle cx="129" cy="381" r="49"/><circle cx="184" cy="426" r="45"/><circle cx="103" cy="471" r="56"/><circle cx="173" cy="494" r="52"/></g>
+    <path d="M0 715H470" stroke="#9d8664" stroke-width="2" opacity=".4"/>
+    <path d="M0 770H470" stroke="#9d8664" stroke-width="2" opacity=".32"/>
+    <path d="M0 825H470" stroke="#9d8664" stroke-width="2" opacity=".24"/>
+    <path d="M272 900q55-76 92-235" fill="none" stroke="#8b6640" stroke-width="18" stroke-linecap="round" opacity=".45"/>
+  </svg>
+  <div class="gradient-top"></div>
+  <div class="karma-hint">🌿 Gốc bồ đề · quét sân là một cách tu tâm</div>
+  <div class="room-header"><button class="where" id="karmaWho">🌿 Làm Công quả</button><div class="header-actions"><button class="round" data-sound aria-label="Bật tắt nhạc" title="Bật/tắt nhạc">♫</button></div></div>
+  <div class="karma-layer" id="karmaLeaves"></div>
+  <div class="broom-anim" id="broomAnim" aria-hidden="true">🧹</div>
+  <div class="people-layer" id="karmaPeople"></div>
+  <div class="room-bubble" id="karmaBubble">🧹 Hãy nhẹ nhàng quét từng chiếc lá bồ đề.</div>
+  <div class="screen-footer"><button class="tool highlight" id="sweepYard"><span class="tool-icon">🧹</span><span>Quét sân</span></button><button class="tool important" id="leaveKarma"><span class="tool-icon">⛩️</span><span>Về sân chùa</span></button></div>
+</section>
+
 <!-- SCREEN 4: Phòng nghỉ của Trụ trì -->
 <section id="abbot" class="view room abbot-scene" aria-label="Phòng nghỉ Trụ trì">
   <svg class="abbot-room-art" viewBox="0 0 470 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -270,7 +340,7 @@
     <path d="M151 13q-10-9 0-20M163 13q-9-9 0-20" stroke="#fff8e1" stroke-width="3" opacity=".8" fill="none"/>
   </svg>
   <div id="abbotVisitor" class="abbot-visitor"></div>
-  <div id="abbotSpeech" class="abbot-speech" role="status" aria-live="polite"></div>
+  <div class="abbot-quote-note">🍵 Gặp Trụ trì · gửi lời rồi nhận một câu đáp bất ngờ</div><div id="abbotSpeech" class="abbot-speech" role="status" aria-live="polite"></div>
   <div class="abbot-chat-box">
     <label for="abbotMessage">Bạn muốn thưa điều gì với Trụ trì?</label>
     <textarea id="abbotMessage" maxlength="220" placeholder="Con xin thưa..." aria-label="Nội dung muốn thưa với Trụ trì"></textarea>
@@ -369,10 +439,10 @@ window.CHUA_FIREBASE_CONFIG = window.CHUA_FIREBASE_CONFIG || null;
 (()=>{
 'use strict';
 const $=id=>document.getElementById(id);
-const screens=['home','yard','hall','abbot'];
+const screens=['home','yard','hall','karma','abbot'];
 const safeGet=(key,fallback)=>{try{return JSON.parse(localStorage.getItem('cba3_'+key))??fallback}catch{return fallback}};
 const safeSet=(key,value)=>{try{localStorage.setItem('cba3_'+key,JSON.stringify(value))}catch{}};
-const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),offerings:safeGet('offerings_demo',[]),prayers:safeGet('prayers_demo',[]),visitors:safeGet('visitors_demo',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),lastPrayer:'',presenceId:null,realtimeReady:false};
+const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),offerings:safeGet('offerings_demo',[]),prayers:safeGet('prayers_demo',[]),visitors:safeGet('visitors_demo',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),sweptLeaves:safeGet('sweptLeaves',0),lastPrayer:'',presenceId:null,realtimeReady:false};
 let toastTimer, speechTimer, currentPanel=null, audioContext;
 
 // Trang chủ & Sân chùa: phát MP3 do chủ website cung cấp.
@@ -454,13 +524,13 @@ function toggleMusic(){
 }
 
 const MOCKS=[{id:'sample-a',name:'An (mẫu)',gender:'female',scene:'yard',action:'stand',sample:true},{id:'sample-b',name:'Minh (mẫu)',gender:'male',scene:'yard',action:'stand',sample:true},{id:'sample-c',name:'Tịnh Tâm (mẫu)',gender:'female',scene:'hall',action:'meditate',sample:true},{id:'sample-d',name:'Bình (mẫu)',gender:'male',scene:'hall',action:'kneel',sample:true}];
-const positions={yard:[{x:34,y:77,s:'tiny'},{x:72,y:80,s:'small'},{x:47,y:88,s:''},{x:21,y:89,s:'small'},{x:80,y:91,s:''},{x:63,y:85,s:'small'}],hall:[{x:34,y:68,s:'small'},{x:70,y:68,s:'small'},{x:25,y:74,s:''},{x:78,y:74,s:''},{x:43,y:73,s:'small'},{x:64,y:73,s:'small'}]};
-const mePosition={yard:{x:51,y:82},hall:{x:52,y:75}};
-function persist(){safeSet('name',state.name);safeSet('gender',state.gender);safeSet('malaCount',state.malaCount)}
+const positions={yard:[{x:34,y:77,s:'tiny'},{x:72,y:79,s:'small'},{x:47,y:87,s:''},{x:21,y:88,s:'small'},{x:80,y:90,s:''},{x:63,y:84,s:'small'}],hall:[{x:31,y:62,s:'small'},{x:72,y:62,s:'small'},{x:23,y:68,s:''},{x:80,y:68,s:''},{x:44,y:67,s:'small'},{x:62,y:67,s:'small'}],karma:[{x:76,y:79,s:'small'},{x:61,y:83,s:'small'}]};
+const mePosition={yard:{x:51,y:82},hall:{x:52,y:70},karma:{x:78,y:82}};
+function persist(){safeSet('name',state.name);safeSet('gender',state.gender);safeSet('malaCount',state.malaCount);safeSet('sweptLeaves',state.sweptLeaves)}
 function niceName(raw){return String(raw||'').trim().replace(/\s+/g,' ').slice(0,24)}
 function escapeText(s){return String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
 function toast(msg){$('toast').textContent=msg;$('toast').classList.add('open');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('open'),2800)}
-function bubble(s){$(state.scene==='hall'?'hallBubble':'yardBubble').textContent=s}
+function bubble(s){const map={hall:'hallBubble',yard:'yardBubble',karma:'karmaBubble'};const id=map[state.scene]||'yardBubble';if($(id))$(id).textContent=s}
 function charSVG(type,pose='stand'){
  const female=type==='female', skin=female?'#f0bc94':'#d9ac84',hair=female?'#273238':'#31363d';
  const arms=pose==='meditate'?`<path d="M29 46q9 12 21 0" fill="none" stroke="#8295a5" stroke-width="8" stroke-linecap="round"/><path d="M31 54q9 5 17 0" fill="none" stroke="${skin}" stroke-width="5" stroke-linecap="round"/>`:pose==='kneel'?`<path d="M28 38q11-8 22 3" fill="none" stroke="#849baa" stroke-width="7" stroke-linecap="round"/><circle cx="47" cy="37" r="4" fill="${skin}"/>`:pose==='bow'?`<path d="M27 44q10 11 13 19 8-10 14-20" fill="none" stroke="#90a7b6" stroke-width="8" stroke-linecap="round"/><path d="M35 55h10" stroke="${skin}" stroke-width="5" stroke-linecap="round"/>`:pose==='chant'?`<path d="M26 38q8 4 14 13 10-10 13-13" fill="none" stroke="#90a7b6" stroke-width="8" stroke-linecap="round"/><circle cx="40" cy="50" r="4" fill="${skin}"/>`:pose==='mala'?`<path d="M28 40q8 4 12 11 8-8 12-11" fill="none" stroke="#90a7b6" stroke-width="8" stroke-linecap="round"/><circle cx="33" cy="50" r="4" fill="#c7a35a"/><circle cx="40" cy="54" r="4" fill="#c7a35a"/><circle cx="47" cy="50" r="4" fill="#c7a35a"/>`:pose==='pray'?`<path d="M28 39q7 8 12 16 7-8 12-16" fill="none" stroke="#90a7b6" stroke-width="8" stroke-linecap="round"/><path d="M35 49h10" stroke="${skin}" stroke-width="5" stroke-linecap="round"/>`:`<path d="M27 37L23 55M53 37l4 18" stroke="#879bab" stroke-width="9" stroke-linecap="round"/>`;
@@ -468,9 +538,9 @@ function charSVG(type,pose='stand'){
  return `<svg viewBox="0 0 80 88" aria-hidden="true"><ellipse cx="40" cy="84" rx="24" ry="5" fill="#000" opacity=".13"/>${legs}<path d="M23 35q17-10 34 0l-2 30H25z" fill="#a9c0ca" stroke="#718e9b" stroke-width="1.2"/><path d="M28 40q12 6 24-1" stroke="#d9e5e1" stroke-width="2" fill="none"/>${arms}<rect x="35" y="27" width="10" height="11" rx="5" fill="${skin}"/><ellipse cx="40" cy="18" rx="17" ry="19" fill="${skin}"/><path d="M23 17Q21-6 40-5q23-2 17 22Q51 4 42 5q-14-4-19 12z" fill="${hair}"/>${female?`<path d="M25 12q-11 15-4 27M55 12q10 15 5 26" stroke="${hair}" stroke-width="7" stroke-linecap="round"/>`:`<path d="M27 7q8-13 28 1" fill="none" stroke="${hair}" stroke-width="7"/>`}<path d="M32 20h2M46 20h2" stroke="#4b3530" stroke-width="3" stroke-linecap="round"/><path d="M36 29q4 3 9 0" fill="none" stroke="#ae7057" stroke-width="2" stroke-linecap="round"/></svg>`;
 }
 function renderAvatars(){
- for(const room of ['yard','hall']){
+ for(const room of ['yard','hall','karma']){
   const layer=$(room+'People');layer.replaceChildren();
-  let group=state.localMode?MOCKS.filter(p=>p.scene===room):state.people.filter(p=>p.scene===room && p.id!=='me');
+  let group=room==='karma'?[]:(state.localMode?MOCKS.filter(p=>p.scene===room):state.people.filter(p=>p.scene===room && p.id!=='me'));
   group=group.slice(0,11);
   group.forEach((p,i)=>{
    const pos=positions[room][i%positions[room].length];
@@ -495,10 +565,11 @@ function renderAvatars(){
 }
 function updateCounts(){
  const people=state.localMode?(state.joined?1:0):(state.people.length+(state.joined?1:0));
- const yard=state.localMode?(state.joined&&state.scene==='yard'?1:0):(state.people.filter(p=>p.scene==='yard').length+(state.joined&&state.scene==='yard'?1:0));
+ const yard=state.localMode?(state.joined&&(state.scene==='yard'||state.scene==='karma')?1:0):(state.people.filter(p=>p.scene==='yard').length+(state.joined&&(state.scene==='yard'||state.scene==='karma')?1:0));
  const hall=state.localMode?(state.joined&&state.scene==='hall'?1:0):(state.people.filter(p=>p.scene==='hall').length+(state.joined&&state.scene==='hall'?1:0));
  $('yardWho').textContent=`🙏 ${yard} · Sân chùa`;
  $('hallWho').textContent=`🙏 ${hall} · Chánh điện`;
+ if($('karmaWho'))$('karmaWho').textContent='🌿 Làm Công quả';
  $('homeStats').textContent=state.localMode?'Bản mẫu chưa kết nối nhiều người; 4 nhân vật minh họa.':`${people} người đang hiện diện · Sân ${yard} · Chánh điện ${hall}`;
  $('modeLabel').textContent=state.localMode?'DEMO TRÊN THIẾT BỊ':(state.realtimeReady?'TRỰC TUYẾN':'ĐANG KẾT NỐI');
 }
@@ -511,7 +582,7 @@ function renderRoster(){
   const d=document.createElement('div');d.className='roster-card';
   const av=document.createElement('div');av.innerHTML=charSVG(p.gender,p.action);
   const info=document.createElement('div');const nm=document.createElement('div');nm.className='roster-name';nm.textContent=p.name;
-  const sub=document.createElement('div');sub.className='roster-room';sub.textContent=(p.scene==='hall'?'Trong chánh điện':p.scene==='yard'?'Ở sân chùa':'Chưa vào chùa')+(p.sample?' · MẪU':'');info.append(nm,sub);d.append(av,info);target.append(d);
+  const sub=document.createElement('div');sub.className='roster-room';sub.textContent=(p.scene==='hall'?'Trong chánh điện':p.scene==='karma'?'Đang làm công quả':p.scene==='yard'?'Ở sân chùa':'Chưa vào chùa')+(p.sample?' · MẪU':'');info.append(nm,sub);d.append(av,info);target.append(d);
  });
  $('peopleMode').textContent=state.localMode?'4 nhân vật được tạo để minh họa thiết kế; chỉ người trên thiết bị này là người tham gia thật.':'Danh sách người tham gia đang được đồng bộ từ Firebase.';
 }
@@ -519,10 +590,11 @@ function showView(which){
  if(which!=='home'&&!state.joined){toast('Hãy nhập tên hoặc pháp danh trước khi vào chùa.');return}
  if(!screens.includes(which))return;
  state.scene=which;screens.forEach(s=>$(s).classList.toggle('active',s===which));
- if(which==='abbot')renderAbbotAvatar();
+ if(which==='abbot'){renderAbbotAvatar();$('abbotSpeech').classList.remove('show');}
  if(ambientMusic.isStarted())ambientMusic.select(which,state.sound);
- if(which==='yard')bubble('🌿 Một chút an yên giữa ngày bận rộn');
+ if(which==='yard')bubble('🌿 Mái chùa khang trang, cổ kính và thanh tịnh');
  if(which==='hall')bubble('🪷 Tâm an, việc thuận, ngày thêm vui');
+ if(which==='karma'){bubble('🧹 Từ bi, hỷ xả, buông bỏ chấp niệm, tu tâm dưỡng tánh!');renderLeaves();}
  renderAvatars(); publishPresence();
 }
 function join(){const n=niceName($('visitorName').value);if(!n){toast('Vui lòng nhập tên hoặc pháp danh nhé 🌿');$('visitorName').focus();return}
@@ -666,15 +738,46 @@ function renderAbbotAvatar(){
  </svg>`;
  el.append(name,figure);
 }
+const ABBOT_QUOTES=[
+ 'con muốn gì cũng được, kệ con!',
+ 'Tiền của mình mà mình xài là vô đạo đức.',
+ 'Nằm máy lạnh là ác.',
+ 'Nằm võng là mất phước.',
+ 'Hát karaoke thành ma câm',
+ 'Khi mình thành công bất kỳ việc gì cũng đừng tự hào, vì theo nhân quả, tự hào điều gì, sau đó sẽ mất điều đó luôn.',
+ 'Có nhà có đất phải hiến cho chùa',
+ 'Nằm máy lạnh là ác',
+ 'Nằm võng là mất phước.',
+ 'Xách xe đi chơi... nằm bệnh 1 tháng'
+];
+const KARMA_LEAVES=[
+ {x:45,y:72,r:-18},{x:57,y:71,r:16},{x:64,y:75,r:-12},{x:50,y:77,r:24},{x:70,y:78,r:-22},
+ {x:59,y:80,r:8},{x:42,y:80,r:-10},{x:74,y:82,r:19},{x:52,y:84,r:-16},{x:65,y:85,r:11},
+ {x:38,y:86,r:-24},{x:57,y:87,r:20},{x:70,y:88,r:-8},{x:48,y:89,r:12},{x:62,y:90,r:-15}
+];
+function renderLeaves(){
+ const host=$('karmaLeaves'); if(!host) return; host.replaceChildren();
+ KARMA_LEAVES.forEach((p,i)=>{const leaf=document.createElement('div');leaf.className='bodhi-leaf'+(i<state.sweptLeaves?' gone':'');leaf.id='karmaLeaf'+i;leaf.textContent='🍃';leaf.style.left=p.x+'%';leaf.style.top=p.y+'%';leaf.style.transform=`translate(-50%,-50%) rotate(${p.r}deg)`;host.append(leaf);});
+}
+function sweepYardOnce(){
+ if(!state.joined){toast('Hãy vào chùa trước nhé.');return}
+ if(state.scene!=='karma'){showView('karma');return}
+ const message='Từ bi, hỷ xả, buông bỏ chấp niệm, tu tâm dưỡng tánh!';
+ bubble(message);toast(message);
+ const broom=$('broomAnim'); if(broom){broom.classList.remove('show');void broom.offsetWidth;broom.classList.add('show');}
+ if(state.sweptLeaves>=KARMA_LEAVES.length){confetti('✨');toast('Sân chùa đã sạch rồi. Mô Phật!');return}
+ state.sweptLeaves=Math.min(KARMA_LEAVES.length,state.sweptLeaves+1);persist();renderLeaves();confetti('🍃');
+}
 function sendToAbbot(){
  const text=$('abbotMessage').value.trim().slice(0,220);
  if(!text){toast('Bạn hãy nhập lời muốn thưa với Trụ trì.');return}
  if(!state.joined){toast('Bạn cần vào chùa trước.');return}
- const bubble=$('abbotSpeech');bubble.textContent=state.name+': '+text;
+ const bubble=$('abbotSpeech');
+ const quote=ABBOT_QUOTES[Math.floor(Math.random()*ABBOT_QUOTES.length)];
+ bubble.textContent=quote;
  bubble.classList.remove('show');void bubble.offsetWidth;bubble.classList.add('show');
  $('abbotMessage').value='';
- toast('Đã hiển thị lời thưa của bạn.');
- // Đây chỉ là mô phỏng trong giao diện, không gửi tới người ngoài đời.
+ toast('Trụ trì đã hồi đáp.');
 }
 
 // Ghi nhận cúng dường tượng trưng (không có thanh toán hay chuyển tiền thật).
@@ -792,7 +895,7 @@ function malaReset(){ state.malaCount=0; persist(); renderMala(); publishPresenc
 async function sendWish(){const text=$('wishInput').value.trim().slice(0,220);if(!text){toast('Bạn viết lời chúc trước khi gửi nhé.');return}if(!state.joined){toast('Hãy vào chùa trước khi gửi lời chúc.');return}
  if(state.firebase){try{await state.firebase.addWish({name:state.name,text});$('wishInput').value='';toast('Lời nguyện đã gửi tới mọi người 🌷');return}catch(err){toast('Không gửi được. Vui lòng kiểm tra kết nối.');return}}
  state.wishes.push({name:state.name,text,when:new Date().toLocaleDateString('vi-VN')});state.wishes=state.wishes.slice(-50);safeSet('wishes',state.wishes);$('wishInput').value='';renderWishes();toast('Đã lưu lời chúc trên thiết bị này 🌷');}
-function publishPresence(){if(state.firebase&&state.joined){state.firebase.publish({name:state.name,gender:state.gender,scene:state.scene,action:state.action,malaCount:state.malaCount}).catch(err=>console.warn('Không cập nhật được trạng thái:',err))}}
+function publishPresence(){if(state.firebase&&state.joined){const scene=state.scene==='karma'?'yard':state.scene;const action=state.scene==='karma'?'stand':state.action;state.firebase.publish({name:state.name,gender:state.gender,scene,action,malaCount:state.malaCount}).catch(err=>console.warn('Không cập nhật được trạng thái:',err))}}
 function emitEvent(type,text){if(state.firebase&&state.joined){state.firebase.emitEvent(type,String(text||'').slice(0,180)).catch(err=>{console.warn('Không đồng bộ được hiệu ứng:',err);toast('Hiệu ứng hiện chỉ chạy trên thiết bị này. Vui lòng kiểm tra kết nối.')})}}
 function floatPrayerFrom(text,presenceId,roomId){
  const room=$(roomId);if(!room||!room.classList.contains('active'))return false;
@@ -834,8 +937,8 @@ function syncRemoteEvent(evt){
 $('visitorName').value=state.name;$('visitorGender').value=state.gender;
 $('joinButton').onclick=join;$('visitorName').addEventListener('keydown',e=>{if(e.key==='Enter')join()});
 $('homeInfo').onclick=()=>openPanel('infoPanel');
-$('yardHall').onclick=()=>showView('hall');$('enterHall').onclick=()=>showView('hall');
-$('yardWho').onclick=()=>openPanel('peoplePanel');$('hallWho').onclick=()=>openPanel('peoplePanel');
+$('yardHall').onclick=()=>showView('hall');$('yardAbbot').onclick=()=>showView('abbot');$('yardWork').onclick=()=>showView('karma');
+$('yardWho').onclick=()=>openPanel('peoplePanel');$('hallWho').onclick=()=>openPanel('peoplePanel');if($('karmaWho'))$('karmaWho').onclick=()=>openPanel('peoplePanel');
 $('yardPhotoToggle').onclick=()=>{const photo=$('yardPhoto');photo.classList.toggle('show');toast(photo.classList.contains('show')?'📷 Đây là ảnh chùa bạn đã gửi.':'🎨 Đã trở lại cảnh hoạt hình từ ảnh chùa.')};
 $('backdrop').onclick=closePanel;document.querySelectorAll('[data-close]').forEach(b=>b.onclick=closePanel);
 document.querySelectorAll('[data-home]').forEach(b=>b.onclick=()=>showView('home'));
@@ -856,9 +959,10 @@ $('openOffering').onclick=()=>{if(!state.joined){toast('Hãy nhập tên hoặc 
 $('openOfferingList').onclick=()=>openPanel('offeringListPanel');
 $('openPrayerList').onclick=()=>openPanel('prayerListPanel');
 $('openVisitorList').onclick=()=>openPanel('visitorListPanel');
-$('meetAbbot').onclick=()=>showView('abbot');
 $('leaveAbbot').onclick=()=>showView('yard');
 $('sendAbbotMessage').onclick=sendToAbbot;
+if($('leaveKarma'))$('leaveKarma').onclick=()=>showView('yard');
+if($('sweepYard'))$('sweepYard').onclick=sweepYardOnce;
 document.querySelectorAll('[data-offering-amount]').forEach(btn=>btn.onclick=()=>{$('offeringAmount').value=offeringMoney(Number(btn.dataset.offeringAmount)).replace('đ','');$('offeringError').textContent='';});
 $('offeringAmount').addEventListener('input',()=>{$('offeringError').textContent='';});
 $('sendOffering').onclick=sendOffering;
@@ -893,8 +997,10 @@ async function connectFirebase(){
   const publishSafe=async values=>{
     if(!state.joined||!connected)return;
     if(!disconnectRegistered){await onDisconnect(myRef).remove();disconnectRegistered=true;}
-    await set(myRef,{uid,name:niceName(values.name),gender:values.gender,scene:values.scene,
-     action:values.action,malaCount:Math.max(0,Math.min(108,values.malaCount|0)),updatedAt:serverTimestamp()});
+    const scene=(values.scene==='karma'?'yard':values.scene);
+    const action=(values.scene==='karma'?'stand':values.action);
+    await set(myRef,{uid,name:niceName(values.name),gender:values.gender,scene,
+     action,malaCount:Math.max(0,Math.min(108,values.malaCount|0)),updatedAt:serverTimestamp()});
   };
   onValue(ref(db,'.info/connected'),async snap=>{
     connected=snap.val()===true;
