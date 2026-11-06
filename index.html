@@ -15,7 +15,7 @@
 .room{background:#cfe9e9} .room-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.room-art svg{height:100%;width:100%;display:block}.room-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease}.room-photo.show{opacity:1}.gradient-top{position:absolute;left:0;right:0;top:0;height:125px;background:linear-gradient(#10272165,transparent);pointer-events:none;z-index:3}.room-header{position:absolute;top:calc(18px + env(safe-area-inset-top));left:15px;right:15px;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:6;pointer-events:none}.room-header button{pointer-events:auto;box-shadow:0 8px 25px #0002}.where{border:1px solid #ffffffe0;border-radius:999px;padding:10px 14px;background:#fff9eced;color:#53654b;font-size:13px;font-weight:800;backdrop-filter:blur(8px)}.header-actions{display:flex;gap:8px}.round{display:grid;place-items:center;width:44px;height:44px;border:1px solid #f9f9f0;background:#fffcf1ec;border-radius:50%;color:#52634f;font-size:19px}.screen-footer{position:absolute;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:8;display:flex;align-items:center;gap:8px;justify-content:flex-start;background:#f8f0e9e8;border:1px solid #ffffffe8;border-radius:45px;padding:9px;box-shadow:0 15px 45px #1d282b40;backdrop-filter:blur(12px);max-width:calc(100% - 24px);overflow-x:auto;scrollbar-width:none}.screen-footer::-webkit-scrollbar{display:none}.tool{display:flex;flex-direction:column;align-items:center;gap:3px;width:62px;min-width:62px;height:67px;border:none;border-radius:31px;background:#ffffffc8;color:#69766b;justify-content:center;box-shadow:inset 0 -2px 0 #dcd9cd}.tool-icon{font-size:24px;line-height:1}.tool span:last-child{font-size:9px;font-weight:850;letter-spacing:-.1px}.tool.important{background:#f8e0b8;color:#936c37}.tool.highlight{background:#e4eee2;color:#3e7449}.tool:active{transform:scale(.96)}.people-layer{position:absolute;inset:0;z-index:5;pointer-events:none}.character{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;flex-direction:column;justify-content:flex-end;pointer-events:auto;min-width:60px;animation:popUp .4s ease both;filter:drop-shadow(0 3px 2px #253d321e)}@keyframes popUp{from{opacity:0;transform:translate(-50%,-35%) scale(.8)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}.char-name{white-space:nowrap;max-width:112px;overflow:hidden;text-overflow:ellipsis;background:#fffdf3ec;border:1px solid #e4d7be;color:#5d5744;border-radius:12px;padding:2px 7px;box-shadow:0 2px 8px #1f2d281f;font-size:10px;font-weight:800;margin-bottom:3px}.character.me .char-name{background:#ffedb9;color:#775321;border-color:#f4cf80}.character svg{width:52px;height:74px;overflow:visible}.character.small svg{width:42px;height:58px}.character.tiny svg{width:32px;height:48px}.char-tag{font-size:8px;background:#ffffffc7;padding:0 4px;border-radius:5px;margin-top:-1px}.speech{position:absolute;bottom:88%;left:58%;background:#fff9eae8;padding:6px 8px;border-radius:15px;border:1px solid #fff3bd;box-shadow:0 3px 10px #0002;font-size:10px;font-weight:800;color:#957641;white-space:nowrap;animation:fadeSpeech 3.4s ease both;pointer-events:none}@keyframes fadeSpeech{0%{opacity:0;transform:translateY(8px)}15%,70%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-18px)}}.character.bow-loop svg{animation:bowMove 1.4s ease-in-out infinite}.character.meditate-loop svg{animation:breathe 2.2s ease-in-out infinite}.character.chant-loop svg{animation:gentleSway 1.5s ease-in-out infinite}.character.prayer-loop svg{animation:gentleSway 1.5s ease-in-out infinite}.character.mala-loop svg{animation:gentleSway 1.4s ease-in-out infinite}@keyframes bowMove{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(8px) scale(1,.96)}}@keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}@keyframes gentleSway{0%,100%{transform:translateX(0)}50%{transform:translateX(2px)}}.prayer-float{position:absolute;z-index:12;max-width:170px;padding:8px 11px;background:rgba(255,251,238,.96);border:1px solid #f1dfb2;border-radius:16px;color:#8b6b32;font-size:11px;font-weight:800;line-height:1.35;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.14);animation:prayerRise 3.8s ease-out forwards;pointer-events:none}.prayer-float:after{content:"";position:absolute;left:50%;bottom:-8px;transform:translateX(-50%) rotate(45deg);width:14px;height:14px;background:inherit;border-right:1px solid #f1dfb2;border-bottom:1px solid #f1dfb2}@keyframes prayerRise{0%{opacity:0;transform:translate(-50%,6px) scale(.8)}12%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-150px) scale(1.02)}}.mala-stage{display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:14px;border:1px solid #eadfc9;background:#fffdf8;border-radius:18px}.mala-visual{position:relative;width:220px;height:220px;margin:auto}.mala-visual svg{width:100%;height:100%}.mala-ring{transform-origin:50% 50%;transition:transform .35s ease}.mala-center{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);text-align:center;background:#fff8ea;border:1px solid #edd8a9;border-radius:20px;padding:12px 10px;min-width:96px;box-shadow:0 6px 18px rgba(0,0,0,.08)}.mala-center strong{display:block;font-size:28px;line-height:1;color:#8d6a2e}.mala-center span{display:block;font-size:11px;color:#8f856f;font-weight:700;margin-top:4px}.mala-actions{display:grid;gap:10px;min-width:210px;flex:1}.mala-btn{border:0;background:#486b4e;color:#fff;padding:12px 14px;border-radius:14px;font-weight:800}.mala-btn.alt{background:#efe5d3;color:#6c6458}.mala-note{font-size:11px;color:#948b7b;line-height:1.6}.prayer-preview{font-size:12px;color:#8f8166;line-height:1.5;margin-top:8px}
 .room-bubble{position:absolute;z-index:5;bottom:116px;left:50%;transform:translateX(-50%);background:#fffbedda;border:1px solid #fff9d9;color:#4f6e56;padding:9px 15px;border-radius:999px;box-shadow:0 5px 20px #263d3a2a;font-size:12px;font-weight:800;white-space:nowrap;max-width:90%;text-overflow:ellipsis;overflow:hidden}.entrance-hotspot{position:absolute;z-index:4;top:53%;left:50%;transform:translate(-50%,-50%);background:#fff3c9ee;border:2px solid #fff8dd;box-shadow:0 8px 32px #693b1966;color:#8d5c27;font-weight:900;padding:10px 13px;border-radius:40px;font-size:12px;animation:breathe 2.1s ease-in-out infinite}@keyframes breathe{50%{box-shadow:0 5px 30px #fff59ca8}}.yard-extra{position:absolute;z-index:6;right:16px;bottom:112px;display:flex;gap:7px}.chip{background:#fffdf4db;border:1px solid #fff8db;padding:8px 10px;font-size:11px;border-radius:20px;color:#5b6952;font-weight:800}
 /* Hall */
-.hall-scene{background:#431f1a}.buddha-real{position:absolute;left:50%;top:54.2%;transform:translate(-50%,-50%);width:min(32vw,156px);max-width:156px;height:auto;z-index:4;pointer-events:none;filter:drop-shadow(0 12px 24px rgba(0,0,0,.42)) drop-shadow(0 0 20px rgba(255,210,120,.18));}.buddha-glow{position:absolute;left:50%;top:52.3%;transform:translate(-50%,-50%);width:min(42vw,210px);height:min(42vw,210px);border-radius:50%;background:radial-gradient(circle, rgba(255,238,173,.38) 0%, rgba(255,207,115,.17) 34%, rgba(255,207,115,0) 72%);z-index:3;pointer-events:none}.hall-title{position:absolute;z-index:4;top:27%;left:50%;transform:translateX(-50%);font-family:Georgia,serif;font-weight:850;color:#f9df9b;background:#5b2c22d4;border:2px solid #b68a50;padding:5px 15px;border-radius:4px;white-space:nowrap;font-size:12px;letter-spacing:1.5px;box-shadow:0 0 15px #21110b60}.hall-hint{position:absolute;top:calc(78px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);font-size:11px;white-space:nowrap;color:#fbe1a3a8;text-shadow:0 2px 4px #000;z-index:5}.gold-radiance{animation:halo 4s ease-in-out infinite alternate}@keyframes halo{from{opacity:.65}to{opacity:1}}.flame{animation:flick .9s ease-in-out infinite alternate;transform-origin:center bottom}@keyframes flick{from{opacity:.68}to{opacity:1}}.bowl-smoke{opacity:0;transition:opacity .3s}.bowl-smoke.on{opacity:1}.bowl-smoke path{animation:smokeUp 3s ease-in-out infinite}@keyframes smokeUp{50%{transform:translate(3px,-10px);opacity:.45}}.hall-people .character{z-index:5}.hall-people .character.me{z-index:6}
+.hall-scene{background:#431f1a}.buddha-real{position:absolute;left:50%;top:54.9%;transform:translate(-50%,-50%);width:clamp(215px,62vw,275px);max-width:275px;height:auto;z-index:4;pointer-events:none;filter:drop-shadow(0 10px 21px rgba(0,0,0,.42)) drop-shadow(0 0 18px rgba(255,210,120,.20));}.buddha-glow{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:min(42vw,210px);height:min(42vw,210px);border-radius:50%;background:radial-gradient(circle, rgba(255,238,173,.38) 0%, rgba(255,207,115,.17) 34%, rgba(255,207,115,0) 72%);z-index:3;pointer-events:none}.hall-title{position:absolute;z-index:4;top:27%;left:50%;transform:translateX(-50%);font-family:Georgia,serif;font-weight:850;color:#f9df9b;background:#5b2c22d4;border:2px solid #b68a50;padding:5px 15px;border-radius:4px;white-space:nowrap;font-size:12px;letter-spacing:1.5px;box-shadow:0 0 15px #21110b60}.hall-hint{position:absolute;top:calc(78px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);font-size:11px;white-space:nowrap;color:#fbe1a3a8;text-shadow:0 2px 4px #000;z-index:5}.gold-radiance{animation:halo 4s ease-in-out infinite alternate}@keyframes halo{from{opacity:.65}to{opacity:1}}.flame{animation:flick .9s ease-in-out infinite alternate;transform-origin:center bottom}@keyframes flick{from{opacity:.68}to{opacity:1}}.bowl-smoke{opacity:0;transition:opacity .3s}.bowl-smoke.on{opacity:1}.bowl-smoke path{animation:smokeUp 3s ease-in-out infinite}@keyframes smokeUp{50%{transform:translate(3px,-10px);opacity:.45}}.hall-people .character{z-index:5}.hall-people .character.me{z-index:6}
 /* Overlays and panels */
 .sheet-backdrop{position:absolute;inset:0;background:#10271eb5;z-index:15;opacity:0;pointer-events:none;transition:opacity .25s}.sheet-backdrop.open{opacity:1;pointer-events:auto}.sheet{position:absolute;z-index:16;bottom:0;left:50%;transform:translate(-50%,110%);width:min(100%,590px);max-height:min(79dvh,750px);overflow:auto;background:#fffaf0;border-radius:28px 28px 0 0;box-shadow:0 -20px 55px #090f1033;padding:22px 20px calc(24px + env(safe-area-inset-bottom));transition:transform .28s cubic-bezier(.22,.8,.3,1)}.sheet.open{transform:translate(-50%,0)}.sheet-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}.sheet-heading h2{margin:0;font:700 28px/1.1 Georgia,serif}.x-btn{width:36px;height:36px;border:none;border-radius:50%;background:#f1e6d8;color:#7a7364;font-size:20px}.sheet-subtitle{margin:6px 0 16px;font-size:12px;color:#929388}.sheet label{font-size:12px;font-weight:850;display:block;margin:8px 0 6px}.sheet textarea{display:block;width:100%;min-height:96px;border:1px solid #ded8c8;background:white;border-radius:14px;padding:13px;resize:vertical;font-size:13px;line-height:1.6}.postwish{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0 19px}.smallnote{font-size:10px;line-height:1.4;color:#a59c89}.send{border:0;background:#486b4e;padding:12px 18px;color:white;border-radius:12px;font-size:13px;font-weight:850}.wish-card{border:1px solid #e8dfcb;background:white;border-radius:14px;padding:12px;margin:8px 0}.wish-card strong{font-size:12px;color:#59765c}.wish-card time{float:right;color:#a29a88;font-size:10px}.wish-card p{margin:7px 0 0;font-size:13px;white-space:pre-line;overflow-wrap:anywhere;color:#575e4f}.roster-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.roster-card{display:flex;align-items:center;gap:8px;background:white;border:1px solid #e8dfcb;padding:10px;border-radius:13px}.roster-card svg{width:34px;height:49px}.roster-name{font-size:12px;font-weight:800;max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.roster-room{font-size:10px;color:#999c86}.divider{height:1px;background:#e7ddca;margin:16px 0}.toast{position:absolute;z-index:24;top:calc(77px + env(safe-area-inset-top));left:50%;transform:translate(-50%,-25px);opacity:0;pointer-events:none;background:#fdf7e8;color:#496349;box-shadow:0 10px 45px #09261735;border:1px solid #fff9e7;padding:11px 16px;border-radius:16px;font-size:12px;line-height:1.4;font-weight:800;text-align:center;max-width:90%;transition:opacity .22s,transform .22s}.toast.open{opacity:1;transform:translate(-50%,0)}.sparkle{position:absolute;pointer-events:none;z-index:10;font-size:20px;animation:sparkUp 1.45s ease-out forwards}@keyframes sparkUp{from{transform:translateY(10px) scale(.5);opacity:0}25%{opacity:1}to{opacity:0;transform:translateY(-90px) rotate(22deg) scale(1.15)}}
 /* Responsive desktop layout: retain theatrical aspect */
@@ -31,6 +31,49 @@
 .offering-float{background:rgba(255,244,206,.97);border-color:#daa757;color:#714820;font-size:12px;font-weight:850;max-width:min(260px,75vw);white-space:normal;animation:offeringRise 4.5s ease-out forwards}.offering-float:after{border-color:#daa757}@keyframes offeringRise{0%{opacity:0;transform:translate(-50%,6px) scale(.8)}12%{opacity:1}72%{opacity:1}100%{opacity:0;transform:translate(-50%,-170px) scale(1.02)}}
 .offering-list-card{display:flex;justify-content:space-between;align-items:baseline;gap:8px;background:#fffdf9;border:1px solid #ebdcc2;padding:11px 12px;border-radius:12px;margin-bottom:8px}.offering-list-card strong{font-size:12px;color:#654d31;overflow-wrap:anywhere}.offering-list-card b{font-size:13px;color:#98602b;white-space:nowrap}.offering-list-card small{display:block;color:#999081;font-size:10px;font-weight:400}.offering-muted{font-size:12px;color:#8c826f;text-align:center;padding:20px 4px}
 @media(max-width:350px){.offering-board{width:94px;top:42%;padding:7px 5px}.offering-board-title{font-size:9px}}
+
+/* V13: tăng diện tích sân Chánh điện, giữ nhân vật phía trên thanh công cụ */
+#hallBubble,#yardBubble{display:none!important}
+#hall .hall-title{top:21%;z-index:6}
+#hall .hall-hint{top:calc(73px + env(safe-area-inset-top))}
+#hall .hall-people{z-index:6}
+#hall .character.me svg{width:57px;height:78px}
+#hall .offering-board{top:36%;width:clamp(96px,24vw,122px);max-height:clamp(148px,25dvh,215px)}
+.prayer-board{position:absolute;z-index:7;top:36%;right:clamp(6px,2vw,14px);width:clamp(99px,24vw,123px);height:min(31dvh,255px);display:flex;flex-direction:column;padding:9px 7px;border:1px solid rgba(244,199,116,.92);border-radius:12px;color:#f9ebcb;background:linear-gradient(150deg,rgba(84,48,34,.94),rgba(48,32,25,.96));box-shadow:0 8px 26px #130a0752;backdrop-filter:blur(4px)}
+.prayer-board h3,.visitor-board h3{margin:0 0 6px;padding-bottom:6px;border-bottom:1px solid #e6c68b70;font-size:10px;letter-spacing:.15px;font-weight:850;text-align:center;line-height:1.35}
+.prayer-board-list,.visitor-board-list{overflow-y:auto;scrollbar-width:thin;overscroll-behavior:contain;flex:1;min-height:20px}
+.prayer-item{padding:6px 2px;border-bottom:1px solid #fff1c621}
+.prayer-item strong{display:block;font-size:9px;color:#ffdd9c;overflow-wrap:anywhere}
+.prayer-item p{margin:3px 0 0;font-size:9px;line-height:1.4;color:#fff2d9;overflow-wrap:anywhere;white-space:pre-wrap}
+.prayer-item time{display:block;font-size:8px;opacity:.65;margin-top:2px}
+.board-small{color:#ffedd1;font-size:9px;line-height:1.35;text-align:center;padding:8px 2px}
+.board-action{border:1px solid #e7ba78a1;background:#ffedd71a;color:#fff0cf;border-radius:7px;font-size:9px;font-weight:800;padding:6px 4px;margin-top:7px}
+.full-prayer-row{padding:10px 12px;background:#fffdf8;border:1px solid #e8d9be;border-radius:13px;margin:8px 0;font-size:12px;color:#705a3d;overflow-wrap:anywhere}
+.full-prayer-row b{display:block;font-size:11px;color:#8c642e;margin-bottom:3px}.full-prayer-row small{display:block;margin-top:4px;color:#9e917b}
+.visitor-board{position:absolute;z-index:7;left:clamp(7px,2vw,14px);top:37%;width:clamp(128px,35vw,173px);height:clamp(150px,25dvh,215px);display:flex;flex-direction:column;padding:10px 8px;border:1px solid #e9c891bb;border-radius:14px;background:linear-gradient(145deg,#fffaf0f1,#eee5ccf0);box-shadow:0 8px 24px #263c3646;color:#4b6549;backdrop-filter:blur(8px)}
+.visitor-board h3{color:#4d704c;border-color:#b5c2a88c}
+.visitor-row{display:flex;align-items:flex-start;gap:6px;padding:5px 2px;border-bottom:1px solid #a4b99b48;font-size:10px;line-height:1.35;color:#456445;overflow-wrap:anywhere}
+.visitor-number{width:19px;min-width:19px;color:#9d7440;font-weight:900}.visitor-name{flex:1;min-width:0;overflow-wrap:anywhere}
+.visitor-board .board-action{color:#476849;background:#e7f0d9;border-color:#bfd3b6}
+#yard .yard-extra{bottom:220px}
+.meet-abbot-button{position:absolute;z-index:8;right:14px;top:56%;bottom:auto;border:1px solid #fff6dc;background:#fff4daee;color:#5b6041;font-size:12px;font-weight:850;border-radius:22px;padding:12px 15px;box-shadow:0 5px 17px #243b303c;backdrop-filter:blur(8px);max-width:56vw}
+/* Phòng nghỉ Trụ trì: ảnh gốc được dùng nguyên byte, chỉ thu/phóng bằng CSS */
+.abbot-scene{background:linear-gradient(160deg,#e9cda5,#f7e9cd 52%,#aa7449)}
+.abbot-room-art{position:absolute;inset:0;width:100%;height:100%}
+.abbot-frame{position:absolute;top:15%;left:50%;transform:translateX(-50%);width:min(76vw,330px);height:min(36dvh,325px);display:flex;align-items:center;justify-content:center;border:7px solid #ad7544;border-radius:22px;background:#ead9b3;box-shadow:0 0 0 3px #efbd7d,0 18px 44px #50372564;overflow:hidden}
+.abbot-frame img{width:100%;height:100%;object-fit:contain;display:block}
+.abbot-caption{position:absolute;z-index:5;top:calc(15% + min(36dvh,325px) + 13px);left:50%;transform:translateX(-50%);max-width:92%;white-space:nowrap;background:#fff6e6d9;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:850;color:#79623f}
+.abbot-tea{position:absolute;top:56%;left:50%;transform:translateX(-50%);width:min(70vw,330px);height:auto;z-index:3;filter:drop-shadow(0 9px 7px #5e3b2760)}
+.abbot-visitor{position:absolute;z-index:6;top:53%;left:81%;transform:translateX(-50%);text-align:center;pointer-events:none}
+.abbot-visitor svg{height:72px;width:66px;display:block;margin:auto}.abbot-visitor .char-name{display:block;width:max-content;max-width:160px;margin:0 auto 3px}
+.abbot-speech{position:absolute;z-index:8;top:58%;left:50%;transform:translateX(-50%);max-width:76%;background:#fff8ebee;color:#66513d;border:1px solid #ebd2a8;border-radius:18px;padding:9px 12px;font-size:12px;font-weight:700;line-height:1.4;box-shadow:0 5px 21px #3b2b1940;overflow-wrap:anywhere;display:none}
+.abbot-speech.show{display:block;animation:fadeSpeech 5s ease forwards}
+.abbot-chat-box{position:absolute;z-index:8;left:14px;right:14px;bottom:calc(101px + env(safe-area-inset-bottom));border-radius:20px;border:1px solid #fff6e1;background:#fffaf0f2;box-shadow:0 10px 30px #573b2760;padding:12px;display:grid;gap:7px}
+.abbot-chat-box label{font-size:12px;font-weight:850;color:#6c6047}.abbot-chat-box textarea{min-height:45px;max-height:95px;resize:vertical;padding:9px 11px;border:1px solid #dbc8a7;background:#fff;border-radius:11px;font-size:12px;color:#4b4b40}
+.abbot-chat-box button{justify-self:end;background:#547252;color:#fff;border:none;border-radius:11px;padding:8px 14px;font-weight:800;font-size:12px}
+.abbot-chat-box .smallnote{margin:0;font-size:10px;color:#917e64}
+@media(max-width:380px){#hall .offering-board{width:93px}.prayer-board{width:96px}.visitor-board{width:125px}}
+
 </style>
 </head>
 <body>
@@ -119,6 +162,12 @@
   <div class="gradient-top"></div>
   <div class="room-header"><button class="where" id="yardWho">🙏 Sân chùa · xem thử</button><div class="header-actions"><button class="round" id="yardPhotoToggle" aria-label="Bật tắt ảnh chùa gốc" title="Xem ảnh ngôi chùa gốc">📷</button><button class="round" data-sound aria-label="Bật tắt nhạc nền và âm thanh" title="Bật/tắt nhạc">♫</button></div></div>
   <button class="entrance-hotspot" id="enterHall">🚪 Vào chánh điện →</button>
+  <aside class="visitor-board" id="visitorBoard" aria-label="Danh sách Phật tử từng vào chùa">
+   <h3>📜 DANH SÁCH PHẬT TỬ <span id="visitorCount"></span></h3>
+   <div class="visitor-board-list" id="visitorBoardList"><div class="board-small">Chưa có người tham gia</div></div>
+   <button class="board-action" id="openVisitorList" type="button">Xem tất cả</button>
+  </aside>
+  <button type="button" class="meet-abbot-button" id="meetAbbot">🍵 Gặp mặt Trụ trì chùa</button>
   <div class="people-layer" id="yardPeople"></div>
   <div class="room-bubble" id="yardBubble">🌿 Một chút an yên giữa ngày bận rộn</div>
   <div class="screen-footer"><button class="tool" data-bell><span class="tool-icon">🔔</span><span>Chuông</span></button><button class="tool" data-incense><span class="tool-icon">🪔</span><span>Thắp hương</span></button><button class="tool" data-wishes><span class="tool-icon">📜</span><span>Lời nguyện</span></button><button class="tool important" id="yardHall"><span class="tool-icon">⛩️</span><span>Chánh điện</span></button><button class="tool" data-home><span class="tool-icon">🏡</span><span>Trang chủ</span></button></div>
@@ -136,9 +185,9 @@
   </defs>
   <rect width="470" height="900" fill="url(#darkWall)"/>
   <!-- deep hall geometry, carved columns and dark roof -->
-  <path d="M0 0H470V390H0Z" fill="#2d1714"/>
-  <path d="M0 0L150 310H320L470 0" stroke="#66402c" stroke-width="6" fill="none"/>
-  <path d="M115 0L195 302M355 0L275 302M235 0V305" stroke="#9d6944" stroke-width="4" opacity=".45"/>
+  <path d="M0 0H470V265H0Z" fill="#2d1714"/>
+  <path d="M0 0L150 245H320L470 0" stroke="#66402c" stroke-width="6" fill="none"/>
+  <path d="M115 0L195 240M355 0L275 240M235 0V245" stroke="#9d6944" stroke-width="4" opacity=".45"/>
   <path d="M0 170L155 353V665L0 900Z" fill="#57291e"/><path d="M470 170L315 353V665L470 900Z" fill="#57291e"/>
   <path d="M0 190L152 359M470 190L318 359" stroke="#8e4635" stroke-width="3"/>
   <g fill="#b34835"><path d="M0 250h10v529H0z"/><path d="M69 305h12v413H69z"/><path d="M139 362h10v305h-10z"/><path d="M460 250h10v529h-10z"/><path d="M389 305h12v413h-12z"/><path d="M320 362h10v305h-10z"/></g>
@@ -148,9 +197,9 @@
   <rect x="150" y="315" width="170" height="365" fill="#60311f"/>
   <g fill="#e75b35" opacity=".72" filter="url(#lightBlur)"><circle cx="115" cy="333" r="15"/><circle cx="350" cy="333" r="15"/><circle cx="159" cy="396" r="10"/><circle cx="311" cy="396" r="10"/></g>
   <g fill="#df5839"><circle cx="115" cy="333" r="8"/><circle cx="350" cy="333" r="8"/><circle cx="159" cy="396" r="6"/><circle cx="311" cy="396" r="6"/></g>
-  <path d="M0 603L170 604H300L470 603V900H0z" fill="url(#hallFloor)"/>
-  <path d="M222 602L242 602 317 900H151z" fill="#8e3d2b"/>
-  <path d="M0 638H470M0 705H470M0 783H470M0 870H470" stroke="#b36b44" stroke-width="4" opacity=".55"/>
+  <path d="M0 518L170 550H300L470 518V900H0z" fill="url(#hallFloor)"/>
+  <path d="M222 550L242 550 317 900H151z" fill="#8e3d2b"/>
+  <path d="M0 565H470M0 649H470M0 749H470M0 853H470" stroke="#b36b44" stroke-width="4" opacity=".55"/>
   <!-- kneeling mats in perspective -->
   <g fill="#9a342a" stroke="#d8a05e" stroke-width="3">
    <path d="M116 650h44l-2 21h-49zM180 649h37l1 22h-40zM254 649h39l5 22h-44zM316 649h39l7 22h-43z"/>
@@ -161,24 +210,7 @@
   <g fill="none" stroke="#ecb96d" opacity=".3"><path d="M138 656h14v8h-14zM306 704h31v13h-31zM136 763h34v25h-34zM270 853h53v33h-53z"/></g>
   <!-- Buddha statue, lotus altar, incense, lanterns -->
   <circle class="gold-radiance" cx="235" cy="469" r="113" fill="url(#halo)"/>
-  <g transform="translate(235 475)">
-   <ellipse cx="0" cy="144" rx="96" ry="20" fill="#5d2f20" opacity=".75"/>
-   <ellipse cx="0" cy="120" rx="84" ry="25" fill="#8e522e" stroke="#f3c66a" stroke-width="5"/>
-   <g fill="#dda447" stroke="#f4c56d" stroke-width="1"><path d="M-76 122q-14-20 10-24l14 28zM-48 127q-18-25 8-29l11 29zM-14 130q-11-27 10-32l8 32zM19 130q-6-26 17-33l8 32zM55 126q1-29 24-31l-5 31z"/></g>
-   <path d="M-61 99q-35-14-26-45 10-24 34-22Q-39 7 -20 12h39Q40 13 52 33q27-3 36 22 8 28-23 44Q44 112 0 112q-39 0-61-13z" fill="url(#goldRobe)" stroke="#e9bd72" stroke-width="3"/>
-   <path d="M-18 14q-29 18-32 57 5 27 45 31" fill="none" stroke="#fff1bd" stroke-width="6" opacity=".7"/>
-   <path d="M-35 30q-16 21-6 53M29 29q16 20 12 50" fill="none" stroke="#a86d37" stroke-width="3" opacity=".6"/>
-   <path d="M-66 48q-25 34 7 51l32 2M67 46q28 37-7 52l-34 3" fill="#e9ba66" stroke="#d4974c" stroke-width="7"/>
-   <ellipse cx="0" cy="82" rx="39" ry="11" fill="#eac474" stroke="#bf823b" stroke-width="3"/>
-   <path d="M-20 78q10 7 20 7t20-7" fill="none" stroke="#a96e34" stroke-width="3"/>
-   <path d="M-21-13q-16-14-16-42 1-23 18-33 15-9 35 0 19 11 19 34-1 25-17 41-17 13-39 0z" fill="url(#goldFace)" stroke="#d5a45e" stroke-width="2"/>
-   <path d="M-36-60q0-31 35-39 38 7 36 39-26-6-43-12-14 12-28 12z" fill="#253a3b"/>
-   <circle cx="0" cy="-98" r="13" fill="#2c403d"/>
-   <g fill="#304642"><circle cx="-25" cy="-88" r="4"/><circle cx="-10" cy="-95" r="4"/><circle cx="10" cy="-93" r="4"/><circle cx="22" cy="-84" r="4"/></g>
-   <path d="M-25-47q8 3 15 0M10-47q8 3 15 0" fill="none" stroke="#5a3b2a" stroke-width="2.5" stroke-linecap="round"/>
-   <path d="M0-45l-3 11 5 2M-8-23q8 5 17 0" fill="none" stroke="#956234" stroke-width="2" stroke-linecap="round"/>
-   <circle cx="0" cy="-64" r="2.5" fill="#d34429"/>
-  </g>
+  <!-- Tượng Phật dùng ảnh PNG riêng, không vẽ đè tượng cũ -->
   <rect x="129" y="608" width="212" height="23" rx="3" fill="#a4472c" stroke="#cc8554" stroke-width="3"/>
   <rect x="144" y="629" width="181" height="32" rx="3" fill="#842e20" stroke="#c48249" stroke-width="3"/>
   <path d="M153 630v30M317 630v30" stroke="#e5a558" stroke-width="5"/>
@@ -201,9 +233,51 @@
    <div class="offering-board-body" id="offeringBoardBody" aria-live="polite"><div class="offering-board-empty">Chưa có lời cúng dường tượng trưng</div></div>
    <button type="button" class="offering-board-more" id="openOfferingList">Xem danh sách</button>
  </aside>
+ <aside class="prayer-board" id="prayerBoard" aria-label="Bảng lời cầu nguyện">
+   <h3>🙏 LỜI CẦU NGUYỆN</h3>
+   <div class="prayer-board-list" id="prayerBoardList"><div class="board-small">Chưa có lời cầu nguyện</div></div>
+   <button class="board-action" id="openPrayerList" type="button">Xem đầy đủ</button>
+ </aside>
  <div class="people-layer hall-people" id="hallPeople"></div>
  <div class="room-bubble" id="hallBubble">🪷 Tâm an, việc thuận, ngày thêm vui</div>
  <div class="screen-footer"><button class="tool" data-bell><span class="tool-icon">🔔</span><span>Chuông</span></button><button class="tool" data-incense><span class="tool-icon">🪔</span><span>Thắp hương</span></button><button class="tool highlight" data-prayer><span class="tool-icon">🙏</span><span>Cầu nguyện</span></button><button class="tool" data-bow><span class="tool-icon">🙇</span><span>Lạy Phật</span></button><button class="tool" data-meditate><span class="tool-icon">🧘</span><span>Ngồi thiền</span></button><button class="tool" data-chant><span class="tool-icon">📿</span><span>Niệm Phật</span></button><button class="tool" data-mala><span class="tool-icon">📿</span><span>Tràng hạt</span></button><button class="tool highlight" id="openOffering" type="button"><span class="tool-icon">🌸</span><span>Cúng dường</span></button><button class="tool important" data-exit><span class="tool-icon">⛩️</span><span>Ra sân</span></button></div>
+</section>
+<!-- SCREEN 4: Phòng nghỉ của Trụ trì -->
+<section id="abbot" class="view room abbot-scene" aria-label="Phòng nghỉ Trụ trì">
+  <svg class="abbot-room-art" viewBox="0 0 470 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><linearGradient id="abbotWall" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#dec8a1"/><stop offset="1" stop-color="#fff0cf"/></linearGradient><linearGradient id="abbotFloor" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ab7850"/><stop offset="1" stop-color="#74452d"/></linearGradient></defs>
+    <rect width="470" height="900" fill="url(#abbotWall)"/>
+    <path d="M0 0H470V275H0Z" fill="#c49b6f" opacity=".25"/>
+    <path d="M0 540H470V900H0Z" fill="url(#abbotFloor)"/>
+    <path d="M0 558H470M0 635H470M0 715H470M0 802H470" stroke="#e1ae78" stroke-width="3" opacity=".6"/>
+    <rect x="8" y="30" width="36" height="560" rx="4" fill="#95643c"/>
+    <rect x="428" y="30" width="36" height="560" rx="4" fill="#95643c"/>
+    <path d="M47 44H423M47 535H423" stroke="#a67645" stroke-width="12"/>
+    <g stroke="#bc895a" stroke-width="5" opacity=".45"><path d="M75 0v520M395 0v520"/></g>
+    <ellipse cx="235" cy="716" rx="150" ry="46" fill="#613d23" opacity=".22"/>
+  </svg>
+  <div class="room-header"><button class="where" id="abbotWhere">🍵 Phòng Trụ trì</button><div class="header-actions"><button class="round" data-sound aria-label="Bật tắt nhạc" title="Bật/tắt nhạc">♫</button></div></div>
+  <div class="abbot-frame"><img src="tru-tri.jpg" alt="Ảnh Trụ trì do người dùng cung cấp, giữ nguyên không chỉnh sửa" loading="eager"></div>
+  <div class="abbot-caption">🌿 Gặp mặt Trụ trì chùa</div>
+  <svg class="abbot-tea" viewBox="0 0 310 120" aria-label="Bàn trà" role="img">
+    <ellipse cx="156" cy="102" rx="150" ry="16" fill="#402a1c" opacity=".26"/>
+    <rect x="31" y="45" width="245" height="24" rx="14" fill="#915530" stroke="#db9e62" stroke-width="5"/>
+    <path d="M51 62L41 108M253 62l12 46" stroke="#714326" stroke-width="13" stroke-linecap="round"/>
+    <ellipse cx="155" cy="45" rx="75" ry="9" fill="#c99d62"/>
+    <path d="M140 23h32v22h-32z" fill="#af7949"/><ellipse cx="156" cy="24" rx="17" ry="5" fill="#dfb980"/>
+    <path d="M174 31q19-10 20 8q0 11-19 11" stroke="#8a5935" stroke-width="6" fill="none"/>
+    <path d="M102 38h27l-5 12h-18zM209 38h27l-5 12h-18z" fill="#efe3c5" stroke="#8d6747" stroke-width="2"/>
+    <path d="M151 13q-10-9 0-20M163 13q-9-9 0-20" stroke="#fff8e1" stroke-width="3" opacity=".8" fill="none"/>
+  </svg>
+  <div id="abbotVisitor" class="abbot-visitor"></div>
+  <div id="abbotSpeech" class="abbot-speech" role="status" aria-live="polite"></div>
+  <div class="abbot-chat-box">
+    <label for="abbotMessage">Bạn muốn thưa điều gì với Trụ trì?</label>
+    <textarea id="abbotMessage" maxlength="220" placeholder="Con xin thưa..." aria-label="Nội dung muốn thưa với Trụ trì"></textarea>
+    <button id="sendAbbotMessage" type="button">🙏 Thưa với Trụ trì</button>
+    <p class="smallnote">Lời thưa chỉ hiển thị trên máy của bạn; không gửi đến Trụ trì ngoài đời.</p>
+  </div>
+  <div class="screen-footer"><button class="tool important" id="leaveAbbot" type="button"><span class="tool-icon">⛩️</span><span>Về sân chùa</span></button></div>
 </section>
 <!-- sheets -->
 <div id="backdrop" class="sheet-backdrop"></div>
@@ -217,6 +291,7 @@
 <section id="prayerPanel" class="sheet" role="dialog" aria-label="Cầu nguyện" aria-modal="true">
  <div class="sheet-heading"><h2>🙏 Cầu nguyện</h2><button class="x-btn" data-close aria-label="Đóng">×</button></div>
  <p class="sheet-subtitle">Nhập điều bạn mong muốn. Khi gửi, nội dung sẽ bay lơ lửng từ nhân vật của bạn lên cao rồi biến mất.</p>
+ <p class="sheet-subtitle" style="color:#8a6841">Lời cầu nguyện sẽ được lưu và hiển thị cho người khác cùng vào chùa. Không nhập dữ liệu cá nhân hoặc thông tin nội bộ.</p>
  <label for="prayerInput">Nội dung cầu nguyện</label><textarea id="prayerInput" maxlength="180" placeholder="Ví dụ: Mong cho cả phòng luôn bình an, làm việc thuận lợi và mạnh khỏe..."></textarea>
  <div class="postwish"><span class="smallnote">Hiệu ứng hiển thị trực tiếp ngay trên nhân vật của bạn trong chánh điện.</span><button class="send" id="sendPrayer">Gửi cầu nguyện</button></div>
  <div class="prayer-preview" id="prayerPreview">Sau khi gửi, lời cầu nguyện sẽ bay lên từ vị trí nhân vật của bạn.</div>
@@ -262,6 +337,16 @@
   <p class="sheet-subtitle">Danh sách những lời cúng dường tượng trưng; không đại diện cho các khoản chuyển tiền thật.</p>
   <div id="offeringFullList"></div>
 </section>
+<section id="prayerListPanel" class="sheet" role="dialog" aria-modal="true" aria-label="Danh sách lời cầu nguyện">
+ <div class="sheet-heading"><h2>🙏 Bảng Lời cầu nguyện</h2><button class="x-btn" data-close aria-label="Đóng">×</button></div>
+ <p class="sheet-subtitle">Lời cầu nguyện đã ghi nhận. Nội dung có thể được người khác cùng vào chùa đọc.</p>
+ <div id="fullPrayerList"></div>
+</section>
+<section id="visitorListPanel" class="sheet" role="dialog" aria-modal="true" aria-label="Danh sách Phật tử từng tham gia">
+ <div class="sheet-heading"><h2>📜 Phật tử đã tham gia</h2><button class="x-btn" data-close aria-label="Đóng">×</button></div>
+ <p class="sheet-subtitle">Danh sách được sắp theo lần đầu ghi nhận. Tên/pháp danh do người tham gia nhập.</p>
+ <div id="fullVisitorList"></div>
+</section>
 <section id="peoplePanel" class="sheet" role="dialog" aria-label="Người đang có mặt" aria-modal="true">
  <div class="sheet-heading"><h2>👥 Người đang có mặt</h2><button class="x-btn" data-close aria-label="Đóng">×</button></div>
  <p class="sheet-subtitle" id="peopleMode">Bản thử nghiệm chỉ hiển thị bạn và các nhân vật minh họa.</p><div class="roster-list" id="rosterList"></div>
@@ -284,10 +369,10 @@ window.CHUA_FIREBASE_CONFIG = window.CHUA_FIREBASE_CONFIG || null;
 (()=>{
 'use strict';
 const $=id=>document.getElementById(id);
-const screens=['home','yard','hall'];
+const screens=['home','yard','hall','abbot'];
 const safeGet=(key,fallback)=>{try{return JSON.parse(localStorage.getItem('cba3_'+key))??fallback}catch{return fallback}};
 const safeSet=(key,value)=>{try{localStorage.setItem('cba3_'+key,JSON.stringify(value))}catch{}};
-const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),offerings:safeGet('offerings_demo',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),lastPrayer:'',presenceId:null,realtimeReady:false};
+const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),offerings:safeGet('offerings_demo',[]),prayers:safeGet('prayers_demo',[]),visitors:safeGet('visitors_demo',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),lastPrayer:'',presenceId:null,realtimeReady:false};
 let toastTimer, speechTimer, currentPanel=null, audioContext;
 
 // Trang chủ & Sân chùa: phát MP3 do chủ website cung cấp.
@@ -369,8 +454,8 @@ function toggleMusic(){
 }
 
 const MOCKS=[{id:'sample-a',name:'An (mẫu)',gender:'female',scene:'yard',action:'stand',sample:true},{id:'sample-b',name:'Minh (mẫu)',gender:'male',scene:'yard',action:'stand',sample:true},{id:'sample-c',name:'Tịnh Tâm (mẫu)',gender:'female',scene:'hall',action:'meditate',sample:true},{id:'sample-d',name:'Bình (mẫu)',gender:'male',scene:'hall',action:'kneel',sample:true}];
-const positions={yard:[{x:34,y:77,s:'tiny'},{x:72,y:80,s:'small'},{x:47,y:88,s:''},{x:21,y:89,s:'small'},{x:80,y:91,s:''},{x:63,y:85,s:'small'}],hall:[{x:27,y:73,s:'tiny'},{x:77,y:73,s:'tiny'},{x:19,y:84,s:'small'},{x:84,y:84,s:'small'},{x:40,y:85,s:'small'},{x:61,y:85,s:'small'}]};
-const mePosition={yard:{x:51,y:82},hall:{x:51,y:82}};
+const positions={yard:[{x:34,y:77,s:'tiny'},{x:72,y:80,s:'small'},{x:47,y:88,s:''},{x:21,y:89,s:'small'},{x:80,y:91,s:''},{x:63,y:85,s:'small'}],hall:[{x:34,y:68,s:'small'},{x:70,y:68,s:'small'},{x:25,y:74,s:''},{x:78,y:74,s:''},{x:43,y:73,s:'small'},{x:64,y:73,s:'small'}]};
+const mePosition={yard:{x:51,y:82},hall:{x:52,y:75}};
 function persist(){safeSet('name',state.name);safeSet('gender',state.gender);safeSet('malaCount',state.malaCount)}
 function niceName(raw){return String(raw||'').trim().replace(/\s+/g,' ').slice(0,24)}
 function escapeText(s){return String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
@@ -434,15 +519,16 @@ function showView(which){
  if(which!=='home'&&!state.joined){toast('Hãy nhập tên hoặc pháp danh trước khi vào chùa.');return}
  if(!screens.includes(which))return;
  state.scene=which;screens.forEach(s=>$(s).classList.toggle('active',s===which));
+ if(which==='abbot')renderAbbotAvatar();
  if(ambientMusic.isStarted())ambientMusic.select(which,state.sound);
  if(which==='yard')bubble('🌿 Một chút an yên giữa ngày bận rộn');
  if(which==='hall')bubble('🪷 Tâm an, việc thuận, ngày thêm vui');
  renderAvatars(); publishPresence();
 }
 function join(){const n=niceName($('visitorName').value);if(!n){toast('Vui lòng nhập tên hoặc pháp danh nhé 🌿');$('visitorName').focus();return}
- state.name=n;state.gender=$('visitorGender').value;state.joined=true;state.action='stand';persist();showView('yard');startMusicFromGesture();toast(`Chào ${n}, chúc bạn an yên!`);confetti('🌸');}
+ state.name=n;state.gender=$('visitorGender').value;state.joined=true;state.action='stand';persist();registerVisitor();showView('yard');startMusicFromGesture();toast(`Chào ${n}, chúc bạn an yên!`);confetti('🌸');}
 function confetti(symbol){const area=$(state.scene);for(let i=0;i<8;i++){const t=document.createElement('span');t.className='sparkle';t.textContent=symbol;t.style.left=(25+Math.random()*50)+'%';t.style.top=(38+Math.random()*32)+'%';t.style.animationDelay=(i*.1)+'s';area.append(t);setTimeout(()=>t.remove(),2200)}}
-function openPanel(panel){closePanel();currentPanel=panel;$('backdrop').classList.add('open');$(panel).classList.add('open');if(panel==='wishPanel'){$('wishInput').value='';renderWishes()}if(panel==='peoplePanel')renderRoster();if(panel==='malaPanel')renderMala();if(panel==='offeringPanel'){$('offeringAmount').value='';$('offeringError').textContent='';}if(panel==='offeringListPanel')renderOfferings();if(panel==='prayerPanel'){$('prayerPreview').textContent='Sau khi gửi, lời cầu nguyện sẽ bay lên từ vị trí nhân vật của bạn.';}}
+function openPanel(panel){closePanel();currentPanel=panel;$('backdrop').classList.add('open');$(panel).classList.add('open');if(panel==='wishPanel'){$('wishInput').value='';renderWishes()}if(panel==='peoplePanel')renderRoster();if(panel==='prayerListPanel')renderPrayers();if(panel==='visitorListPanel')renderVisitors();if(panel==='malaPanel')renderMala();if(panel==='offeringPanel'){$('offeringAmount').value='';$('offeringError').textContent='';}if(panel==='offeringListPanel')renderOfferings();if(panel==='prayerPanel'){$('prayerPreview').textContent='Sau khi gửi, lời cầu nguyện sẽ bay lên từ vị trí nhân vật của bạn.';}}
 function closePanel(){currentPanel&&$(currentPanel).classList.remove('open');$('backdrop').classList.remove('open');currentPanel=null}
 function chime(){if(!state.sound)return;try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioContext=audioContext||new AC();audioContext.resume();const now=audioContext.currentTime;for(const [h,v] of [[261.63,.12],[523.25,.045],[783.99,.025],[1046.5,.012],[1318.51,.009]]){const o=audioContext.createOscillator(),g=audioContext.createGain();o.type='sine';o.frequency.setValueAtTime(h,now);g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(v,now+.02);g.gain.exponentialRampToValueAtTime(.0001,now+3.1);o.connect(g);g.connect(audioContext.destination);o.start(now);o.stop(now+3.2)}}catch(err){console.info('Audio unavailable',err)}}
 function doBell(){chime();toast('🔔 Boong… chúc tâm an, việc thuận.');confetti('✨');emitEvent('bell','')}
@@ -489,18 +575,106 @@ function floatPrayer(text){
  room.appendChild(bubble);
  setTimeout(()=>bubble.remove(),3900);
 }
-function sendPrayer(){
+async function sendPrayer(){
  const text=$('prayerInput').value.trim().slice(0,180);
  if(!text){toast('Bạn nhập nội dung cầu nguyện trước nhé.');return}
  if(!state.joined){toast('Hãy vào chùa trước khi cầu nguyện.');return}
- if(state.scene!=='hall')showView('hall');
- state.action='prayer'; state.lastPrayer=text;
- renderAvatars(); publishPresence(); closePanel();emitEvent('prayer',text);
- speech('🙏 '+text);
- setTimeout(()=>floatPrayer(text),140);
- toast('Đã gửi lời cầu nguyện 🙏');
- confetti('✨');
- $('prayerInput').value='';
+ if(state.firebase&&!state.realtimeReady){toast('Chưa kết nối Firebase, hãy thử lại khi có mạng.');return}
+ const sendButton=$('sendPrayer');if(sendButton.disabled)return;
+ sendButton.disabled=true;sendButton.textContent='Đang ghi nhận...';
+ try{
+  const entry={name:state.name,text,createdAt:Date.now()};
+  if(state.firebase){await state.firebase.addPrayer(entry)}
+  else{
+    state.prayers=[...state.prayers,entry].slice(-60);
+    safeSet('prayers_demo',state.prayers);renderPrayers();
+  }
+  if(state.scene!=='hall')showView('hall');
+  state.action='prayer';state.lastPrayer=text;
+  renderAvatars();publishPresence();closePanel();emitEvent('prayer',text);
+  speech('🙏 '+text);setTimeout(()=>floatPrayer(text),140);
+  toast('Đã lưu lời cầu nguyện 🙏');confetti('✨');
+  $('prayerInput').value='';
+ }catch(err){console.warn('Không lưu được lời cầu nguyện',err);toast('Chưa lưu được lời cầu nguyện. Hãy kiểm tra Firebase Rules.');}
+ finally{sendButton.disabled=false;sendButton.textContent='Gửi cầu nguyện';}
+}
+
+
+/* V13: lưu lời cầu nguyện công khai trong chùa, danh sách phật tử và phòng gặp Trụ trì. */
+function shortDate(ts){const d=new Date(Number(ts)||Date.now());return Number.isFinite(d.getTime())?d.toLocaleString('vi-VN',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';}
+function renderPrayers(){
+ const data=[...(Array.isArray(state.prayers)?state.prayers:[])]
+  .filter(x=>x&&typeof x.text==='string'&&x.text.trim())
+  .sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+ const compact=$('prayerBoardList'),full=$('fullPrayerList');compact.replaceChildren();full.replaceChildren();
+ if(!data.length){const e=document.createElement('div');e.className='board-small';e.textContent='Chưa có lời cầu nguyện';compact.append(e);full.textContent='Chưa có lời cầu nguyện nào.';return;}
+ for(const entry of data.slice(0,20)){
+   const el=document.createElement('div');el.className='prayer-item';
+   const title=document.createElement('strong');title.textContent='🪷 '+String(entry.name||'Phật tử').slice(0,24);
+   const body=document.createElement('p');body.textContent=String(entry.text||'').slice(0,180);
+   el.append(title,body);compact.append(el);
+ }
+ for(const entry of data.slice(0,80)){
+   const el=document.createElement('div');el.className='full-prayer-row';
+   const name=document.createElement('b');name.textContent=String(entry.name||'Phật tử').slice(0,24);
+   const body=document.createElement('div');body.textContent=String(entry.text||'').slice(0,180);
+   const when=document.createElement('small');when.textContent=shortDate(entry.createdAt);
+   el.append(name,body,when);full.append(el);
+ }
+}
+function renderVisitors(){
+ const data=[...(Array.isArray(state.visitors)?state.visitors:[])]
+   .filter(x=>x&&typeof x.name==='string'&&x.name.trim())
+   .sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0));
+ const compact=$('visitorBoardList'),full=$('fullVisitorList');compact.replaceChildren();full.replaceChildren();
+ $('visitorCount').textContent='('+data.length+')';
+ if(!data.length){compact.textContent='Chưa có Phật tử tham gia';full.textContent='Chưa có Phật tử tham gia';return;}
+ data.forEach((entry,i)=>{
+    const row=document.createElement('div');row.className='visitor-row';
+    const num=document.createElement('b');num.className='visitor-number';num.textContent=(i+1)+'.';
+    const name=document.createElement('span');name.className='visitor-name';name.textContent=entry.name.slice(0,24);
+    row.append(num,name);full.append(row);
+    if(i<60)compact.append(row.cloneNode(true));
+ });
+}
+async function registerVisitor(){
+ if(!state.joined)return;
+ if(state.firebase?.recordVisit){
+   try{await state.firebase.recordVisit();}catch(err){console.warn('Không ghi nhận được danh sách Phật tử',err)}
+ }else if(!window.CHUA_FIREBASE_CONFIG){
+   const rows=Array.isArray(state.visitors)?state.visitors:[];
+   if(!rows.some(x=>x.name===state.name)){
+     state.visitors=[...rows,{name:state.name,joinedAt:Date.now()}].slice(-100);
+     safeSet('visitors_demo',state.visitors);renderVisitors();
+   }
+ }
+}
+function renderAbbotAvatar(){
+ const el=$('abbotVisitor');el.replaceChildren();
+ if(!state.joined)return;
+ const name=document.createElement('div');name.className='char-name';name.textContent=state.name;
+ const isFemale=state.gender==='female';
+ const figure=document.createElement('div');
+ figure.innerHTML=`<svg viewBox="0 0 66 78" aria-label="Nhân vật áo lam quay về phía Trụ trì" role="img">
+  <ellipse cx="33" cy="75" rx="23" ry="3" fill="#5c4c3d" opacity=".25"/>
+  <path d="M19 29q14-11 28 0l3 27H16z" fill="#9cb6c3" stroke="#6e8998" stroke-width="2"/>
+  <path d="M27 55v18M39 55v18" stroke="#6e8998" stroke-width="10" stroke-linecap="round"/>
+  <path d="M17 33l-5 21M49 33l5 21" stroke="#a6c1cc" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="33" cy="20" r="12" fill="#edbd97"/>
+  <path d="M20 17q6-16 25-5 5 9 1 15-10-4-27-1z" fill="#2c3339"/>
+  ${isFemale?'<path d="M22 23v14M44 23v14" stroke="#2c3339" stroke-width="8" stroke-linecap="round"/>':''}
+ </svg>`;
+ el.append(name,figure);
+}
+function sendToAbbot(){
+ const text=$('abbotMessage').value.trim().slice(0,220);
+ if(!text){toast('Bạn hãy nhập lời muốn thưa với Trụ trì.');return}
+ if(!state.joined){toast('Bạn cần vào chùa trước.');return}
+ const bubble=$('abbotSpeech');bubble.textContent=state.name+': '+text;
+ bubble.classList.remove('show');void bubble.offsetWidth;bubble.classList.add('show');
+ $('abbotMessage').value='';
+ toast('Đã hiển thị lời thưa của bạn.');
+ // Đây chỉ là mô phỏng trong giao diện, không gửi tới người ngoài đời.
 }
 
 // Ghi nhận cúng dường tượng trưng (không có thanh toán hay chuyển tiền thật).
@@ -680,18 +854,23 @@ $('homeMusicToggle').onclick=toggleMusic;
 document.addEventListener('visibilitychange',()=>{if(document.hidden)ambientMusic.suspend();else ambientMusic.resume();});
 $('openOffering').onclick=()=>{if(!state.joined){toast('Hãy nhập tên hoặc pháp danh trước nhé.');return;}openPanel('offeringPanel');};
 $('openOfferingList').onclick=()=>openPanel('offeringListPanel');
+$('openPrayerList').onclick=()=>openPanel('prayerListPanel');
+$('openVisitorList').onclick=()=>openPanel('visitorListPanel');
+$('meetAbbot').onclick=()=>showView('abbot');
+$('leaveAbbot').onclick=()=>showView('yard');
+$('sendAbbotMessage').onclick=sendToAbbot;
 document.querySelectorAll('[data-offering-amount]').forEach(btn=>btn.onclick=()=>{$('offeringAmount').value=offeringMoney(Number(btn.dataset.offeringAmount)).replace('đ','');$('offeringError').textContent='';});
 $('offeringAmount').addEventListener('input',()=>{$('offeringError').textContent='';});
 $('sendOffering').onclick=sendOffering;
 $('sendWish').onclick=sendWish;$('sendPrayer').onclick=sendPrayer;$('malaStep').onclick=malaStep;$('malaReset').onclick=malaReset;window.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
-renderAvatars();renderWishes();renderMala();renderOfferings();refreshMusicButtons();
+renderAvatars();renderWishes();renderMala();renderOfferings();renderPrayers();renderVisitors();refreshMusicButtons();
 // Optional production realtime connector (starts only if user provides Firebase credentials).
 async function connectFirebase(){
  const config=window.CHUA_FIREBASE_CONFIG;
  if(!config||!config.apiKey||!config.databaseURL){return;}
  try{
   const ver='12.5.0';
-  const [{initializeApp},{getAuth,signInAnonymously},{getDatabase,ref,onValue,onDisconnect,set,push,query,limitToLast,serverTimestamp}]=await Promise.all([
+  const [{initializeApp},{getAuth,signInAnonymously},{getDatabase,ref,onValue,onDisconnect,set,get,push,query,limitToLast,serverTimestamp}]=await Promise.all([
    import(`https://www.gstatic.com/firebasejs/${ver}/firebase-app.js`),
    import(`https://www.gstatic.com/firebasejs/${ver}/firebase-auth.js`),
    import(`https://www.gstatic.com/firebasejs/${ver}/firebase-database.js`)
@@ -706,6 +885,8 @@ async function connectFirebase(){
   const wishRef=ref(db,`${room}/wishes`);
   const eventsRef=ref(db,`${room}/events`);
   const offeringsRef=ref(db,`${room}/offerings`);
+  const prayersRef=ref(db,`${room}/prayers`);
+  const visitorsRef=ref(db,`${room}/visitors`);
   const eventKeysSeen=new Set();
   let eventInitialized=false,disconnectRegistered=false,connected=false;
   state.presenceId=presenceId;
@@ -719,12 +900,22 @@ async function connectFirebase(){
     connected=snap.val()===true;
     if(!connected){disconnectRegistered=false;state.realtimeReady=false;updateCounts();return;}
     state.realtimeReady=true;
-    if(state.joined){try{await publishSafe({name:state.name,gender:state.gender,scene:state.scene,action:state.action,malaCount:state.malaCount})}
+    if(state.joined){try{await publishSafe({name:state.name,gender:state.gender,scene:state.scene,action:state.action,malaCount:state.malaCount});await registerVisitor()}
       catch(e){console.warn('Presence update error',e);toast('Chưa đăng trạng thái lên Firebase. Hãy kiểm tra Rules.')}}
     updateCounts();
   });
   state.firebase={
     publish:publishSafe,
+    recordVisit:async()=>{
+      if(!connected||!state.joined)return;
+      const personal=ref(db,`${room}/visitors/${uid}`);
+      const snap=await get(personal);
+      if(!snap.exists())await set(personal,{uid,name:niceName(state.name),joinedAt:serverTimestamp()});
+    },
+    addPrayer:async entry=>{
+      if(!connected)throw new Error('Offline');
+      await set(push(prayersRef),{uid,name:niceName(entry.name),text:entry.text,createdAt:serverTimestamp()});
+    },
     addWish:async w=>{await set(push(wishRef),{uid,name:niceName(w.name),text:w.text,createdAt:serverTimestamp()})},
     addOffering:async entry=>{
       if(!connected)throw new Error('Offline');
@@ -757,6 +948,14 @@ async function connectFirebase(){
        when:w.createdAt?new Date(w.createdAt).toLocaleDateString('vi-VN'):''}));
     renderWishes();
   },err=>console.warn('Không đọc được lời chúc:',err));
+  onValue(query(prayersRef,limitToLast(80)),snap=>{
+    state.prayers=Object.values(snap.val()||{}).filter(x=>x&&typeof x.text==='string');
+    renderPrayers();
+  },err=>console.warn('Chưa đọc được Bảng Lời cầu nguyện. Kiểm tra Rules V13.',err));
+  onValue(visitorsRef,snap=>{
+    state.visitors=Object.values(snap.val()||{}).filter(x=>x&&typeof x.name==='string');
+    renderVisitors();
+  },err=>console.warn('Chưa đọc được danh sách Phật tử. Kiểm tra Rules V13.',err));
   onValue(query(offeringsRef,limitToLast(50)),snap=>{
     state.offerings=Object.entries(snap.val()||{}).map(([id,entry])=>({...entry,id}));
     renderOfferings();
@@ -775,7 +974,7 @@ async function connectFirebase(){
     if(eventKeysSeen.size>300){eventKeysSeen.clear();entries.forEach(([id])=>eventKeysSeen.add(id));}
   },err=>console.warn('Không nhận được sự kiện thời gian thực:',err));
   state.localMode=false;
-  $('wishMode').textContent='Lời nguyện được đồng bộ giữa các đồng nghiệp.';
+  $('wishMode').textContent='Lời nguyện và bảng lời cầu nguyện được đồng bộ giữa các đồng nghiệp.';
   $('infoMode').textContent='Firebase đã được cấu hình. Hãy kiểm tra nhãn TRỰC TUYẾN để xác nhận kết nối.';
   renderAvatars();publishPresence();
   setInterval(()=>{if(state.joined){publishPresence();renderAvatars()}},30000);
