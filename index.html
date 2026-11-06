@@ -100,6 +100,17 @@
 .karma-scene .tool{width:92px;min-width:92px}
 .abbot-quote-note{position:absolute;left:50%;top:calc(82px + env(safe-area-inset-top));transform:translateX(-50%);font-size:11px;color:#6a5c48;background:#fff6e7d9;border:1px solid #e7cfa4;padding:4px 10px;border-radius:999px;z-index:6;white-space:nowrap}
 
+
+/* ===== V15 karma refinements ===== */
+.karma-scene .room-bubble{bottom:116px;max-width:88%;font-size:11px;padding:8px 12px}
+.karma-scene .screen-footer{bottom:calc(10px + env(safe-area-inset-bottom));padding:8px 10px;gap:8px}
+.karma-scene .tool{height:64px}
+.karma-complete{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;width:min(88%,320px);background:#fffaf0f5;border:1px solid #efe0bc;border-radius:22px;box-shadow:0 18px 45px rgba(0,0,0,.18);padding:18px 16px 16px;text-align:center;display:none}
+.karma-complete.show{display:block;animation:popIn .25s ease both}
+.karma-complete h3{margin:0 0 8px;color:#7a5a24;font-size:18px}
+.karma-complete p{margin:0 0 14px;color:#5f654f;line-height:1.5;font-size:13px;font-weight:700}
+.karma-complete .btn{width:100%;justify-content:center}
+
 </style>
 </head>
 <body>
@@ -309,6 +320,11 @@
   <div class="broom-anim" id="broomAnim" aria-hidden="true">🧹</div>
   <div class="people-layer" id="karmaPeople"></div>
   <div class="room-bubble" id="karmaBubble">🧹 Hãy nhẹ nhàng quét từng chiếc lá bồ đề.</div>
+  <div class="karma-complete" id="karmaComplete">
+    <h3>🌿 Công quả viên mãn</h3>
+    <p id="karmaCompleteText">Công quả trọn vẹn, Tiêu trừ nghiệp chướng, Tâm an đến già.</p>
+    <button class="btn" id="karmaBackToYard" type="button">Trở về Sân chùa</button>
+  </div>
   <div class="screen-footer"><button class="tool highlight" id="sweepYard"><span class="tool-icon">🧹</span><span>Quét sân</span></button><button class="tool important" id="leaveKarma"><span class="tool-icon">⛩️</span><span>Về sân chùa</span></button></div>
 </section>
 
@@ -524,8 +540,8 @@ function toggleMusic(){
 }
 
 const MOCKS=[{id:'sample-a',name:'An (mẫu)',gender:'female',scene:'yard',action:'stand',sample:true},{id:'sample-b',name:'Minh (mẫu)',gender:'male',scene:'yard',action:'stand',sample:true},{id:'sample-c',name:'Tịnh Tâm (mẫu)',gender:'female',scene:'hall',action:'meditate',sample:true},{id:'sample-d',name:'Bình (mẫu)',gender:'male',scene:'hall',action:'kneel',sample:true}];
-const positions={yard:[{x:34,y:77,s:'tiny'},{x:72,y:79,s:'small'},{x:47,y:87,s:''},{x:21,y:88,s:'small'},{x:80,y:90,s:''},{x:63,y:84,s:'small'}],hall:[{x:31,y:62,s:'small'},{x:72,y:62,s:'small'},{x:23,y:68,s:''},{x:80,y:68,s:''},{x:44,y:67,s:'small'},{x:62,y:67,s:'small'}],karma:[{x:76,y:79,s:'small'},{x:61,y:83,s:'small'}]};
-const mePosition={yard:{x:51,y:82},hall:{x:52,y:70},karma:{x:78,y:82}};
+const positions={yard:[{x:34,y:77,s:'tiny'},{x:72,y:79,s:'small'},{x:47,y:87,s:''},{x:21,y:88,s:'small'},{x:80,y:90,s:''},{x:63,y:84,s:'small'}],hall:[{x:31,y:62,s:'small'},{x:72,y:62,s:'small'},{x:23,y:68,s:''},{x:80,y:68,s:''},{x:44,y:67,s:'small'},{x:62,y:67,s:'small'}],karma:[{x:73,y:70,s:'small'},{x:60,y:75,s:'small'}]};
+const mePosition={yard:{x:51,y:82},hall:{x:52,y:70},karma:{x:79,y:72}};
 function persist(){safeSet('name',state.name);safeSet('gender',state.gender);safeSet('malaCount',state.malaCount);safeSet('sweptLeaves',state.sweptLeaves)}
 function niceName(raw){return String(raw||'').trim().replace(/\s+/g,' ').slice(0,24)}
 function escapeText(s){return String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
@@ -594,7 +610,8 @@ function showView(which){
  if(ambientMusic.isStarted())ambientMusic.select(which,state.sound);
  if(which==='yard')bubble('🌿 Mái chùa khang trang, cổ kính và thanh tịnh');
  if(which==='hall')bubble('🪷 Tâm an, việc thuận, ngày thêm vui');
- if(which==='karma'){bubble('🧹 Từ bi, hỷ xả, buông bỏ chấp niệm, tu tâm dưỡng tánh!');renderLeaves();}
+ if(which==='karma'){bubble(state.sweptLeaves>=KARMA_LEAVES.length?'Công quả trọn vẹn, Tiêu trừ nghiệp chướng, Tâm an đến già.':'🧹 Từ bi, hỷ xả, buông bỏ chấp niệm, tu tâm dưỡng tánh!');renderLeaves();}
+ else {const done=$('karmaComplete'); if(done) done.classList.remove('show');}
  renderAvatars(); publishPresence();
 }
 function join(){const n=niceName($('visitorName').value);if(!n){toast('Vui lòng nhập tên hoặc pháp danh nhé 🌿');$('visitorName').focus();return}
@@ -751,22 +768,29 @@ const ABBOT_QUOTES=[
  'Xách xe đi chơi... nằm bệnh 1 tháng'
 ];
 const KARMA_LEAVES=[
- {x:45,y:72,r:-18},{x:57,y:71,r:16},{x:64,y:75,r:-12},{x:50,y:77,r:24},{x:70,y:78,r:-22},
- {x:59,y:80,r:8},{x:42,y:80,r:-10},{x:74,y:82,r:19},{x:52,y:84,r:-16},{x:65,y:85,r:11},
- {x:38,y:86,r:-24},{x:57,y:87,r:20},{x:70,y:88,r:-8},{x:48,y:89,r:12},{x:62,y:90,r:-15}
+ {x:38,y:62,r:-18},{x:49,y:63,r:16},{x:58,y:64,r:-12},{x:68,y:65,r:24},{x:78,y:66,r:-22},
+ {x:43,y:69,r:8},{x:54,y:70,r:-10},{x:66,y:71,r:19},{x:76,y:72,r:-16},{x:47,y:75,r:11},
+ {x:59,y:76,r:-24},{x:71,y:77,r:20},{x:81,y:78,r:-8},{x:53,y:79,r:12},{x:64,y:80,r:-15}
 ];
 function renderLeaves(){
  const host=$('karmaLeaves'); if(!host) return; host.replaceChildren();
  KARMA_LEAVES.forEach((p,i)=>{const leaf=document.createElement('div');leaf.className='bodhi-leaf'+(i<state.sweptLeaves?' gone':'');leaf.id='karmaLeaf'+i;leaf.textContent='🍃';leaf.style.left=p.x+'%';leaf.style.top=p.y+'%';leaf.style.transform=`translate(-50%,-50%) rotate(${p.r}deg)`;host.append(leaf);});
+ const done=$('karmaComplete'); if(done) done.classList.toggle('show', state.sweptLeaves>=KARMA_LEAVES.length);
 }
 function sweepYardOnce(){
  if(!state.joined){toast('Hãy vào chùa trước nhé.');return}
  if(state.scene!=='karma'){showView('karma');return}
- const message='Từ bi, hỷ xả, buông bỏ chấp niệm, tu tâm dưỡng tánh!';
- bubble(message);toast(message);
+ const normalMessage='Từ bi, hỷ xả, buông bỏ chấp niệm, tu tâm dưỡng tánh!';
+ const completeMessage='Công quả trọn vẹn, Tiêu trừ nghiệp chướng, Tâm an đến già.';
  const broom=$('broomAnim'); if(broom){broom.classList.remove('show');void broom.offsetWidth;broom.classList.add('show');}
- if(state.sweptLeaves>=KARMA_LEAVES.length){confetti('✨');toast('Sân chùa đã sạch rồi. Mô Phật!');return}
- state.sweptLeaves=Math.min(KARMA_LEAVES.length,state.sweptLeaves+1);persist();renderLeaves();confetti('🍃');
+ if(state.sweptLeaves>=KARMA_LEAVES.length){bubble(completeMessage);toast(completeMessage);renderLeaves();return}
+ state.sweptLeaves=Math.min(KARMA_LEAVES.length,state.sweptLeaves+1);persist();renderLeaves();
+ if(state.sweptLeaves>=KARMA_LEAVES.length){
+   bubble(completeMessage);toast(completeMessage);confetti('✨');
+   const done=$('karmaComplete'); if(done) done.classList.add('show');
+ } else {
+   bubble(normalMessage);toast(normalMessage);confetti('🍃');
+ }
 }
 function sendToAbbot(){
  const text=$('abbotMessage').value.trim().slice(0,220);
@@ -962,6 +986,7 @@ $('openVisitorList').onclick=()=>openPanel('visitorListPanel');
 $('leaveAbbot').onclick=()=>showView('yard');
 $('sendAbbotMessage').onclick=sendToAbbot;
 if($('leaveKarma'))$('leaveKarma').onclick=()=>showView('yard');
+if($('karmaBackToYard'))$('karmaBackToYard').onclick=()=>showView('yard');
 if($('sweepYard'))$('sweepYard').onclick=sweepYardOnce;
 document.querySelectorAll('[data-offering-amount]').forEach(btn=>btn.onclick=()=>{$('offeringAmount').value=offeringMoney(Number(btn.dataset.offeringAmount)).replace('đ','');$('offeringError').textContent='';});
 $('offeringAmount').addEventListener('input',()=>{$('offeringError').textContent='';});
