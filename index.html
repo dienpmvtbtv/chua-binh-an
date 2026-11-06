@@ -21,6 +21,16 @@
 /* Responsive desktop layout: retain theatrical aspect */
 @media(min-width:760px){#app{max-width:500px;min-height:650px;max-height:960px;margin:20px auto;border:8px solid #f8f0dd;border-radius:32px;box-shadow:0 25px 100px #10241740;height:calc(100dvh - 40px)}body{background:radial-gradient(circle at 50% 10%,#dbeed4,#98b7a8)}.home-inner{padding-left:30px;padding-right:30px}.sheet{border-radius:28px 28px 20px 20px}}@media(max-width:380px){.tool{width:53px;min-width:53px;height:60px}.tool-icon{font-size:22px}.screen-footer{gap:5px;padding:7px}.room-bubble{bottom:100px}.home-head h1{font-size:43px}.joinrow{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Cúng dường Tam Bảo — ghi nhận tương tác tượng trưng, không xử lý thanh toán */
+.offering-board{position:absolute;z-index:7;top:43%;left:clamp(6px,2vw,14px);width:clamp(98px,27vw,134px);max-height:clamp(160px,28dvh,240px);display:flex;flex-direction:column;padding:9px 7px;background:linear-gradient(150deg,rgba(104,53,27,.94),rgba(61,30,19,.94));color:#ffe7b4;border:1px solid rgba(244,186,95,.9);border-radius:12px;box-shadow:0 10px 30px #120a073f, inset 0 0 0 1px #fff5d01d;backdrop-filter:blur(4px)}
+.offering-board-title{font-weight:850;font-size:10px;line-height:1.3;text-align:center;color:#fff0bb;letter-spacing:.2px;border-bottom:1px solid #deb16b6a;padding-bottom:7px;margin-bottom:5px}
+.offering-board-body{min-height:44px;overflow-y:auto;scrollbar-width:thin;overscroll-behavior:contain}.offering-board-entry{display:block;border-bottom:1px solid #f4d79b23;padding:5px 1px}.offering-board-entry:last-child{border-bottom:0}.offering-board-name{display:block;color:#fff4d9;font-size:10px;font-weight:750;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.offering-board-money{display:block;color:#ffca77;font-size:11px;font-weight:850;font-variant-numeric:tabular-nums}.offering-board-empty{font-size:9px;line-height:1.4;opacity:.9;text-align:center;padding:9px 2px}
+.offering-board-more{margin-top:7px;padding:6px 3px;border:1px solid #f5d9a67a;border-radius:8px;background:#fff3d21c;color:#ffe3a8;font-weight:750;font-size:9px;cursor:pointer}
+.offering-input{display:block;width:100%;border-radius:14px;border:1px solid #dac9a8;padding:14px 12px;font-size:21px;font-weight:850;color:#60492b;background:white;letter-spacing:.2px;font-variant-numeric:tabular-nums}.offering-error{font-size:12px;color:#a3452b;min-height:18px;margin:6px 0}.offering-limits{display:flex;justify-content:space-between;gap:5px;color:#8d816c;font-size:11px}.offering-suggestions{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0}.offering-choice{border:1px solid #e2ceae;border-radius:999px;background:#fffdf6;color:#745a36;padding:8px 11px;font-size:12px;font-weight:700}.offering-choice:focus-visible,.offering-choice:hover{background:#f5e7c7}.offering-submit{display:block;width:100%;border:0;border-radius:15px;background:linear-gradient(110deg,#8d5e30,#6c442b);color:#fff5d7;font-size:13px;font-weight:850;padding:15px 11px;line-height:1.4;box-shadow:0 5px 0 #55341e}.offering-submit:active{transform:translateY(3px);box-shadow:0 2px 0 #55341e}.offering-disclaimer{margin:11px 0 0;font-size:11px;line-height:1.5;color:#8e826e;background:#fff2d5;padding:9px;border-radius:11px}
+.offering-float{background:rgba(255,244,206,.97);border-color:#daa757;color:#714820;font-size:12px;font-weight:850;max-width:min(260px,75vw);white-space:normal;animation:offeringRise 4.5s ease-out forwards}.offering-float:after{border-color:#daa757}@keyframes offeringRise{0%{opacity:0;transform:translate(-50%,6px) scale(.8)}12%{opacity:1}72%{opacity:1}100%{opacity:0;transform:translate(-50%,-170px) scale(1.02)}}
+.offering-list-card{display:flex;justify-content:space-between;align-items:baseline;gap:8px;background:#fffdf9;border:1px solid #ebdcc2;padding:11px 12px;border-radius:12px;margin-bottom:8px}.offering-list-card strong{font-size:12px;color:#654d31;overflow-wrap:anywhere}.offering-list-card b{font-size:13px;color:#98602b;white-space:nowrap}.offering-list-card small{display:block;color:#999081;font-size:10px;font-weight:400}.offering-muted{font-size:12px;color:#8c826f;text-align:center;padding:20px 4px}
+@media(max-width:350px){.offering-board{width:94px;top:42%;padding:7px 5px}.offering-board-title{font-size:9px}}
 </style>
 </head>
 <body>
@@ -185,9 +195,15 @@
  <div class="hall-title">TÂM AN LẠC</div>
  <div class="hall-hint">🙏 Nam mô A Di Đà Phật</div>
  <div class="room-header"><button class="where" id="hallWho">🙏 Chánh điện · xem thử</button><div class="header-actions"><button class="round" data-sound aria-label="Bật tắt nhạc nền và âm thanh" title="Bật/tắt nhạc">♫</button></div></div>
+
+ <aside class="offering-board" id="offeringBoard" aria-label="Bảng danh sách cúng dường Tam Bảo">
+   <div class="offering-board-title">🌸 BẢNG CÚNG DƯỜNG</div>
+   <div class="offering-board-body" id="offeringBoardBody" aria-live="polite"><div class="offering-board-empty">Chưa có lời cúng dường tượng trưng</div></div>
+   <button type="button" class="offering-board-more" id="openOfferingList">Xem danh sách</button>
+ </aside>
  <div class="people-layer hall-people" id="hallPeople"></div>
  <div class="room-bubble" id="hallBubble">🪷 Tâm an, việc thuận, ngày thêm vui</div>
- <div class="screen-footer"><button class="tool" data-bell><span class="tool-icon">🔔</span><span>Chuông</span></button><button class="tool" data-incense><span class="tool-icon">🪔</span><span>Thắp hương</span></button><button class="tool highlight" data-prayer><span class="tool-icon">🙏</span><span>Cầu nguyện</span></button><button class="tool" data-bow><span class="tool-icon">🙇</span><span>Lạy Phật</span></button><button class="tool" data-meditate><span class="tool-icon">🧘</span><span>Ngồi thiền</span></button><button class="tool" data-chant><span class="tool-icon">📿</span><span>Niệm Phật</span></button><button class="tool" data-mala><span class="tool-icon">📿</span><span>Tràng hạt</span></button><button class="tool important" data-exit><span class="tool-icon">⛩️</span><span>Ra sân</span></button></div>
+ <div class="screen-footer"><button class="tool" data-bell><span class="tool-icon">🔔</span><span>Chuông</span></button><button class="tool" data-incense><span class="tool-icon">🪔</span><span>Thắp hương</span></button><button class="tool highlight" data-prayer><span class="tool-icon">🙏</span><span>Cầu nguyện</span></button><button class="tool" data-bow><span class="tool-icon">🙇</span><span>Lạy Phật</span></button><button class="tool" data-meditate><span class="tool-icon">🧘</span><span>Ngồi thiền</span></button><button class="tool" data-chant><span class="tool-icon">📿</span><span>Niệm Phật</span></button><button class="tool" data-mala><span class="tool-icon">📿</span><span>Tràng hạt</span></button><button class="tool highlight" id="openOffering" type="button"><span class="tool-icon">🌸</span><span>Cúng dường</span></button><button class="tool important" data-exit><span class="tool-icon">⛩️</span><span>Ra sân</span></button></div>
 </section>
 <!-- sheets -->
 <div id="backdrop" class="sheet-backdrop"></div>
@@ -223,6 +239,29 @@
    </div>
  </div>
 </section>
+
+<section id="offeringPanel" class="sheet" role="dialog" aria-modal="true" aria-label="Lòng thành tùy tâm">
+  <div class="sheet-heading"><h2>Lòng thành tùy tâm</h2><button class="x-btn" data-close aria-label="Đóng">×</button></div>
+  <p class="sheet-subtitle" style="font-size:14px;color:#705b41;margin:14px 0">Quý phật tử muốn Cúng dường bao nhiêu ạ?</p>
+  <label for="offeringAmount">Số tiền cúng dường (VNĐ)</label>
+  <input id="offeringAmount" class="offering-input" type="text" inputmode="numeric" autocomplete="off" maxlength="9" placeholder="Ví dụ: 50.000" aria-describedby="offeringLimit offeringError">
+  <div id="offeringLimit" class="offering-limits"><span>Tối thiểu 10.000đ</span><span>Tối đa 1.000.000đ</span></div>
+  <div class="offering-suggestions" aria-label="Chọn nhanh số tiền">
+    <button type="button" class="offering-choice" data-offering-amount="10000">10.000đ</button>
+    <button type="button" class="offering-choice" data-offering-amount="50000">50.000đ</button>
+    <button type="button" class="offering-choice" data-offering-amount="100000">100.000đ</button>
+    <button type="button" class="offering-choice" data-offering-amount="500000">500.000đ</button>
+    <button type="button" class="offering-choice" data-offering-amount="1000000">1.000.000đ</button>
+  </div>
+  <p class="offering-error" id="offeringError" role="alert"></p>
+  <button type="button" class="offering-submit" id="sendOffering">Con thành tâm Cúng dường Tam Bảo! Mô phật!</button>
+  <p class="offering-disclaimer">🌼 Đây là hoạt động tương tác tượng trưng trên website. Không thu tiền, không thanh toán và không xác nhận đã chuyển tiền thật.</p>
+</section>
+<section id="offeringListPanel" class="sheet" role="dialog" aria-modal="true" aria-label="Danh sách cúng dường">
+  <div class="sheet-heading"><h2>🌸 Bảng cúng dường</h2><button class="x-btn" data-close aria-label="Đóng">×</button></div>
+  <p class="sheet-subtitle">Danh sách những lời cúng dường tượng trưng; không đại diện cho các khoản chuyển tiền thật.</p>
+  <div id="offeringFullList"></div>
+</section>
 <section id="peoplePanel" class="sheet" role="dialog" aria-label="Người đang có mặt" aria-modal="true">
  <div class="sheet-heading"><h2>👥 Người đang có mặt</h2><button class="x-btn" data-close aria-label="Đóng">×</button></div>
  <p class="sheet-subtitle" id="peopleMode">Bản thử nghiệm chỉ hiển thị bạn và các nhân vật minh họa.</p><div class="roster-list" id="rosterList"></div>
@@ -230,8 +269,8 @@
 <section id="infoPanel" class="sheet" role="dialog" aria-label="Giới thiệu" aria-modal="true">
  <div class="sheet-heading"><h2>🪷 Chùa Bình An</h2><button class="x-btn" data-close aria-label="Đóng">×</button></div>
  <p class="sheet-subtitle">Không gian trải nghiệm hoạt hình riêng cho KHDN VietinBank TV, dựa trên ảnh chùa do bạn cung cấp.</p>
- <p style="font-size:13px;line-height:1.7">Nhạc MP3 ở Trang chủ/Sân chùa và nhạc thiền riêng trong Chánh điện; bật bằng nút 🎵 hoặc khi bạn vào sân chùa. Vào sân chùa, chọn nam/nữ áo lam, đến chánh điện để thắp hương, cầu nguyện, lạy Phật, ngồi thiền, niệm Phật và đếm tràng hạt 108 hạt. Nhấn vào số người ở góc trên để xem danh sách nhân vật.</p>
- <div class="divider"></div><p style="font-size:12px;color:#846a4c;line-height:1.7"><b>Trạng thái hiện tại:</b> <span id="infoMode">Bản xem thử trên thiết bị, chưa kết nối dữ liệu nhiều người.</span><br>Không có tính năng quyên góp hay thanh toán. Link GitHub Pages là trang công khai; người có link có thể vào và xem lời chúc/cầu nguyện nếu Firebase dùng đăng nhập ẩn danh. Không nhập dữ liệu nội bộ hoặc khách hàng. Logo được dùng theo hình bạn cung cấp; cần xác nhận quyền sử dụng trước khi công khai.</p>
+ <p style="font-size:13px;line-height:1.7">Nhạc MP3 ở Trang chủ/Sân chùa và nhạc thiền riêng trong Chánh điện; bật bằng nút 🎵 hoặc khi bạn vào sân chùa. Vào sân chùa, chọn nam/nữ áo lam, đến chánh điện để thắp hương, cầu nguyện, lạy Phật, ngồi thiền, niệm Phật và đếm tràng hạt 108 hạt và cúng dường tượng trưng. Nhấn vào số người ở góc trên để xem danh sách nhân vật.</p>
+ <div class="divider"></div><p style="font-size:12px;color:#846a4c;line-height:1.7"><b>Trạng thái hiện tại:</b> <span id="infoMode">Bản xem thử trên thiết bị, chưa kết nối dữ liệu nhiều người.</span><br>Chức năng Cúng dường Tam Bảo chỉ ghi nhận tượng trưng trên web, không thu tiền thật hay xử lý thanh toán. Link GitHub Pages là trang công khai; người có link có thể vào và xem lời chúc/cầu nguyện nếu Firebase dùng đăng nhập ẩn danh. Không nhập dữ liệu nội bộ hoặc khách hàng. Logo được dùng theo hình bạn cung cấp; cần xác nhận quyền sử dụng trước khi công khai.</p>
  <button class="primary" data-close style="width:100%">Đã hiểu</button>
 </section>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -248,7 +287,7 @@ const $=id=>document.getElementById(id);
 const screens=['home','yard','hall'];
 const safeGet=(key,fallback)=>{try{return JSON.parse(localStorage.getItem('cba3_'+key))??fallback}catch{return fallback}};
 const safeSet=(key,value)=>{try{localStorage.setItem('cba3_'+key,JSON.stringify(value))}catch{}};
-const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),lastPrayer:'',presenceId:null,realtimeReady:false};
+const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),offerings:safeGet('offerings_demo',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),lastPrayer:'',presenceId:null,realtimeReady:false};
 let toastTimer, speechTimer, currentPanel=null, audioContext;
 
 // Trang chủ & Sân chùa: phát MP3 do chủ website cung cấp.
@@ -403,7 +442,7 @@ function showView(which){
 function join(){const n=niceName($('visitorName').value);if(!n){toast('Vui lòng nhập tên hoặc pháp danh nhé 🌿');$('visitorName').focus();return}
  state.name=n;state.gender=$('visitorGender').value;state.joined=true;state.action='stand';persist();showView('yard');startMusicFromGesture();toast(`Chào ${n}, chúc bạn an yên!`);confetti('🌸');}
 function confetti(symbol){const area=$(state.scene);for(let i=0;i<8;i++){const t=document.createElement('span');t.className='sparkle';t.textContent=symbol;t.style.left=(25+Math.random()*50)+'%';t.style.top=(38+Math.random()*32)+'%';t.style.animationDelay=(i*.1)+'s';area.append(t);setTimeout(()=>t.remove(),2200)}}
-function openPanel(panel){closePanel();currentPanel=panel;$('backdrop').classList.add('open');$(panel).classList.add('open');if(panel==='wishPanel'){$('wishInput').value='';renderWishes()}if(panel==='peoplePanel')renderRoster();if(panel==='malaPanel')renderMala();if(panel==='prayerPanel'){$('prayerPreview').textContent='Sau khi gửi, lời cầu nguyện sẽ bay lên từ vị trí nhân vật của bạn.';}}
+function openPanel(panel){closePanel();currentPanel=panel;$('backdrop').classList.add('open');$(panel).classList.add('open');if(panel==='wishPanel'){$('wishInput').value='';renderWishes()}if(panel==='peoplePanel')renderRoster();if(panel==='malaPanel')renderMala();if(panel==='offeringPanel'){$('offeringAmount').value='';$('offeringError').textContent='';}if(panel==='offeringListPanel')renderOfferings();if(panel==='prayerPanel'){$('prayerPreview').textContent='Sau khi gửi, lời cầu nguyện sẽ bay lên từ vị trí nhân vật của bạn.';}}
 function closePanel(){currentPanel&&$(currentPanel).classList.remove('open');$('backdrop').classList.remove('open');currentPanel=null}
 function chime(){if(!state.sound)return;try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioContext=audioContext||new AC();audioContext.resume();const now=audioContext.currentTime;for(const [h,v] of [[261.63,.12],[523.25,.045],[783.99,.025],[1046.5,.012],[1318.51,.009]]){const o=audioContext.createOscillator(),g=audioContext.createGain();o.type='sine';o.frequency.setValueAtTime(h,now);g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(v,now+.02);g.gain.exponentialRampToValueAtTime(.0001,now+3.1);o.connect(g);g.connect(audioContext.destination);o.start(now);o.stop(now+3.2)}}catch(err){console.info('Audio unavailable',err)}}
 function doBell(){chime();toast('🔔 Boong… chúc tâm an, việc thuận.');confetti('✨');emitEvent('bell','')}
@@ -463,6 +502,86 @@ function sendPrayer(){
  confetti('✨');
  $('prayerInput').value='';
 }
+
+// Ghi nhận cúng dường tượng trưng (không có thanh toán hay chuyển tiền thật).
+const offeringMoney=n=>new Intl.NumberFormat('vi-VN').format(Number(n))+'đ';
+function parseOfferingAmount(raw){
+ const val=String(raw||'').trim().replace(/\s/g,'');
+ // Chấp nhận 50000 hoặc 50.000; từ chối số âm, số thập phân, chữ cái.
+ if(!(/^[0-9]{1,7}$/.test(val)||/^[0-9]{1,3}(?:\.[0-9]{3}){1,2}$/.test(val)))return null;
+ const amount=Number(val.replace(/\./g,''));
+ return Number.isSafeInteger(amount)?amount:null;
+}
+function renderOfferings(){
+ const list=Array.isArray(state.offerings)?state.offerings:[];
+ const sorted=[...list].filter(x=>x&&typeof x.name==='string'&&Number.isInteger(x.amount)&&x.amount>=10000&&x.amount<=1000000)
+  .sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+ const board=$('offeringBoardBody');board.replaceChildren();
+ if(!sorted.length){const empty=document.createElement('div');empty.className='offering-board-empty';empty.textContent='Chưa có lời cúng dường tượng trưng';board.append(empty);}
+ else sorted.slice(0,5).forEach(x=>{
+  const row=document.createElement('div');row.className='offering-board-entry';
+  const name=document.createElement('span');name.className='offering-board-name';name.textContent=niceName(x.name);
+  const amount=document.createElement('span');amount.className='offering-board-money';amount.textContent=offeringMoney(x.amount);
+  row.append(name,amount);board.append(row);
+ });
+ const full=$('offeringFullList');full.replaceChildren();
+ if(!sorted.length){const p=document.createElement('p');p.className='offering-muted';p.textContent='Chưa có ai cúng dường tượng trưng.';full.append(p);return;}
+ sorted.slice(0,50).forEach(x=>{
+  const row=document.createElement('div');row.className='offering-list-card';
+  const left=document.createElement('div'),name=document.createElement('strong'),time=document.createElement('small'),amount=document.createElement('b');
+  name.textContent=niceName(x.name);time.textContent=x.createdAt?new Date(x.createdAt).toLocaleString('vi-VN'):'';
+  amount.textContent=offeringMoney(x.amount);left.append(name,time);row.append(left,amount);full.append(row);
+ });
+}
+async function sendOffering(){
+ if(!state.joined){toast('Hãy vào chùa và nhập tên/pháp danh trước nhé.');return;}
+ const amount=parseOfferingAmount($('offeringAmount').value);
+ if(amount===null||amount<10000||amount>1000000){
+  $('offeringError').textContent='Vui lòng nhập số tiền từ 10.000đ đến 1.000.000đ.';
+  $('offeringAmount').focus();return;
+ }
+ if(state.firebase&&!state.realtimeReady){$('offeringError').textContent='Chưa kết nối Firebase. Hãy kiểm tra Internet và thử lại.';return;}
+ const submit=$('sendOffering');if(submit.disabled)return;
+ submit.disabled=true;submit.textContent='Đang ghi nhận...';
+ try{
+  const entry={name:state.name,amount,createdAt:Date.now(),presenceId:state.presenceId||'local'};
+  if(state.firebase){
+   await state.firebase.addOffering(entry);
+  }else{
+   state.offerings=[...state.offerings,entry].slice(-50);safeSet('offerings_demo',state.offerings);renderOfferings();
+  }
+  if(state.scene!=='hall')showView('hall');
+  closePanel();
+  const phrase=state.name+' đã Cúng dường '+offeringMoney(amount);
+  // Bay từ chính nhân vật lên trên, rồi mờ dần và biến mất.
+  setTimeout(()=>{
+   floatOffering(phrase);
+  },120);
+  toast('🌸 Đã ghi nhận lòng thành tượng trưng. Mô Phật!');
+  $('offeringAmount').value='';$('offeringError').textContent='';
+  if(state.firebase){
+   // Đồng bộ hiệu ứng riêng. Bản ghi cúng dường đã được lưu trước đó.
+   try{await state.firebase.emitEvent('offering',String(amount));}
+   catch(e){console.warn('Không đồng bộ được hiệu ứng cúng dường:',e)}
+  }
+ }catch(err){
+  console.error('Ghi nhận cúng dường thất bại:',err);
+  $('offeringError').textContent='Chưa ghi nhận được. Hãy kiểm tra quy tắc Firebase và thử lại.';
+  toast('Không gửi được lời cúng dường. Vui lòng kiểm tra Firebase Rules.');
+ }finally{submit.disabled=false;submit.textContent='Con thành tâm Cúng dường Tam Bảo! Mô phật!';}
+}
+function floatOffering(message,presenceId){
+ const hall=$('hall');if(!hall.classList.contains('active'))return false;
+ const people=[...$('hallPeople').querySelectorAll('.character')];
+ const el=presenceId?people.find(x=>x.dataset.presenceId===presenceId):people.find(x=>x.classList.contains('me'));
+ if(!el)return false;
+ const host=hall.getBoundingClientRect(),rect=el.getBoundingClientRect(),bubble=document.createElement('div');
+ bubble.className='prayer-float offering-float';bubble.textContent=String(message).slice(0,115);
+ bubble.style.left=((rect.left-host.left)+(rect.width/2))+'px';
+ bubble.style.top=((rect.top-host.top)-12)+'px';
+ hall.append(bubble);setTimeout(()=>bubble.remove(),4600);return true;
+}
+
 function buildMala(){
  const ring=$('malaRing'); if(!ring||ring.childElementCount) return;
  const total=108,cx=110,cy=110,r=82;
@@ -514,6 +633,14 @@ function syncRemoteEvent(evt){
  if(!evt||!evt.presenceId||evt.presenceId===state.presenceId||!state.joined)return;
  const names=state.people.find(p=>p.id===evt.presenceId);
  const displayName=niceName(names?.name||'Một đồng nghiệp');
+ if(evt.type==='offering'){
+   const amount=Number(evt.text);
+   if(Number.isSafeInteger(amount)&&amount>=10000&&amount<=1000000){
+     const msg=displayName+' đã Cúng dường '+offeringMoney(amount);
+     if(!floatOffering(msg,evt.presenceId)&&state.scene==='hall')toast('🌸 '+msg);
+   }
+   return;
+ }
  const desc={prayer:'đang cầu nguyện',bow:'đang lạy Phật',meditate:'đang ngồi thiền',chant:'đang niệm Phật',mala:'đã hoàn tất 108 hạt',incense:'đang thắp hương',bell:'vừa thỉnh chuông'};
  if(evt.type==='prayer'){
    const shown=floatPrayerFrom(evt.text,evt.presenceId,evt.scene==='yard'?'yard':'hall');
@@ -551,8 +678,13 @@ document.querySelectorAll('[data-mala]').forEach(b=>b.onclick=()=>{state.action=
 document.querySelectorAll('[data-sound]').forEach(b=>b.onclick=toggleMusic);
 $('homeMusicToggle').onclick=toggleMusic;
 document.addEventListener('visibilitychange',()=>{if(document.hidden)ambientMusic.suspend();else ambientMusic.resume();});
+$('openOffering').onclick=()=>{if(!state.joined){toast('Hãy nhập tên hoặc pháp danh trước nhé.');return;}openPanel('offeringPanel');};
+$('openOfferingList').onclick=()=>openPanel('offeringListPanel');
+document.querySelectorAll('[data-offering-amount]').forEach(btn=>btn.onclick=()=>{$('offeringAmount').value=offeringMoney(Number(btn.dataset.offeringAmount)).replace('đ','');$('offeringError').textContent='';});
+$('offeringAmount').addEventListener('input',()=>{$('offeringError').textContent='';});
+$('sendOffering').onclick=sendOffering;
 $('sendWish').onclick=sendWish;$('sendPrayer').onclick=sendPrayer;$('malaStep').onclick=malaStep;$('malaReset').onclick=malaReset;window.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
-renderAvatars();renderWishes();renderMala();refreshMusicButtons();
+renderAvatars();renderWishes();renderMala();renderOfferings();refreshMusicButtons();
 // Optional production realtime connector (starts only if user provides Firebase credentials).
 async function connectFirebase(){
  const config=window.CHUA_FIREBASE_CONFIG;
@@ -573,6 +705,7 @@ async function connectFirebase(){
   const allRef=ref(db,`${room}/people`);
   const wishRef=ref(db,`${room}/wishes`);
   const eventsRef=ref(db,`${room}/events`);
+  const offeringsRef=ref(db,`${room}/offerings`);
   const eventKeysSeen=new Set();
   let eventInitialized=false,disconnectRegistered=false,connected=false;
   state.presenceId=presenceId;
@@ -593,6 +726,13 @@ async function connectFirebase(){
   state.firebase={
     publish:publishSafe,
     addWish:async w=>{await set(push(wishRef),{uid,name:niceName(w.name),text:w.text,createdAt:serverTimestamp()})},
+    addOffering:async entry=>{
+      if(!connected)throw new Error('Offline');
+      await publishSafe({name:state.name,gender:state.gender,scene:state.scene,action:state.action,malaCount:state.malaCount});
+      const newRef=push(offeringsRef);
+      await set(newRef,{uid,presenceId,name:niceName(entry.name),amount:entry.amount,createdAt:serverTimestamp()});
+      return newRef.key;
+    },
     emitEvent:async(type,text)=>{
       if(!connected)throw new Error('Đang ngoại tuyến');
       // Firebase Rules chỉ cho ghi sự kiện của phiên hiện diện đã tồn tại.
@@ -617,6 +757,13 @@ async function connectFirebase(){
        when:w.createdAt?new Date(w.createdAt).toLocaleDateString('vi-VN'):''}));
     renderWishes();
   },err=>console.warn('Không đọc được lời chúc:',err));
+  onValue(query(offeringsRef,limitToLast(50)),snap=>{
+    state.offerings=Object.entries(snap.val()||{}).map(([id,entry])=>({...entry,id}));
+    renderOfferings();
+  },err=>{
+    console.warn('Firebase chưa cho phép đọc Bảng cúng dường. Hãy cập nhật Rules.',err);
+    $('offeringBoardBody').textContent='Cần cập nhật Rules';
+  });
   onValue(query(eventsRef,limitToLast(40)),snap=>{
     const entries=Object.entries(snap.val()||{}).sort((a,b)=>(a[1].createdAt||0)-(b[1].createdAt||0));
     if(!eventInitialized){entries.forEach(([id])=>eventKeysSeen.add(id));eventInitialized=true;return;}
