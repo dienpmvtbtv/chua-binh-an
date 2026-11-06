@@ -252,118 +252,54 @@ const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'ho
 let toastTimer, speechTimer, currentPanel=null, audioContext;
 
 // Trang chủ & Sân chùa: phát MP3 do chủ website cung cấp.
-// Chánh điện: giữ giai điệu thiền Web Audio của phiên bản trước.
+// Chánh điện: phát nguyên bản nhac-chanh-dien.mp3 do chủ website cung cấp.
 // Theo chính sách trình duyệt, người dùng phải chạm màn hình để bật nhạc.
+// PHÁT NGUYÊN BẢN MP3 (không cắt, chỉnh sửa, đổi tốc độ, lọc, nén lại hoặc trộn âm).
+// Mỗi khu vực sử dụng file MP3 riêng. Tính năng loop chỉ lặp lại toàn bộ file khi kết thúc.
 const ambientMusic=(()=>{
- let started=false,ctx=null,hallBus=null,timer=null,fadeTimer=null;
- let hallActive=false;
+ let started=false;
  const homeAudio=new Audio('nhac-trang-chu.mp3');
- homeAudio.preload='none';
- homeAudio.loop=true;
- homeAudio.volume=0;
- homeAudio.setAttribute('playsinline','');
- homeAudio.addEventListener('error',()=>{
-   if(state.sound&&state.scene!=='hall')toast('Không tải được nhạc MP3. Hãy kiểm tra file nhac-trang-chu.mp3 trên GitHub.');
- });
- const hall={step:1.24,index:0,next:0,melody:[69,null,null,72,null,74,null,null,72,null,69,null,65,null,62,null],chords:[[38,45,50],[41,48,53],[38,45,50]]};
- const hz=midi=>440*Math.pow(2,(midi-69)/12);
- function tone(midi,when,dur,volume,kind){
-  if(!ctx||!hallBus)return;
-  const gain=ctx.createGain(),filter=ctx.createBiquadFilter();
-  filter.type='lowpass';filter.frequency.value=kind==='pad'?1150:2500;filter.Q.value=.15;
-  gain.gain.setValueAtTime(.00001,when);
-  gain.gain.exponentialRampToValueAtTime(volume,when+(kind==='pad'?.9:.035));
-  gain.gain.exponentialRampToValueAtTime(.00001,when+dur);
-  gain.connect(filter);filter.connect(hallBus);
-  const a=ctx.createOscillator();a.type=kind==='pad'?'sine':'triangle';
-  a.frequency.setValueAtTime(hz(midi),when);a.connect(gain);
-  const second=ctx.createGain();second.gain.value=kind==='pad'?.16:.18;
-  const b=ctx.createOscillator();b.type='sine';b.frequency.setValueAtTime(hz(midi)*(kind==='pad'?1.004:2),when);
-  b.connect(second);second.connect(gain);
-  a.start(when);a.stop(when+dur+.05);b.start(when);b.stop(when+dur+.05);
-  a.onended=()=>{try{a.disconnect();b.disconnect();second.disconnect();gain.disconnect();filter.disconnect()}catch(e){}};
+ const hallAudio=new Audio('nhac-chanh-dien.mp3');
+ const tracks={home:homeAudio,hall:hallAudio};
+ let activeTrack=null;
+ for(const [area,audio] of Object.entries(tracks)){
+   audio.preload='metadata';
+   audio.loop=true;
+   audio.volume=1;
+   audio.playbackRate=1;
+   audio.defaultPlaybackRate=1;
+   audio.setAttribute('playsinline','');
+   audio.addEventListener('error',()=>{
+      if(state.sound&&state.scene===(area==='hall'?'hall':'home')||
+         state.sound&&state.scene==='yard'&&area==='home'){
+        toast(area==='hall' ? 'Không tải được nhac-chanh-dien.mp3. Kiểm tra tên file trên GitHub.' : 'Không tải được nhac-trang-chu.mp3. Kiểm tra tên file trên GitHub.');
+      }
+   });
  }
- function scheduleHall(){
-  const idx=hall.index%hall.melody.length,when=hall.next,note=hall.melody[idx];
-  if(note!==null)tone(note,when,4.6,.10,'melody');
-  if(idx%8===0){const chord=hall.chords[Math.floor(hall.index/8)%hall.chords.length];
-    chord.forEach((m,j)=>tone(m,when+j*.15,13.8,.061,'pad'));
-  }
-  hall.index++;hall.next+=hall.step;
- }
- function tick(){
-  if(!ctx||ctx.state!=='running'||document.hidden||!hallActive)return;
-  let n=0;while(hall.next<ctx.currentTime+.55&&n++<6)scheduleHall();
- }
- function ensure(){
-  if(started){if(ctx&&ctx.state==='suspended')ctx.resume().catch(()=>{});return true;}
-  started=true;
-  try{
-   const AC=window.AudioContext||window.webkitAudioContext;
-   if(AC){
-    ctx=audioContext=audioContext||new AC();
-    ctx.resume().catch(()=>{});
-    hallBus=ctx.createGain();hallBus.gain.value=0;hallBus.connect(ctx.destination);
-    hall.next=ctx.currentTime+.05;
-    timer=setInterval(tick,160);
-   }
-  }catch(err){console.info('Không khởi tạo được nhạc thiền chánh điện',err)}
-  return true;
- }
- function fadeMp3(target){
-  if(fadeTimer){clearInterval(fadeTimer);fadeTimer=null;}
-  const startVolume=homeAudio.volume;
-  const steps=target>startVolume?18:13;
-  let i=0;
-  fadeTimer=setInterval(()=>{
-   i++;const t=Math.min(1,i/steps);
-   const eased=t*t*(3-2*t);
-   homeAudio.volume=Math.max(0,Math.min(1,startVolume+(target-startVolume)*eased));
-   if(i>=steps){
-    clearInterval(fadeTimer);fadeTimer=null;
-    if(target===0)homeAudio.pause();
-   }
-  },55);
- }
+ function stopAll(){homeAudio.pause();hallAudio.pause();}
+ function ensure(){started=true;return true;}
  function select(scene,enabled){
-  if(!started)return;
-  const playHome=enabled&&!document.hidden&&scene!=='hall';
-  const playHall=enabled&&!document.hidden&&scene==='hall';
-  if(playHome){
-   // Gọi play() trực tiếp khi người dùng bấm, để Chrome/Android cho phép phát.
-   if(homeAudio.paused){
-    const p=homeAudio.play();
-    if(p&&typeof p.catch==='function')p.catch(err=>{
-      console.info('Trình duyệt chưa cho phát MP3:',err);
-      toast('Nhấn nút 🎵 để bật nhạc MP3 trên thiết bị này.');
-    });
+   if(!started)return;
+   const wanted=enabled&&!document.hidden ? (scene==='hall'?'hall':'home') : null;
+   if(wanted!==activeTrack){
+     // Dừng ngay track khu vực cũ; không phát chồng hai bản nhạc.
+     if(wanted!=='home')homeAudio.pause();
+     if(wanted!=='hall')hallAudio.pause();
+     activeTrack=wanted;
    }
-   fadeMp3(.38);
-  }else if(!homeAudio.paused){
-   fadeMp3(0);
-  }else{
-   if(fadeTimer){clearInterval(fadeTimer);fadeTimer=null;}
-   homeAudio.volume=0;
-  }
-  if(ctx&&hallBus){
-   if(playHall&&ctx.state==='suspended')ctx.resume().catch(()=>{});
-   if(playHall&&!hallActive)hall.next=ctx.currentTime+.06;
-   const now=ctx.currentTime;
-   hallBus.gain.cancelScheduledValues(now);
-   hallBus.gain.setTargetAtTime(playHall?.38:0,now,.40);
-   hallActive=playHall;
-   if(playHall)tick();
-  }
+   if(!wanted){stopAll();return;}
+   const chosen=tracks[wanted];
+   if(chosen.paused){
+     const p=chosen.play();
+     if(p&&typeof p.catch==='function')p.catch(err=>{
+       if(err&&err.name==='AbortError')return;
+       console.info('Trình duyệt chặn phát nhạc:',err);
+       toast('Chạm nút 🎵 để phát nhạc trên thiết bị này.');
+     });
+   }
  }
- function suspend(){
-  if(fadeTimer){clearInterval(fadeTimer);fadeTimer=null;}
-  homeAudio.pause();homeAudio.volume=0;
-  if(ctx&&ctx.state==='running')ctx.suspend().catch(()=>{});
- }
- function resume(){
-  if(ctx&&started&&state.sound)ctx.resume().catch(()=>{});
-  if(started&&state.sound)select(state.scene,true);
- }
+ function suspend(){stopAll();}
+ function resume(){if(started&&state.sound)select(state.scene,true);}
  return{ensure,select,suspend,resume,isStarted:()=>started};
 })();
 function refreshMusicButtons(){
