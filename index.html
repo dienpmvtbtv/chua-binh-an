@@ -10,7 +10,7 @@
 :root{--green:#37523f;--green2:#5c795c;--cream:#f5f0e5;--paper:#fffdf6;--gold:#ddb676;--burn:#ad5030;--shadow:0 20px 70px #1f2f2229;--vvh:100dvh}
 *{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--green);background:#e9eddf}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #e6b44b;outline-offset:3px}button:disabled{opacity:.55;cursor:default} .hide{display:none!important}
 #app{height:100dvh;min-height:550px;position:relative;overflow:clip;background:#f5f0e6} .view{position:absolute;inset:0;display:none;overflow:hidden} .view.active{display:block;animation:fadeIn .38s ease} @keyframes fadeIn{from{opacity:.3}to{opacity:1}}
-#home{overflow-y:auto;scrollbar-width:thin;background:linear-gradient(180deg,#f7f0e6,#e8eedb 90%)} .home-inner{width:min(100%,620px);margin:auto;min-height:100%;padding:20px 20px 64px;position:relative} .home-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.minibrand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:12px;line-height:1.25}.minibrand .lotus{width:39px;height:39px;display:grid;place-items:center;border-radius:15px;background:#e0ebdc;font-size:22px}.minibrand small{color:#909886;font-size:10px;font-weight:600;display:block}.tiny-button{border:1px solid #d9daca;background:#fffdf7;color:#5a755c;padding:10px 13px;border-radius:30px;font-size:12px;font-weight:750}.home-head{text-align:center;padding:26px 0 15px} .home-head .label{font-weight:800;letter-spacing:3px;font-size:10px;color:#a58262}.home-head h1{font:normal 700 clamp(43px,9.7vw,67px)/1.04 Georgia,"Times New Roman",serif;letter-spacing:-1.7px;margin:17px 0 11px;color:#354a37}.home-head h1 em{font-style:normal;color:#b77746}.home-head p{font-size:14px;color:#7d867b;line-height:1.6;max-width:340px;margin:0 auto}.big-logo{display:block;width:204px;height:auto;max-height:64px;object-fit:contain;margin:0 auto 17px;border-radius:9px;mix-blend-mode:multiply}.home-church{position:relative;width:100%;height:232px;overflow:hidden;border-radius:25px;background:#dce9d6;border:1px solid #e2e2d1;box-shadow:var(--shadow)}.home-church img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:center 56%}.home-church:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,#1a30217c)}.photo-caption{position:absolute;bottom:12px;left:13px;right:13px;color:white;font-size:11px;font-weight:650;z-index:1;display:flex;align-items:center;gap:7px}.form-card{position:relative;z-index:1;background:#fffcf5;border:1px solid #e7dfd0;border-radius:26px;box-shadow:var(--shadow);padding:20px;margin-top:-1px}.form-card h2{margin:0;font-size:18px}.form-card .hint{font-size:12px;color:#949485;margin:4px 0 14px}.joinrow{display:grid;grid-template-columns:1.4fr 1fr;gap:9px}.inputlike{min-width:0;border:1px solid #e1dac9;background:white;border-radius:14px;padding:13px 12px;font-size:14px;color:#374d3a;width:100%;outline:none}.inputlike:focus{border-color:#739777}.primary{border:none;padding:15px 20px;background:#46674c;color:white;font-weight:800;border-radius:15px;box-shadow:0 4px 0 #34523a;transition:transform .15s}.primary:active{transform:translateY(3px);box-shadow:0 1px 0 #34523a}.enter-btn{width:100%;margin-top:10px}.stat{font-size:12px;color:#688069;display:flex;align-items:center;gap:7px;margin:14px 0 0}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#8db477;box-shadow:0 0 0 3px #e5efd9}.note-below{margin:13px 4px 0;color:#8c9184;font-size:11px;line-height:1.5}.mode-tag{border-radius:999px;border:1px solid #ead9ad;background:#fff5d9;color:#93723c;padding:5px 9px;font-size:10px;font-weight:800}
+#home{overflow-y:auto;scrollbar-width:thin;background:linear-gradient(180deg,#f7f0e6,#e8eedb 90%)} .home-inner{width:min(100%,620px);margin:auto;min-height:100%;padding:20px 20px 64px;position:relative} .home-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.home-controls{display:flex;align-items:center;gap:6px}.home-music{white-space:nowrap;padding:9px 10px!important;font-size:11px!important;background:#e8efe1!important;color:#315d46!important}.minibrand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:12px;line-height:1.25}.minibrand .lotus{width:39px;height:39px;display:grid;place-items:center;border-radius:15px;background:#e0ebdc;font-size:22px}.minibrand small{color:#909886;font-size:10px;font-weight:600;display:block}.tiny-button{border:1px solid #d9daca;background:#fffdf7;color:#5a755c;padding:10px 13px;border-radius:30px;font-size:12px;font-weight:750}.home-head{text-align:center;padding:26px 0 15px} .home-head .label{font-weight:800;letter-spacing:3px;font-size:10px;color:#a58262}.home-head h1{font:normal 700 clamp(43px,9.7vw,67px)/1.04 Georgia,"Times New Roman",serif;letter-spacing:-1.7px;margin:17px 0 11px;color:#354a37}.home-head h1 em{font-style:normal;color:#b77746}.home-head p{font-size:14px;color:#7d867b;line-height:1.6;max-width:340px;margin:0 auto}.big-logo{display:block;width:204px;height:auto;max-height:64px;object-fit:contain;margin:0 auto 17px;border-radius:9px;mix-blend-mode:multiply}.home-church{position:relative;width:100%;height:232px;overflow:hidden;border-radius:25px;background:#dce9d6;border:1px solid #e2e2d1;box-shadow:var(--shadow)}.home-church img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:center 56%}.home-church:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,#1a30217c)}.photo-caption{position:absolute;bottom:12px;left:13px;right:13px;color:white;font-size:11px;font-weight:650;z-index:1;display:flex;align-items:center;gap:7px}.form-card{position:relative;z-index:1;background:#fffcf5;border:1px solid #e7dfd0;border-radius:26px;box-shadow:var(--shadow);padding:20px;margin-top:-1px}.form-card h2{margin:0;font-size:18px}.form-card .hint{font-size:12px;color:#949485;margin:4px 0 14px}.joinrow{display:grid;grid-template-columns:1.4fr 1fr;gap:9px}.inputlike{min-width:0;border:1px solid #e1dac9;background:white;border-radius:14px;padding:13px 12px;font-size:14px;color:#374d3a;width:100%;outline:none}.inputlike:focus{border-color:#739777}.primary{border:none;padding:15px 20px;background:#46674c;color:white;font-weight:800;border-radius:15px;box-shadow:0 4px 0 #34523a;transition:transform .15s}.primary:active{transform:translateY(3px);box-shadow:0 1px 0 #34523a}.enter-btn{width:100%;margin-top:10px}.stat{font-size:12px;color:#688069;display:flex;align-items:center;gap:7px;margin:14px 0 0}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#8db477;box-shadow:0 0 0 3px #e5efd9}.note-below{margin:13px 4px 0;color:#8c9184;font-size:11px;line-height:1.5}.mode-tag{border-radius:999px;border:1px solid #ead9ad;background:#fff5d9;color:#93723c;padding:5px 9px;font-size:10px;font-weight:800}
 /* Shared full-screen rooms */
 .room{background:#cfe9e9} .room-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.room-art svg{height:100%;width:100%;display:block}.room-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease}.room-photo.show{opacity:1}.gradient-top{position:absolute;left:0;right:0;top:0;height:125px;background:linear-gradient(#10272165,transparent);pointer-events:none;z-index:3}.room-header{position:absolute;top:calc(18px + env(safe-area-inset-top));left:15px;right:15px;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:6;pointer-events:none}.room-header button{pointer-events:auto;box-shadow:0 8px 25px #0002}.where{border:1px solid #ffffffe0;border-radius:999px;padding:10px 14px;background:#fff9eced;color:#53654b;font-size:13px;font-weight:800;backdrop-filter:blur(8px)}.header-actions{display:flex;gap:8px}.round{display:grid;place-items:center;width:44px;height:44px;border:1px solid #f9f9f0;background:#fffcf1ec;border-radius:50%;color:#52634f;font-size:19px}.screen-footer{position:absolute;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:8;display:flex;align-items:center;gap:8px;justify-content:flex-start;background:#f8f0e9e8;border:1px solid #ffffffe8;border-radius:45px;padding:9px;box-shadow:0 15px 45px #1d282b40;backdrop-filter:blur(12px);max-width:calc(100% - 24px);overflow-x:auto;scrollbar-width:none}.screen-footer::-webkit-scrollbar{display:none}.tool{display:flex;flex-direction:column;align-items:center;gap:3px;width:62px;min-width:62px;height:67px;border:none;border-radius:31px;background:#ffffffc8;color:#69766b;justify-content:center;box-shadow:inset 0 -2px 0 #dcd9cd}.tool-icon{font-size:24px;line-height:1}.tool span:last-child{font-size:9px;font-weight:850;letter-spacing:-.1px}.tool.important{background:#f8e0b8;color:#936c37}.tool.highlight{background:#e4eee2;color:#3e7449}.tool:active{transform:scale(.96)}.people-layer{position:absolute;inset:0;z-index:5;pointer-events:none}.character{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;flex-direction:column;justify-content:flex-end;pointer-events:auto;min-width:60px;animation:popUp .4s ease both;filter:drop-shadow(0 3px 2px #253d321e)}@keyframes popUp{from{opacity:0;transform:translate(-50%,-35%) scale(.8)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}.char-name{white-space:nowrap;max-width:112px;overflow:hidden;text-overflow:ellipsis;background:#fffdf3ec;border:1px solid #e4d7be;color:#5d5744;border-radius:12px;padding:2px 7px;box-shadow:0 2px 8px #1f2d281f;font-size:10px;font-weight:800;margin-bottom:3px}.character.me .char-name{background:#ffedb9;color:#775321;border-color:#f4cf80}.character svg{width:52px;height:74px;overflow:visible}.character.small svg{width:42px;height:58px}.character.tiny svg{width:32px;height:48px}.char-tag{font-size:8px;background:#ffffffc7;padding:0 4px;border-radius:5px;margin-top:-1px}.speech{position:absolute;bottom:88%;left:58%;background:#fff9eae8;padding:6px 8px;border-radius:15px;border:1px solid #fff3bd;box-shadow:0 3px 10px #0002;font-size:10px;font-weight:800;color:#957641;white-space:nowrap;animation:fadeSpeech 3.4s ease both;pointer-events:none}@keyframes fadeSpeech{0%{opacity:0;transform:translateY(8px)}15%,70%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-18px)}}.character.bow-loop svg{animation:bowMove 1.4s ease-in-out infinite}.character.meditate-loop svg{animation:breathe 2.2s ease-in-out infinite}.character.chant-loop svg{animation:gentleSway 1.5s ease-in-out infinite}.character.prayer-loop svg{animation:gentleSway 1.5s ease-in-out infinite}.character.mala-loop svg{animation:gentleSway 1.4s ease-in-out infinite}@keyframes bowMove{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(8px) scale(1,.96)}}@keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}@keyframes gentleSway{0%,100%{transform:translateX(0)}50%{transform:translateX(2px)}}.prayer-float{position:absolute;z-index:12;max-width:170px;padding:8px 11px;background:rgba(255,251,238,.96);border:1px solid #f1dfb2;border-radius:16px;color:#8b6b32;font-size:11px;font-weight:800;line-height:1.35;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.14);animation:prayerRise 3.8s ease-out forwards;pointer-events:none}.prayer-float:after{content:"";position:absolute;left:50%;bottom:-8px;transform:translateX(-50%) rotate(45deg);width:14px;height:14px;background:inherit;border-right:1px solid #f1dfb2;border-bottom:1px solid #f1dfb2}@keyframes prayerRise{0%{opacity:0;transform:translate(-50%,6px) scale(.8)}12%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-150px) scale(1.02)}}.mala-stage{display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:14px;border:1px solid #eadfc9;background:#fffdf8;border-radius:18px}.mala-visual{position:relative;width:220px;height:220px;margin:auto}.mala-visual svg{width:100%;height:100%}.mala-ring{transform-origin:50% 50%;transition:transform .35s ease}.mala-center{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);text-align:center;background:#fff8ea;border:1px solid #edd8a9;border-radius:20px;padding:12px 10px;min-width:96px;box-shadow:0 6px 18px rgba(0,0,0,.08)}.mala-center strong{display:block;font-size:28px;line-height:1;color:#8d6a2e}.mala-center span{display:block;font-size:11px;color:#8f856f;font-weight:700;margin-top:4px}.mala-actions{display:grid;gap:10px;min-width:210px;flex:1}.mala-btn{border:0;background:#486b4e;color:#fff;padding:12px 14px;border-radius:14px;font-weight:800}.mala-btn.alt{background:#efe5d3;color:#6c6458}.mala-note{font-size:11px;color:#948b7b;line-height:1.6}.prayer-preview{font-size:12px;color:#8f8166;line-height:1.5;margin-top:8px}
 .room-bubble{position:absolute;z-index:5;bottom:116px;left:50%;transform:translateX(-50%);background:#fffbedda;border:1px solid #fff9d9;color:#4f6e56;padding:9px 15px;border-radius:999px;box-shadow:0 5px 20px #263d3a2a;font-size:12px;font-weight:800;white-space:nowrap;max-width:90%;text-overflow:ellipsis;overflow:hidden}.entrance-hotspot{position:absolute;z-index:4;top:53%;left:50%;transform:translate(-50%,-50%);background:#fff3c9ee;border:2px solid #fff8dd;box-shadow:0 8px 32px #693b1966;color:#8d5c27;font-weight:900;padding:10px 13px;border-radius:40px;font-size:12px;animation:breathe 2.1s ease-in-out infinite}@keyframes breathe{50%{box-shadow:0 5px 30px #fff59ca8}}.yard-extra{position:absolute;z-index:6;right:16px;bottom:112px;display:flex;gap:7px}.chip{background:#fffdf4db;border:1px solid #fff8db;padding:8px 10px;font-size:11px;border-radius:20px;color:#5b6952;font-weight:800}
@@ -28,7 +28,7 @@
 <!-- SCREEN 1: HOME -->
 <section id="home" class="view active" aria-label="Trang chủ">
  <div class="home-inner">
-  <div class="home-top"><div class="minibrand"><div class="lotus">🪷</div><div>CHÙA BÌNH AN<small>KHDN VietinBank TV</small></div></div><button class="tiny-button" id="homeInfo">Giới thiệu · ⓘ</button></div>
+  <div class="home-top"><div class="minibrand"><div class="lotus">🪷</div><div>CHÙA BÌNH AN<small>KHDN VietinBank TV</small></div></div><div class="home-controls"><button class="tiny-button home-music" id="homeMusicToggle" type="button" aria-label="Bật hoặc tắt nhạc nền">▶ Bật nhạc</button><button class="tiny-button" id="homeInfo">Giới thiệu · ⓘ</button></div></div>
   <div class="home-head">
    <img id="brandLogo" class="big-logo" alt="Logo VietinBank do người dùng cung cấp" src="logo-vietinbank.jpg">
    <div class="label">GÁC LẠI MỘT CHÚT BỘN BỀ</div>
@@ -107,7 +107,7 @@
   </svg>
   <img class="room-photo" id="yardPhoto" alt="Ảnh chùa thực tế" src="chua-binh-an.jpg">
   <div class="gradient-top"></div>
-  <div class="room-header"><button class="where" id="yardWho">🙏 Sân chùa · xem thử</button><div class="header-actions"><button class="round" id="yardPhotoToggle" aria-label="Bật tắt ảnh chùa gốc" title="Xem ảnh ngôi chùa gốc">📷</button><button class="round" data-sound aria-label="Bật tắt âm thanh">♫</button></div></div>
+  <div class="room-header"><button class="where" id="yardWho">🙏 Sân chùa · xem thử</button><div class="header-actions"><button class="round" id="yardPhotoToggle" aria-label="Bật tắt ảnh chùa gốc" title="Xem ảnh ngôi chùa gốc">📷</button><button class="round" data-sound aria-label="Bật tắt nhạc nền và âm thanh" title="Bật/tắt nhạc">♫</button></div></div>
   <button class="entrance-hotspot" id="enterHall">🚪 Vào chánh điện →</button>
   <div class="people-layer" id="yardPeople"></div>
   <div class="room-bubble" id="yardBubble">🌿 Một chút an yên giữa ngày bận rộn</div>
@@ -184,7 +184,7 @@
  <div class="gradient-top"></div>
  <div class="hall-title">TÂM AN LẠC</div>
  <div class="hall-hint">🙏 Nam mô A Di Đà Phật</div>
- <div class="room-header"><button class="where" id="hallWho">🙏 Chánh điện · xem thử</button><div class="header-actions"><button class="round" data-sound aria-label="Bật tắt âm thanh">♫</button></div></div>
+ <div class="room-header"><button class="where" id="hallWho">🙏 Chánh điện · xem thử</button><div class="header-actions"><button class="round" data-sound aria-label="Bật tắt nhạc nền và âm thanh" title="Bật/tắt nhạc">♫</button></div></div>
  <div class="people-layer hall-people" id="hallPeople"></div>
  <div class="room-bubble" id="hallBubble">🪷 Tâm an, việc thuận, ngày thêm vui</div>
  <div class="screen-footer"><button class="tool" data-bell><span class="tool-icon">🔔</span><span>Chuông</span></button><button class="tool" data-incense><span class="tool-icon">🪔</span><span>Thắp hương</span></button><button class="tool highlight" data-prayer><span class="tool-icon">🙏</span><span>Cầu nguyện</span></button><button class="tool" data-bow><span class="tool-icon">🙇</span><span>Lạy Phật</span></button><button class="tool" data-meditate><span class="tool-icon">🧘</span><span>Ngồi thiền</span></button><button class="tool" data-chant><span class="tool-icon">📿</span><span>Niệm Phật</span></button><button class="tool" data-mala><span class="tool-icon">📿</span><span>Tràng hạt</span></button><button class="tool important" data-exit><span class="tool-icon">⛩️</span><span>Ra sân</span></button></div>
@@ -230,7 +230,7 @@
 <section id="infoPanel" class="sheet" role="dialog" aria-label="Giới thiệu" aria-modal="true">
  <div class="sheet-heading"><h2>🪷 Chùa Bình An</h2><button class="x-btn" data-close aria-label="Đóng">×</button></div>
  <p class="sheet-subtitle">Không gian trải nghiệm hoạt hình riêng cho KHDN VietinBank TV, dựa trên ảnh chùa do bạn cung cấp.</p>
- <p style="font-size:13px;line-height:1.7">Vào sân chùa, chọn nam/nữ áo lam, đến chánh điện để thắp hương, cầu nguyện, lạy Phật, ngồi thiền, niệm Phật và đếm tràng hạt 108 hạt. Nhấn vào số người ở góc trên để xem danh sách nhân vật.</p>
+ <p style="font-size:13px;line-height:1.7">Nhạc nền nhẹ nhàng ở trang chủ/sân chùa và nhạc thiền trong chánh điện; bật bằng nút 🎵 hoặc khi bạn vào sân chùa. Vào sân chùa, chọn nam/nữ áo lam, đến chánh điện để thắp hương, cầu nguyện, lạy Phật, ngồi thiền, niệm Phật và đếm tràng hạt 108 hạt. Nhấn vào số người ở góc trên để xem danh sách nhân vật.</p>
  <div class="divider"></div><p style="font-size:12px;color:#846a4c;line-height:1.7"><b>Trạng thái hiện tại:</b> <span id="infoMode">Bản xem thử trên thiết bị, chưa kết nối dữ liệu nhiều người.</span><br>Không có tính năng quyên góp hay thanh toán. Link GitHub Pages là trang công khai; người có link có thể vào và xem lời chúc/cầu nguyện nếu Firebase dùng đăng nhập ẩn danh. Không nhập dữ liệu nội bộ hoặc khách hàng. Logo được dùng theo hình bạn cung cấp; cần xác nhận quyền sử dụng trước khi công khai.</p>
  <button class="primary" data-close style="width:100%">Đã hiểu</button>
 </section>
@@ -248,8 +248,112 @@ const $=id=>document.getElementById(id);
 const screens=['home','yard','hall'];
 const safeGet=(key,fallback)=>{try{return JSON.parse(localStorage.getItem('cba3_'+key))??fallback}catch{return fallback}};
 const safeSet=(key,value)=>{try{localStorage.setItem('cba3_'+key,JSON.stringify(value))}catch{}};
-const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:true,wishes:safeGet('wishes',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),lastPrayer:'',presenceId:null,realtimeReady:false};
+const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),lastPrayer:'',presenceId:null,realtimeReady:false};
 let toastTimer, speechTimer, currentPanel=null, audioContext;
+
+// Âm nhạc tự sáng tác và tạo ngay trong trình duyệt: không cần file MP3, không dùng nhạc có bản quyền.
+// Trình duyệt di động chỉ cho phép phát âm thanh sau thao tác chạm của người dùng.
+const ambientMusic=(()=>{
+ let started=false, ctx=null, master=null, homeBus=null, hallBus=null, timer=null;
+ const tracks={
+  home:{step:.76, index:0, next:0, melody:[72,null,76,79,76,74,null,72,69,null,72,74,76,79,null,81,79,76,null,74,72,69,72,null], chords:[[48,55,60],[53,57,60],[50,57,62]]},
+  hall:{step:1.24, index:0, next:0, melody:[69,null,null,72,null,74,null,null,72,null,69,null,65,null,62,null], chords:[[38,45,50],[41,48,53],[38,45,50]]}
+ };
+ const hz=midi=>440*Math.pow(2,(midi-69)/12);
+ function tone(midi,when,dur,volume,bus,kind){
+  if(!ctx||!bus)return;
+  const main=ctx.createGain(), filter=ctx.createBiquadFilter();
+  filter.type='lowpass';filter.frequency.value=kind==='pad'?1150:2500; filter.Q.value=.15;
+  main.gain.setValueAtTime(.00001,when);
+  main.gain.exponentialRampToValueAtTime(volume,when+(kind==='pad'?.9:.035));
+  main.gain.exponentialRampToValueAtTime(.00001,when+dur);
+  main.connect(filter);filter.connect(bus);
+  const a=ctx.createOscillator();a.type=kind==='pad'?'sine':'triangle';
+  a.frequency.setValueAtTime(hz(midi),when);a.connect(main);
+  let b=null, second=null;
+  if(kind==='pad'){
+    second=ctx.createGain();second.gain.value=.16;
+    b=ctx.createOscillator();b.type='sine';b.frequency.setValueAtTime(hz(midi)*1.004,when);
+    b.connect(second);second.connect(main);
+  }else{
+    second=ctx.createGain();second.gain.value=.18;
+    b=ctx.createOscillator();b.type='sine';b.frequency.setValueAtTime(hz(midi)*2,when);
+    b.connect(second);second.connect(main);
+  }
+  a.start(when);a.stop(when+dur+.05);b.start(when);b.stop(when+dur+.05);
+  a.onended=()=>{try{a.disconnect();b.disconnect();second.disconnect();main.disconnect();filter.disconnect()}catch(e){}};
+ }
+ function schedule(trackName){
+  const t=tracks[trackName],bus=trackName==='home'?homeBus:hallBus;
+  const idx=t.index%t.melody.length, when=t.next;
+  const note=t.melody[idx];
+  if(note!==null){tone(note,when,trackName==='home'?2.6:4.6,trackName==='home'?.115:.10,bus,'melody');}
+  if(idx%8===0){
+   const chord=t.chords[Math.floor(t.index/8)%t.chords.length];
+   chord.forEach((m,j)=>tone(m,when+j*.15,trackName==='home'?8.8:13.8,trackName==='home'?.047:.061,bus,'pad'));
+  }
+  t.index++;t.next+=t.step;
+ }
+ function tick(){
+  if(!ctx||ctx.state==='closed'||document.hidden)return;
+  for(const name of ['home','hall']){
+   let n=0;while(tracks[name].next<ctx.currentTime+.55&&n++<6)schedule(name);
+  }
+ }
+ function ensure(){
+  if(started){if(ctx&&ctx.state==='suspended')ctx.resume().catch(()=>{});return true;}
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC)return false;
+  try{
+   ctx=audioContext=audioContext||new AC();
+   ctx.resume().catch(()=>{});
+   master=ctx.createGain();master.gain.value=.38;master.connect(ctx.destination);
+   homeBus=ctx.createGain();hallBus=ctx.createGain();
+   homeBus.gain.value=0;hallBus.gain.value=0;
+   homeBus.connect(master);hallBus.connect(master);
+   tracks.home.next=ctx.currentTime+.05;tracks.hall.next=ctx.currentTime+.05;
+   started=true;timer=setInterval(tick,160);tick();return true;
+  }catch(err){console.info('Không thể khởi tạo nhạc nền',err);return false;}
+ }
+ function select(scene,enabled){
+  if(!started)return;
+  const now=ctx.currentTime;
+  for(const [bus,value] of [[homeBus,enabled&&scene!=='hall'?1:0],[hallBus,enabled&&scene==='hall'?1:0]]){
+   bus.gain.cancelScheduledValues(now);
+   bus.gain.setTargetAtTime(value,now,.42);
+  }
+ }
+ function suspend(){if(ctx&&ctx.state==='running')ctx.suspend().catch(()=>{});}
+ function resume(){if(ctx&&started&&state.sound){ctx.resume().catch(()=>{});select(state.scene,true);}}
+ return{ensure,select,suspend,resume,isStarted:()=>started};
+})();
+function refreshMusicButtons(){
+ const active=state.sound&&ambientMusic.isStarted();
+ const h=$('homeMusicToggle');if(h){h.textContent=active?'♫ Tắt nhạc':'▶ Bật nhạc';h.setAttribute('aria-pressed',String(active));}
+ document.querySelectorAll('[data-sound]').forEach(b=>{
+  b.textContent=active?'♫':'♪̸';
+  b.setAttribute('aria-label',active?'Tắt nhạc nền và âm thanh':'Bật nhạc nền và âm thanh');
+  b.setAttribute('aria-pressed',String(active));
+ });
+}
+function startMusicFromGesture(){
+ if(!state.sound)return;
+ if(ambientMusic.ensure())ambientMusic.select(state.scene,true);
+ refreshMusicButtons();
+}
+function toggleMusic(){
+ if(!ambientMusic.isStarted())state.sound=true;
+ else state.sound=!state.sound;
+ safeSet('soundOn',state.sound);
+ if(state.sound){
+  if(ambientMusic.ensure()){ambientMusic.select(state.scene,true);toast('🎵 Nhạc nền đã bật.');}
+  else toast('Trình duyệt chưa hỗ trợ nhạc nền tự tạo.');
+ }else{
+  ambientMusic.select(state.scene,false);toast('🔇 Đã tắt nhạc và âm thanh.');
+ }
+ refreshMusicButtons();
+}
+
 const MOCKS=[{id:'sample-a',name:'An (mẫu)',gender:'female',scene:'yard',action:'stand',sample:true},{id:'sample-b',name:'Minh (mẫu)',gender:'male',scene:'yard',action:'stand',sample:true},{id:'sample-c',name:'Tịnh Tâm (mẫu)',gender:'female',scene:'hall',action:'meditate',sample:true},{id:'sample-d',name:'Bình (mẫu)',gender:'male',scene:'hall',action:'kneel',sample:true}];
 const positions={yard:[{x:34,y:77,s:'tiny'},{x:72,y:80,s:'small'},{x:47,y:88,s:''},{x:21,y:89,s:'small'},{x:80,y:91,s:''},{x:63,y:85,s:'small'}],hall:[{x:27,y:73,s:'tiny'},{x:77,y:73,s:'tiny'},{x:19,y:84,s:'small'},{x:84,y:84,s:'small'},{x:40,y:85,s:'small'},{x:61,y:85,s:'small'}]};
 const mePosition={yard:{x:51,y:82},hall:{x:51,y:82}};
@@ -316,12 +420,13 @@ function showView(which){
  if(which!=='home'&&!state.joined){toast('Hãy nhập tên hoặc pháp danh trước khi vào chùa.');return}
  if(!screens.includes(which))return;
  state.scene=which;screens.forEach(s=>$(s).classList.toggle('active',s===which));
+ if(ambientMusic.isStarted())ambientMusic.select(which,state.sound);
  if(which==='yard')bubble('🌿 Một chút an yên giữa ngày bận rộn');
  if(which==='hall')bubble('🪷 Tâm an, việc thuận, ngày thêm vui');
  renderAvatars(); publishPresence();
 }
 function join(){const n=niceName($('visitorName').value);if(!n){toast('Vui lòng nhập tên hoặc pháp danh nhé 🌿');$('visitorName').focus();return}
- state.name=n;state.gender=$('visitorGender').value;state.joined=true;state.action='stand';persist();showView('yard');toast(`Chào ${n}, chúc bạn an yên!`);confetti('🌸');}
+ state.name=n;state.gender=$('visitorGender').value;state.joined=true;state.action='stand';persist();showView('yard');startMusicFromGesture();toast(`Chào ${n}, chúc bạn an yên!`);confetti('🌸');}
 function confetti(symbol){const area=$(state.scene);for(let i=0;i<8;i++){const t=document.createElement('span');t.className='sparkle';t.textContent=symbol;t.style.left=(25+Math.random()*50)+'%';t.style.top=(38+Math.random()*32)+'%';t.style.animationDelay=(i*.1)+'s';area.append(t);setTimeout(()=>t.remove(),2200)}}
 function openPanel(panel){closePanel();currentPanel=panel;$('backdrop').classList.add('open');$(panel).classList.add('open');if(panel==='wishPanel'){$('wishInput').value='';renderWishes()}if(panel==='peoplePanel')renderRoster();if(panel==='malaPanel')renderMala();if(panel==='prayerPanel'){$('prayerPreview').textContent='Sau khi gửi, lời cầu nguyện sẽ bay lên từ vị trí nhân vật của bạn.';}}
 function closePanel(){currentPanel&&$(currentPanel).classList.remove('open');$('backdrop').classList.remove('open');currentPanel=null}
@@ -468,9 +573,11 @@ document.querySelectorAll('[data-prayer]').forEach(b=>b.onclick=()=>openPanel('p
 document.querySelectorAll('[data-meditate]').forEach(b=>b.onclick=()=>doAction('meditate'));
 document.querySelectorAll('[data-chant]').forEach(b=>b.onclick=()=>doAction('chant'));
 document.querySelectorAll('[data-mala]').forEach(b=>b.onclick=()=>{state.action='mala'; renderAvatars(); openPanel('malaPanel'); renderMala(); publishPresence();});
-document.querySelectorAll('[data-sound]').forEach(b=>b.onclick=()=>{state.sound=!state.sound;document.querySelectorAll('[data-sound]').forEach(x=>x.textContent=state.sound?'♫':'♪̸');toast(state.sound?'Đã bật âm thanh 🔔':'Đã tắt âm thanh 🔕')});
+document.querySelectorAll('[data-sound]').forEach(b=>b.onclick=toggleMusic);
+$('homeMusicToggle').onclick=toggleMusic;
+document.addEventListener('visibilitychange',()=>{if(document.hidden)ambientMusic.suspend();else ambientMusic.resume();});
 $('sendWish').onclick=sendWish;$('sendPrayer').onclick=sendPrayer;$('malaStep').onclick=malaStep;$('malaReset').onclick=malaReset;window.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
-renderAvatars();renderWishes();renderMala();
+renderAvatars();renderWishes();renderMala();refreshMusicButtons();
 // Optional production realtime connector (starts only if user provides Firebase credentials).
 async function connectFirebase(){
  const config=window.CHUA_FIREBASE_CONFIG;
