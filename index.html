@@ -290,6 +290,18 @@
  #abbot .abbot-speech{width:67vw;max-width:67vw}
 }
 
+
+/* V18: bảng xác nhận vui xuất hiện sau khi nhấn Vào sân chùa. */
+.entry-notice{position:absolute;inset:0;z-index:40;background:rgba(19,35,26,.68);display:none;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(4px)}
+.entry-notice.open{display:flex}
+.entry-notice-card{width:min(100%,385px);max-height:calc(100dvh - 48px);overflow-y:auto;text-align:center;background:#fffaf0;border:2px solid #e0c89e;border-radius:26px;box-shadow:0 20px 56px #172d244d;padding:24px 22px 22px;animation:entryNoticePop .28s ease-out}
+.entry-notice-icon{font-size:35px;margin-bottom:10px;line-height:1.3}
+.entry-notice-card h2{font:700 23px/1.2 Georgia,serif;color:#405d45;margin:0 0 13px}
+.entry-notice-card p{font-size:15px;line-height:1.65;font-weight:600;color:#5d6555;margin:0 0 21px}
+.entry-notice-accept{display:block;width:100%;background:#486d52;color:white;border:0;border-radius:14px;padding:14px 18px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 5px 12px #39584132}
+.entry-notice-accept:focus-visible{outline:3px solid #c19c51;outline-offset:3px}
+@keyframes entryNoticePop{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:360px){.entry-notice-card{padding:21px 16px}.entry-notice-card h2{font-size:21px}.entry-notice-card p{font-size:14px}}
 </style>
 </head>
 <body>
@@ -572,6 +584,15 @@
   </div>
   <div class="screen-footer"><button class="tool important" id="leaveAbbot" type="button"><span class="tool-icon">⛩️</span><span>Về sân chùa</span></button></div>
 </section>
+<!-- V18: xác nhận vui trước khi bước vào Sân chùa -->
+<div id="entryNotice" class="entry-notice" aria-hidden="true">
+  <section class="entry-notice-card" role="dialog" aria-modal="true" aria-labelledby="entryNoticeTitle" aria-describedby="entryNoticeText">
+    <div class="entry-notice-icon" aria-hidden="true">🤫🪷</div>
+    <h2 id="entryNoticeTitle">Thông báo nhỏ trước khi vào chùa</h2>
+    <p id="entryNoticeText">Đây là nơi giải trí riêng tư của chúng ta, Bạn hãy đồng ý rằng bạn sẽ không chia sẽ cho Sếp bạn biết về nơi này nhé!</p>
+    <button id="confirmEntry" class="entry-notice-accept" type="button">Đồng ý</button>
+  </section>
+</div>
 <!-- sheets -->
 <div id="backdrop" class="sheet-backdrop"></div>
 <section id="wishPanel" class="sheet" role="dialog" aria-label="Lời nguyện" aria-modal="true">
@@ -822,8 +843,21 @@ function showView(which){
  else {const done=$('karmaComplete'); if(done) done.classList.remove('show');}
  renderAvatars(); publishPresence();
 }
-function join(){const n=niceName($('visitorName').value);if(!n){toast('Vui lòng nhập tên hoặc pháp danh nhé 🌿');$('visitorName').focus();return}
- state.name=n;state.gender=$('visitorGender').value;state.joined=true;state.action='stand';persist();registerVisitor();showView('yard');startMusicFromGesture();toast(`Chào ${n}, chúc bạn an yên!`);confetti('🌸');}
+function join(){
+ const n=niceName($('visitorName').value);
+ if(!n){toast('Vui lòng nhập tên hoặc pháp danh nhé 🌿');$('visitorName').focus();return;}
+ const notice=$('entryNotice');
+ notice.classList.add('open');notice.setAttribute('aria-hidden','false');
+ $('confirmEntry').focus();
+}
+function confirmEntryAndJoin(){
+ const notice=$('entryNotice');if(!notice.classList.contains('open'))return;
+ const n=niceName($('visitorName').value);
+ if(!n){notice.classList.remove('open');notice.setAttribute('aria-hidden','true');toast('Vui lòng nhập tên hoặc pháp danh nhé 🌿');$('visitorName').focus();return;}
+ notice.classList.remove('open');notice.setAttribute('aria-hidden','true');
+ state.name=n;state.gender=$('visitorGender').value;state.joined=true;state.action='stand';
+ persist();registerVisitor();showView('yard');startMusicFromGesture();toast(`Chào ${n}, chúc bạn an yên!`);confetti('🌸');
+}
 function confetti(symbol){const area=$(state.scene);for(let i=0;i<8;i++){const t=document.createElement('span');t.className='sparkle';t.textContent=symbol;t.style.left=(25+Math.random()*50)+'%';t.style.top=(38+Math.random()*32)+'%';t.style.animationDelay=(i*.1)+'s';area.append(t);setTimeout(()=>t.remove(),2200)}}
 function openPanel(panel){closePanel();currentPanel=panel;$('backdrop').classList.add('open');$(panel).classList.add('open');if(panel==='wishPanel'){$('wishInput').value='';renderWishes()}if(panel==='peoplePanel')renderRoster();if(panel==='prayerListPanel')renderPrayers();if(panel==='visitorListPanel')renderVisitors();if(panel==='malaPanel')renderMala();if(panel==='offeringPanel'){$('offeringAmount').value='';$('offeringError').textContent='';}if(panel==='offeringListPanel')renderOfferings();if(panel==='prayerPanel'){$('prayerPreview').textContent='Sau khi gửi, lời cầu nguyện sẽ bay lên từ vị trí nhân vật của bạn.';}}
 function closePanel(){currentPanel&&$(currentPanel).classList.remove('open');$('backdrop').classList.remove('open');currentPanel=null}
@@ -1287,6 +1321,7 @@ function syncRemoteEvent(evt){
 // Start listeners
 $('visitorName').value=state.name;$('visitorGender').value=state.gender;
 $('joinButton').onclick=join;$('visitorName').addEventListener('keydown',e=>{if(e.key==='Enter')join()});
+$('confirmEntry').onclick=confirmEntryAndJoin;
 $('homeInfo').onclick=()=>openPanel('infoPanel');
 $('yardHall').onclick=()=>showView('hall');$('yardAbbot').onclick=()=>showView('abbot');$('yardWork').onclick=()=>showView('karma');
 $('yardWho').onclick=()=>openPanel('peoplePanel');$('hallWho').onclick=()=>openPanel('peoplePanel');if($('karmaWho'))$('karmaWho').onclick=()=>openPanel('peoplePanel');
