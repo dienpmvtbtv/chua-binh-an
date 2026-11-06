@@ -111,6 +111,106 @@
 .karma-complete p{margin:0 0 14px;color:#5f654f;line-height:1.5;font-size:13px;font-weight:700}
 .karma-complete .btn{width:100%;justify-content:center}
 
+
+/* ===== V16: cân đối Chánh điện, phòng Trụ trì, quét sân lặp ===== */
+#hall .buddha-real{
+  top:45.5%;
+  width:clamp(190px,49vw,236px);
+  max-width:236px;
+  filter:drop-shadow(0 8px 16px rgba(0,0,0,.4)) drop-shadow(0 0 12px rgba(255,208,115,.28));
+}
+#hall .buddha-glow{top:43.5%;width:clamp(160px,41vw,208px);height:clamp(160px,41vw,208px)}
+#hall .hall-title{top:22%}
+#hall .offering-board{top:29%;max-height:min(25dvh,205px);width:clamp(96px,24vw,122px)}
+#hall .prayer-board{top:29%;height:min(26dvh,218px);width:clamp(99px,24vw,123px)}
+#hall .offering-board-body,#hall .prayer-board-list{overflow-y:auto}
+.karma-choice-row{display:grid;grid-template-columns:1fr;gap:9px}
+.karma-choice-row .btn{min-height:43px;font-size:13px;line-height:1.25;border-radius:12px;font-weight:800;padding:10px 12px}
+.karma-choice-row .karma-yard-btn{background:#f4ebd8;color:#58694c;border:1px solid #cfccad}
+.karma-choice-row .karma-continue-btn{background:#456c49;color:#fff;border:1px solid #456c49}
+.karma-complete{padding:18px 17px;z-index:20}
+.abbot-frame{top:16%;height:min(34dvh,298px);width:min(83vw,350px)}
+.abbot-frame img{object-fit:contain;background:#fff}
+.abbot-caption{top:calc(16% + min(34dvh,298px) + 12px)}
+.abbot-visitor{top:52%;left:85%}
+.abbot-speech{
+  z-index:12;
+  top:61%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:min(72vw,318px);
+  max-width:72vw;
+  max-height:23dvh;
+  padding:13px 15px;
+  border:2px solid #d9ae66;
+  border-radius:18px;
+  background:rgba(255,249,234,.98);
+  color:#644b31;
+  text-align:center;
+  font-size:14px;
+  font-weight:750;
+  line-height:1.48;
+  overflow-y:auto;
+  box-shadow:0 12px 34px #2a1a0955;
+}
+.abbot-speech strong{display:block;font-size:12px;color:#875b27;margin-bottom:8px}
+.abbot-speech span{display:block;overflow-wrap:anywhere}
+.abbot-speech.show{display:block;animation:abbotResponseV16 8s ease both}
+@keyframes abbotResponseV16{
+  0%{opacity:0;transform:translate(-50%,-45%) scale(.94)}
+  9%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  87%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-56%) scale(.98)}
+}
+.incense-ceremony{
+  display:none;position:absolute;z-index:11;left:50%;top:70%;
+  width:clamp(126px,35vw,170px);height:auto;
+  transform:translate(-50%,-50%);
+  pointer-events:none;filter:drop-shadow(0 10px 9px rgba(36,20,12,.3));
+}
+.incense-ceremony svg{width:100%;height:auto;overflow:visible}
+.incense-ceremony.playing{display:block;animation:incenseThreeBowsV16 6.2s ease-in-out both}
+.incense-ceremony .incense-smoke path{animation:incenseSmokeV16 1.6s ease-in-out infinite alternate}
+@keyframes incenseSmokeV16{from{opacity:.3;transform:translate(1px,5px)}to{opacity:.95;transform:translate(-2px,-7px)}}
+@keyframes incenseThreeBowsV16{
+   0%{opacity:0;top:70%;transform:translate(-50%,-50%) rotate(0) scale(1)}
+   6%{opacity:1}
+  14%{top:73%;transform:translate(-50%,-50%) rotate(12deg) scale(.98)}
+  22%{top:70%;transform:translate(-50%,-50%) rotate(0) scale(1)}
+  31%{top:73%;transform:translate(-50%,-50%) rotate(12deg) scale(.98)}
+  39%{top:70%;transform:translate(-50%,-50%) rotate(0) scale(1)}
+  48%{top:73%;transform:translate(-50%,-50%) rotate(12deg) scale(.98)}
+  57%{top:70%;transform:translate(-50%,-50%) rotate(0) scale(1)}
+  100%{opacity:1;top:70%;transform:translate(-50%,-50%) rotate(0) scale(1)}
+}
+.incense-ceremony.playing .ritual-incense{
+  transform-box:fill-box;transform-origin:center;
+  animation:incenseOfferingV16 6.2s ease-in-out both
+}
+.incense-ceremony.playing .ritual-hands{
+  animation:incenseHandsV16 6.2s ease-in-out both
+}
+@keyframes incenseOfferingV16{
+  0%,60%{opacity:1;transform:translateY(0) scale(1)}
+  66%{opacity:1;transform:translateY(-28px) scale(.95)}
+  85%{opacity:1;transform:translateY(-165px) scale(.55)}
+  100%{opacity:0;transform:translateY(-260px) scale(.22)}
+}
+@keyframes incenseHandsV16{
+  0%,60%{opacity:1}
+  76%,100%{opacity:0}
+}
+@media(max-width:380px){
+ #hall .buddha-real{width:clamp(170px,47vw,210px)}
+ #hall .offering-board{top:29%;width:92px}
+ #hall .prayer-board{top:29%;width:95px}
+ .abbot-speech{width:75vw;max-width:75vw}
+}
+@media(prefers-reduced-motion:reduce){
+ .incense-ceremony.playing{animation:incenseThreeBowsV16 6.2s ease-in-out both!important}
+ .abbot-speech.show{animation:abbotResponseV16 8s ease both!important}
+}
+
 </style>
 </head>
 <body>
@@ -274,6 +374,28 @@
  </svg>
   <div class="buddha-glow" aria-hidden="true"></div>
   <img class="buddha-real" alt="Tượng Phật" src="tuong-phat-2.png" loading="eager">
+ <div id="incenseCeremony" class="incense-ceremony" aria-hidden="true">
+   <svg viewBox="0 0 180 196" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hai bàn tay chắp giữ ba nén nhang đang tỏa khói">
+     <g class="ritual-incense">
+     <g class="incense-smoke" fill="none" stroke="#efe5d0" stroke-width="3" stroke-linecap="round">
+       <path d="M72 27Q60 15 72 2T71-22"/><path d="M91 21Q107 4 89-12"/><path d="M111 27Q123 11 114-7"/>
+     </g>
+     <g stroke="#75482d" stroke-width="2" stroke-linecap="round">
+       <path d="M74 35v79M91 35v79M108 35v79" stroke="#c99b52" stroke-width="4.5"/>
+       <path d="M74 35V26M91 35V26M108 35V26" stroke="#bc5536" stroke-width="6"/>
+       <circle cx="74" cy="24" r="4" fill="#f7d46c"/><circle cx="91" cy="24" r="4" fill="#f7d46c"/><circle cx="108" cy="24" r="4" fill="#f7d46c"/>
+     </g>
+     </g>
+     <g class="ritual-hands">
+     <path d="M23 196l-2-40 29-24 21 15 6 49z" fill="#96b1be" stroke="#668594" stroke-width="3"/>
+     <path d="M159 196l0-40-27-24-22 15-7 49z" fill="#96b1be" stroke="#668594" stroke-width="3"/>
+     <path d="M49 153Q46 122 58 96L77 70Q83 61 89 67L88 115Q91 121 95 119L95 73Q96 65 103 68L110 123Q119 109 121 100Q127 92 133 101Q137 120 127 146L113 163 87 171 63 168Z" fill="#f1c6a5" stroke="#a97858" stroke-width="2.3"/>
+     <path d="M130 153Q133 122 121 96L104 70Q98 61 92 67L92 115Q89 121 85 119L85 73Q84 65 77 68L70 123Q61 109 59 100Q53 92 47 101Q43 120 53 146L67 163 93 171 117 168Z" fill="#f0c09a" stroke="#a97858" stroke-width="2.3"/>
+     <path d="M89 82v64M97 91v53" stroke="#d19b7c" stroke-width="2" fill="none" opacity=".75"/>
+     <path d="M29 181l29 4M151 181l-30 4" stroke="#dbe6e7" stroke-width="2.5" opacity=".85"/>
+     </g>
+   </svg>
+ </div>
 
  <div class="gradient-top"></div>
  <div class="hall-title">TÂM AN LẠC</div>
@@ -323,7 +445,10 @@
   <div class="karma-complete" id="karmaComplete">
     <h3>🌿 Công quả viên mãn</h3>
     <p id="karmaCompleteText">Công quả trọn vẹn, Tiêu trừ nghiệp chướng, Tâm an đến già.</p>
-    <button class="btn" id="karmaBackToYard" type="button">Trở về Sân chùa</button>
+    <div class="karma-choice-row">
+      <button class="btn karma-yard-btn" id="karmaBackToYard" type="button">⛩️ Trở về Sân chùa</button>
+      <button class="btn karma-continue-btn" id="karmaContinue" type="button">🧹 Tiếp tục Làm công quả</button>
+    </div>
   </div>
   <div class="screen-footer"><button class="tool highlight" id="sweepYard"><span class="tool-icon">🧹</span><span>Quét sân</span></button><button class="tool important" id="leaveKarma"><span class="tool-icon">⛩️</span><span>Về sân chùa</span></button></div>
 </section>
@@ -343,7 +468,7 @@
     <ellipse cx="235" cy="716" rx="150" ry="46" fill="#613d23" opacity=".22"/>
   </svg>
   <div class="room-header"><button class="where" id="abbotWhere">🍵 Phòng Trụ trì</button><div class="header-actions"><button class="round" data-sound aria-label="Bật tắt nhạc" title="Bật/tắt nhạc">♫</button></div></div>
-  <div class="abbot-frame"><img src="tru-tri.jpg" alt="Ảnh Trụ trì do người dùng cung cấp, giữ nguyên không chỉnh sửa" loading="eager"></div>
+  <div class="abbot-frame"><img src="tru-tri-v16.png" alt="Nhân vật Trụ trì mới từ ảnh người dùng cung cấp" loading="eager"></div>
   <div class="abbot-caption">🌿 Gặp mặt Trụ trì chùa</div>
   <svg class="abbot-tea" viewBox="0 0 310 120" aria-label="Bàn trà" role="img">
     <ellipse cx="156" cy="102" rx="150" ry="16" fill="#402a1c" opacity=".26"/>
@@ -356,7 +481,10 @@
     <path d="M151 13q-10-9 0-20M163 13q-9-9 0-20" stroke="#fff8e1" stroke-width="3" opacity=".8" fill="none"/>
   </svg>
   <div id="abbotVisitor" class="abbot-visitor"></div>
-  <div class="abbot-quote-note">🍵 Gặp Trụ trì · gửi lời rồi nhận một câu đáp bất ngờ</div><div id="abbotSpeech" class="abbot-speech" role="status" aria-live="polite"></div>
+  <div class="abbot-quote-note">🍵 Gặp Trụ trì · gửi lời rồi nhận một câu đáp bất ngờ</div><div id="abbotSpeech" class="abbot-speech" role="status" aria-live="polite">
+  <strong>🍵 Lời đáp ngẫu nhiên (mô phỏng)</strong>
+  <span id="abbotSpeechText"></span>
+</div>
   <div class="abbot-chat-box">
     <label for="abbotMessage">Bạn muốn thưa điều gì với Trụ trì?</label>
     <textarea id="abbotMessage" maxlength="220" placeholder="Con xin thưa..." aria-label="Nội dung muốn thưa với Trụ trì"></textarea>
@@ -605,6 +733,7 @@ function renderRoster(){
 function showView(which){
  if(which!=='home'&&!state.joined){toast('Hãy nhập tên hoặc pháp danh trước khi vào chùa.');return}
  if(!screens.includes(which))return;
+ if(which!=='hall')stopIncenseRitual();
  state.scene=which;screens.forEach(s=>$(s).classList.toggle('active',s===which));
  if(which==='abbot'){renderAbbotAvatar();$('abbotSpeech').classList.remove('show');}
  if(ambientMusic.isStarted())ambientMusic.select(which,state.sound);
@@ -621,6 +750,26 @@ function openPanel(panel){closePanel();currentPanel=panel;$('backdrop').classLis
 function closePanel(){currentPanel&&$(currentPanel).classList.remove('open');$('backdrop').classList.remove('open');currentPanel=null}
 function chime(){if(!state.sound)return;try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioContext=audioContext||new AC();audioContext.resume();const now=audioContext.currentTime;for(const [h,v] of [[261.63,.12],[523.25,.045],[783.99,.025],[1046.5,.012],[1318.51,.009]]){const o=audioContext.createOscillator(),g=audioContext.createGain();o.type='sine';o.frequency.setValueAtTime(h,now);g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(v,now+.02);g.gain.exponentialRampToValueAtTime(.0001,now+3.1);o.connect(g);g.connect(audioContext.destination);o.start(now);o.stop(now+3.2)}}catch(err){console.info('Audio unavailable',err)}}
 function doBell(){chime();toast('🔔 Boong… chúc tâm an, việc thuận.');confetti('✨');emitEvent('bell','')}
+
+let incenseRitualTimer=null;
+function startIncenseRitual(){
+  const stage=$('incenseCeremony');
+  if(!stage||!$('hall').classList.contains('active'))return;
+  if(incenseRitualTimer){clearTimeout(incenseRitualTimer);incenseRitualTimer=null;}
+  stage.classList.remove('playing');
+  void stage.offsetWidth;
+  stage.classList.add('playing');
+  incenseRitualTimer=setTimeout(()=>{
+    stage.classList.remove('playing');
+    incenseRitualTimer=null;
+    if($('hallSmoke'))$('hallSmoke').classList.remove('on');
+  },6350);
+}
+function stopIncenseRitual(){
+  if(incenseRitualTimer){clearTimeout(incenseRitualTimer);incenseRitualTimer=null;}
+  if($('incenseCeremony'))$('incenseCeremony').classList.remove('playing');
+}
+
 function doAction(action){if(!state.joined){toast('Hãy vào chùa trước nhé.');return}
  if(state.scene!=='hall'){showView('hall')}
  state.action=action;
@@ -628,6 +777,7 @@ function doAction(action){if(!state.joined){toast('Hãy vào chùa trước nhé
  const messages={incense:'🪔 Một nén tâm hương, vạn điều bình an.',kneel:'🙏 Thành tâm quỳ lạy.',bow:'🙏 Đang lạy Phật với lòng thành kính.',meditate:'🧘 Hít thở nhẹ nhàng, tâm trí thảnh thơi.',chant:'📿 Nam mô A Di Đà Phật.',mala:'📿 Bạn đang lần chuỗi tràng hạt.'};
  bubble(messages[action]);toast(messages[action]);
  renderAvatars();publishPresence();emitEvent(action,'');
+ if(action==='incense')startIncenseRitual();
  if(action==='chant'){state.chantCount++;speech('Nam mô A Di Đà Phật'); if(!speakMantra('Nam mô A Di Đà Phật')) doBell(); confetti('🪷')}
  else if(action==='mala'){openPanel('malaPanel'); renderMala(); confetti('📿')}
  else confetti(action==='incense'?'🌼':'✨');
@@ -798,7 +948,7 @@ function sendToAbbot(){
  if(!state.joined){toast('Bạn cần vào chùa trước.');return}
  const bubble=$('abbotSpeech');
  const quote=ABBOT_QUOTES[Math.floor(Math.random()*ABBOT_QUOTES.length)];
- bubble.textContent=quote;
+ $('abbotSpeechText').textContent=quote;
  bubble.classList.remove('show');void bubble.offsetWidth;bubble.classList.add('show');
  $('abbotMessage').value='';
  toast('Trụ trì đã hồi đáp.');
@@ -987,6 +1137,14 @@ $('leaveAbbot').onclick=()=>showView('yard');
 $('sendAbbotMessage').onclick=sendToAbbot;
 if($('leaveKarma'))$('leaveKarma').onclick=()=>showView('yard');
 if($('karmaBackToYard'))$('karmaBackToYard').onclick=()=>showView('yard');
+if($('karmaContinue'))$('karmaContinue').onclick=()=>{
+  state.sweptLeaves=0;
+  persist();
+  const card=$('karmaComplete');if(card)card.classList.remove('show');
+  renderLeaves();
+  bubble('🧹 15 lá bồ đề mới. Mời bạn tiếp tục làm công quả.');
+  toast('🌿 Bạn có thể quét thêm một lượt 15 lá.');
+};
 if($('sweepYard'))$('sweepYard').onclick=sweepYardOnce;
 document.querySelectorAll('[data-offering-amount]').forEach(btn=>btn.onclick=()=>{$('offeringAmount').value=offeringMoney(Number(btn.dataset.offeringAmount)).replace('đ','');$('offeringError').textContent='';});
 $('offeringAmount').addEventListener('input',()=>{$('offeringError').textContent='';});
