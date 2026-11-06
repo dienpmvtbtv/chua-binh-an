@@ -211,6 +211,85 @@
  .abbot-speech.show{animation:abbotResponseV16 8s ease both!important}
 }
 
+
+/* ===== V17: Phòng Trụ trì gọn, tránh che bàn trà và nhân vật ===== */
+#abbot .abbot-frame{
+  top:14.8%;
+  width:min(72vw,302px);
+  height:min(26dvh,225px);
+  border-width:5px;
+  border-radius:19px;
+}
+#abbot .abbot-frame img{object-fit:contain;background:#fff}
+#abbot .abbot-caption{
+  top:calc(14.8% + min(26dvh,225px) + 8px);
+  font-size:11px;padding:5px 10px;z-index:5;
+}
+#abbot .abbot-quote-note{top:calc(78px + env(safe-area-inset-top));font-size:10px;max-width:87%;overflow:hidden;text-overflow:ellipsis}
+#abbot .abbot-tea{top:54%;width:min(66vw,300px);z-index:4}
+#abbot .abbot-visitor{top:51.5%;left:85%;z-index:7}
+#abbot .abbot-visitor svg{height:77px;width:68px}
+#abbot .abbot-chat-box{
+  left:12px;right:12px;
+  bottom:calc(100px + env(safe-area-inset-bottom));
+  padding:10px 12px 9px;
+  gap:6px;
+  border-radius:18px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  grid-template-areas:'question question' 'message send' 'foot foot';
+  align-items:center;
+  box-shadow:0 8px 24px #573b273d;
+}
+#abbot .abbot-chat-box label{grid-area:question;font-size:11px}
+#abbot .abbot-chat-box textarea{
+  grid-area:message;
+  min-height:43px;height:43px;max-height:43px;
+  overflow-y:auto;resize:none;
+  padding:11px 10px;font-size:12px;line-height:1.3;
+}
+#abbot .abbot-chat-box button{
+  grid-area:send;align-self:stretch;
+  padding:7px 11px;white-space:normal;
+  max-width:115px;min-width:98px;
+  font-size:11px;line-height:1.24;
+}
+#abbot .abbot-chat-box .smallnote{grid-area:foot;font-size:9px;line-height:1.3}
+#abbot .abbot-speech{
+  z-index:12;
+  top:55%;left:40%;transform:translate(-50%,-50%);
+  width:min(63vw,290px);max-width:63vw;
+  max-height:28dvh;
+  padding:13px 14px;
+  border:2px solid #d9ae66;
+  background:rgba(255,249,234,.98);
+  text-align:center;font-size:13px;line-height:1.45;
+  box-shadow:0 12px 32px rgba(42,26,9,.30);
+}
+#abbot .abbot-speech strong{font-size:11px;margin-bottom:5px}
+#abbot .abbot-speech.show{animation:abbotResponseV17 10s ease both}
+@keyframes abbotResponseV17{
+  0%{opacity:0;transform:translate(-50%,-43%) scale(.96)}
+  8%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  88%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-56%) scale(.98)}
+}
+@media(max-height:710px){
+ #abbot .abbot-frame{top:14%;height:23dvh}
+ #abbot .abbot-caption{top:calc(14% + 23dvh + 5px)}
+ #abbot .abbot-tea{top:52%;width:min(61vw,270px)}
+ #abbot .abbot-visitor{top:49%}
+ #abbot .abbot-chat-box{bottom:calc(85px + env(safe-area-inset-bottom));padding:7px 10px;gap:4px}
+ #abbot .abbot-chat-box textarea{min-height:39px;height:39px;max-height:39px}
+ #abbot .abbot-chat-box label{font-size:10px}
+ #abbot .abbot-chat-box .smallnote{font-size:8px}
+}
+@media(max-width:350px){
+ #abbot .abbot-chat-box button{max-width:100px;min-width:84px;font-size:10px}
+ #abbot .abbot-visitor{left:86%}
+ #abbot .abbot-speech{width:67vw;max-width:67vw}
+}
+
 </style>
 </head>
 <body>
@@ -481,15 +560,15 @@
     <path d="M151 13q-10-9 0-20M163 13q-9-9 0-20" stroke="#fff8e1" stroke-width="3" opacity=".8" fill="none"/>
   </svg>
   <div id="abbotVisitor" class="abbot-visitor"></div>
-  <div class="abbot-quote-note">🍵 Gặp Trụ trì · gửi lời rồi nhận một câu đáp bất ngờ</div><div id="abbotSpeech" class="abbot-speech" role="status" aria-live="polite">
-  <strong>🍵 Lời đáp ngẫu nhiên (mô phỏng)</strong>
+  <div class="abbot-quote-note">🍵 Lời đáp vui theo điều bạn thưa</div><div id="abbotSpeech" class="abbot-speech" role="status" aria-live="polite">
+  <strong>🍵 Lời đáp vui (mô phỏng)</strong>
   <span id="abbotSpeechText"></span>
 </div>
   <div class="abbot-chat-box">
     <label for="abbotMessage">Bạn muốn thưa điều gì với Trụ trì?</label>
     <textarea id="abbotMessage" maxlength="220" placeholder="Con xin thưa..." aria-label="Nội dung muốn thưa với Trụ trì"></textarea>
     <button id="sendAbbotMessage" type="button">🙏 Thưa với Trụ trì</button>
-    <p class="smallnote">Lời thưa chỉ hiển thị trên máy của bạn; không gửi đến Trụ trì ngoài đời.</p>
+    <p class="smallnote">Lời đáp vui mô phỏng, không phải lời của Trụ trì thật. Nội dung chỉ ở trên máy bạn.</p>
   </div>
   <div class="screen-footer"><button class="tool important" id="leaveAbbot" type="button"><span class="tool-icon">⛩️</span><span>Về sân chùa</span></button></div>
 </section>
@@ -942,16 +1021,114 @@ function sweepYardOnce(){
    bubble(normalMessage);toast(normalMessage);confetti('🍃');
  }
 }
+// V17: các lời đáp có chủ đề, mang tính giải trí, chỉ chạy trên thiết bị.
+// Không gửi nội dung người dùng lên máy chủ hay mô phỏng Trụ trì thật đang trả lời.
+const ABBOT_REPLY_POOLS={
+  money:[
+    'Muốn tiền ở lại thì trước tiên con đừng để nó đi quá nhanh. Phần còn lại tuỳ ví!',
+    'Có tiền hay không là một chuyện; tiêu ít hơn số kiếm được lại là chuyện khác.',
+    'Tiền bạc như lá cây: giữ chặt quá thì mệt tay, buông hết thì... hết tiền.',
+    'Con hỏi về tiền, thầy chỉ biết: trước khi chi, hãy thử đếm đến mười.',
+    'Muốn giàu nhanh thì có thể, nhưng trước tiên phải giàu kiên nhẫn đã.'
+  ],
+  work:[
+    'Việc nào chưa xong thì nó vẫn còn đó. Con cứ thong thả, nhưng nhớ hạn chót.',
+    'Đi làm thì gặp việc; nghỉ làm thì gặp... hóa đơn. Con tự cân nhắc nhé!',
+    'Đường công danh có lên có xuống, miễn là thang máy văn phòng vẫn chạy.',
+    'Con muốn hết áp lực? Hãy giải quyết từng việc, đừng giải quyết cả thế giới trong một ngày.',
+    'Việc khó cứ chia nhỏ. Chuyện chưa xong hôm nay thì nhớ ghi lại cho ngày mai.'
+  ],
+  love:[
+    'Có duyên thì gặp, chưa có duyên thì con vẫn có thể gặp... bạn bè.',
+    'Muốn người ta hiểu mình thì hãy nói điều mình nghĩ; đừng bắt họ đoán.',
+    'Yêu nhau là chuyện hai người, còn chọn ăn gì thì đôi khi khó hơn.',
+    'Người phù hợp không nhất thiết đến sớm; đừng vì nôn nóng mà quên thương mình.',
+    'Duyên đến tự nhiên, nhưng tin nhắn thì nhiều khi phải tự bấm gửi.'
+  ],
+  health:[
+    'Tâm an rất quý, nhưng con nhớ ăn đủ bữa và ngủ đủ giấc nữa nhé.',
+    'Thân khỏe mới dễ tâm an. Có bệnh thì gặp bác sĩ, đừng chỉ hỏi cái chuông chùa.',
+    'Muốn khỏe hơn thì bắt đầu từ một việc nhỏ con làm đều đặn mỗi ngày.',
+    'Thở nhẹ một hơi; nếu thấy không khỏe thì tìm người có chuyên môn giúp con.',
+    'Con nhớ nghỉ ngơi đúng lúc. Điện thoại còn cần sạc, mình cũng vậy.'
+  ],
+  study:[
+    'Muốn thi tốt thì đọc thêm một trang; cầu may không thay được ôn bài.',
+    'Bài khó không có nghĩa con dở. Thử làm từng câu dễ trước.',
+    'Học hôm nay thì ngày mai bớt lo. Còn điểm số thì để thầy cô chấm.',
+    'Đừng hỏi có đỗ không; hỏi hôm nay đã chuẩn bị được bao nhiêu.',
+    'Kiến thức cần tích lũy, không thể chuyển khoản một lần là đủ.'
+  ],
+  family:[
+    'Chuyện trong nhà, đôi khi một lời hỏi han lại hơn mười lời khuyên.',
+    'Muốn gia đình yên ấm, con hãy bắt đầu từ chuyện nghe nhau cho hết câu.',
+    'Thương người nhà thì nói ra, đừng chỉ giữ trong lòng rồi mong họ tự biết.',
+    'Bữa cơm có thể đơn giản, miễn mọi người ngồi lại với nhau.',
+    'Trong nhà ai cũng có lý; đôi khi người thắng là người chịu nghe trước.'
+  ],
+  travel:[
+    'Muốn đi thì nhớ xem thời tiết, xem đường, và xem ví trước.',
+    'Đi xa để mở mang tầm mắt, nhưng đừng quên khóa cửa nhà.',
+    'Đi chơi cứ vui, miễn giữ an toàn và nhớ giờ về.',
+    'Nếu lạc đường thì dùng bản đồ; đừng bắt nhân quả làm GPS.',
+    'Chuyến đi tốt là chuyến đi bình an, chứ không nhất thiết có nhiều ảnh đẹp.'
+  ],
+  luck:[
+    'Vận may hay đến bất chợt, nhưng việc tốt thì con có thể làm ngay.',
+    'Muốn may mắn thì chuẩn bị kỹ một chút; may mắn sẽ có chỗ để ghé.',
+    'Ngày mai thế nào chưa biết, hôm nay con cứ làm một điều tử tế.',
+    'Cầu điều tốt cũng được; làm điều tốt thì càng hay.',
+    'Cầu gì cũng được, nhưng nhớ giữ lòng nhẹ nhàng và đôi chân trên mặt đất.'
+  ],
+  default:[
+    'Chuyện gì đến thì sẽ đến; còn chuyện cần làm, con nhớ làm nhé!',
+    'Con hỏi rất có tâm. Thầy đáp cũng rất có... chừng mực.',
+    'Muốn biết đúng sai, đôi khi phải thử rồi mới rút kinh nghiệm.',
+    'Cứ bình tĩnh, chuyện to có thể chia nhỏ; chuyện nhỏ thì đừng làm to.',
+    'Tùy duyên, nhưng đừng tùy tiện. Mô Phật!',
+    'Nghe cũng có lý. Nhưng có lý rồi, con vẫn cần xem có hợp tình không.',
+    'Một lời thưa chân thành là tốt; còn đáp án thì có khi nằm trong việc con làm tiếp theo.',
+    'Con muốn nghe câu chắc chắn? Chắc chắn là ngày mai vẫn có việc ngày mai.'
+  ]
+};
+const ABBOT_REPLY_RULES=[
+  ['health',/(benh|om|dau|khoe|thuoc|bac si|benh vien|mat ngu|ngu ngon|an uong|giam can|stress)/],
+  ['money',/(tien|giau|ngheo|luong|thu nhap|no nan|vay|tra gop|tai chinh|mua|ban|dau tu|kinh doanh|tiet kiem|trung so)/],
+  ['work',/(cong viec|cong ty|sep|dong nghiep|nghi viec|di lam|tang luong|deadline|bao cao|khach hang|thang chuc|ap luc)/],
+  ['love',/(yeu|nguoi yeu|vo|chong|cuoi|chia tay|hen ho|tinh cam|duyen|crush|doc than)/],
+  ['family',/(gia dinh|cha me|bo me|ba me|con cai|con nho|anh chi em|vo chong|ong ba)/],
+  ['study',/(hoc|thi cu|thi tot|diem so|bang cap|tot nghiep|truong lop|on bai)/],
+  ['travel',/(di choi|du lich|xe co|may bay|ve que|duong xa|chuyen di)/],
+  ['luck',/(may man|van may|tai loc|cau nguyen|binh an|hanh phuc|nam moi|hanh thong|phuoc|phuc duc)/]
+];
+function normalizeAbbotText(value){
+  return String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[^a-z0-9 ]+/g,' ').replace(/\s+/g,' ').trim();
+}
+let lastAbbotResponse='';
+function chooseAbbotResponse(input){
+  const norm=normalizeAbbotText(input);
+  // Multiple themes may match; use most specific category with longest matching phrase.
+  let category='default', best=0;
+  for(const [type,matcher] of ABBOT_REPLY_RULES){
+    const match=norm.match(matcher);
+    if(match && match[0].length>best){category=type;best=match[0].length;}
+  }
+  const pool=ABBOT_REPLY_POOLS[category]||ABBOT_REPLY_POOLS.default;
+  const available=pool.filter(reply=>reply!==lastAbbotResponse);
+  const choices=available.length?available:pool;
+  const reply=choices[Math.floor(Math.random()*choices.length)];
+  lastAbbotResponse=reply;
+  return reply;
+}
 function sendToAbbot(){
- const text=$('abbotMessage').value.trim().slice(0,220);
- if(!text){toast('Bạn hãy nhập lời muốn thưa với Trụ trì.');return}
- if(!state.joined){toast('Bạn cần vào chùa trước.');return}
+ const input=$('abbotMessage').value.trim().slice(0,220);
+ if(!input){toast('Bạn hãy nhập lời muốn thưa với Trụ trì.');return;}
+ if(!state.joined){toast('Bạn cần vào chùa trước.');return;}
  const bubble=$('abbotSpeech');
- const quote=ABBOT_QUOTES[Math.floor(Math.random()*ABBOT_QUOTES.length)];
- $('abbotSpeechText').textContent=quote;
+ $('abbotSpeechText').textContent=chooseAbbotResponse(input);
  bubble.classList.remove('show');void bubble.offsetWidth;bubble.classList.add('show');
  $('abbotMessage').value='';
- toast('Trụ trì đã hồi đáp.');
+ toast('🍵 Đã nhận lời đáp vui theo chủ đề bạn hỏi.');
 }
 
 // Ghi nhận cúng dường tượng trưng (không có thanh toán hay chuyển tiền thật).
