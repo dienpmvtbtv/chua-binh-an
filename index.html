@@ -302,6 +302,65 @@
 .entry-notice-accept:focus-visible{outline:3px solid #c19c51;outline-offset:3px}
 @keyframes entryNoticePop{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:360px){.entry-notice-card{padding:21px 16px}.entry-notice-card h2{font-size:21px}.entry-notice-card p{font-size:14px}}
+
+/* === V19: di chuyển nhân vật + sáng/tối + bói quẻ === */
+.yard-sky-fx{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none}
+.yard-sky-fx .cloud{position:absolute;top:86px;width:44vw;max-width:200px;height:62px;border-radius:999px;background:rgba(255,255,255,.92);box-shadow:0 18px 40px rgba(255,255,255,.35),inset 0 -8px 18px rgba(255,255,255,.4);transition:transform 1.4s ease,opacity 1s ease}
+.yard-sky-fx .cloud:before,.yard-sky-fx .cloud:after{content:"";position:absolute;background:inherit;border-radius:50%}
+.yard-sky-fx .cloud:before{width:68px;height:68px;left:18px;top:-25px}
+.yard-sky-fx .cloud:after{width:82px;height:82px;right:20px;top:-32px}
+.yard-sky-fx .cloud-left{left:21%;transform:translateX(35vw)}
+.yard-sky-fx .cloud-right{right:21%;transform:translateX(-35vw)}
+.yard-sky-fx .sky-buddha,.yard-sky-fx .sky-dragon{position:absolute;left:50%;transform:translateX(-50%);object-fit:contain;height:auto;transition:opacity 1.1s ease,transform 1.4s ease;pointer-events:none}
+.yard-sky-fx .sky-buddha{top:82px;width:min(42vw,220px);border-radius:24px;opacity:0;box-shadow:0 0 30px rgba(255,214,116,.4)}
+.yard-sky-fx .sky-dragon{top:62px;width:min(54vw,260px);opacity:0}
+.yard-sky-fx .night-overlay{position:absolute;inset:0;background:radial-gradient(circle at 50% 18%,rgba(40,55,88,.15),rgba(12,16,29,.72) 55%,rgba(7,10,19,.88));opacity:0;transition:opacity .9s ease}
+.yard-sky-fx .stars{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+.yard-sky-fx .star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff2b7;box-shadow:0 0 10px rgba(255,249,196,.75);animation:twinkle 1.8s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.25;transform:scale(.7)}to{opacity:1;transform:scale(1.25)}}
+.yard-sky-fx.day .cloud-left{transform:translateX(-4vw)}
+.yard-sky-fx.day .cloud-right{transform:translateX(4vw)}
+.yard-sky-fx.day .sky-buddha{opacity:1;transform:translateX(-50%) scale(1)}
+.yard-sky-fx.day .night-overlay,.yard-sky-fx.day .stars,.yard-sky-fx.day .sky-dragon{opacity:0}
+.yard-sky-fx.night .cloud,.yard-sky-fx.night .sky-buddha{opacity:0;transform:translateX(-50%) scale(.94)}
+.yard-sky-fx.night .night-overlay,.yard-sky-fx.night .stars,.yard-sky-fx.night .sky-dragon{opacity:1}
+.yard-sky-fx.night .sky-dragon{transform:translateX(-50%) translateY(0)}
+.day-night-switch{position:absolute;top:calc(70px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:7;display:flex;gap:8px;background:rgba(255,250,238,.8);backdrop-filter:blur(8px);padding:7px;border-radius:999px;box-shadow:0 10px 25px rgba(0,0,0,.12)}
+.day-night-switch button{border:0;border-radius:999px;padding:8px 13px;font-weight:800;font-size:12px;background:#f0ebdc;color:#6d644f}
+.day-night-switch button.active{background:#5c7c58;color:#fff}
+.move-pad{position:absolute;right:12px;bottom:102px;z-index:8;width:118px;height:118px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:7px;background:rgba(248,240,233,.72);padding:8px;border-radius:26px;box-shadow:0 16px 42px rgba(0,0,0,.18);backdrop-filter:blur(10px)}
+.move-pad .pad-btn{border:0;border-radius:16px;background:#ffffffd9;color:#6d6a58;font-weight:900;font-size:18px;display:grid;place-items:center;box-shadow:inset 0 -2px 0 rgba(0,0,0,.08)}
+.move-pad .pad-btn:active{transform:scale(.96)}
+.move-pad .up{grid-column:2;grid-row:1}.move-pad .left{grid-column:1;grid-row:2}.move-pad .center{grid-column:2;grid-row:2;background:#e7f0d9;font-size:20px}.move-pad .right{grid-column:3;grid-row:2}.move-pad .down{grid-column:2;grid-row:3}
+.hall-pad{bottom:102px}
+#hall .buddha-real{top:46.8%!important;width:clamp(150px,41vw,190px)!important;max-width:190px!important;z-index:6}
+#hall .buddha-glow{top:41.5%!important;width:min(30vw,150px)!important;height:min(30vw,150px)!important}
+#hall .offering-board{top:24%!important}
+#hall .prayer-board{top:24%!important}
+#hall .people-layer .character{z-index:5}
+#hall .room-bubble{bottom:102px}
+#yard .room-bubble{bottom:102px}
+.bagua-stage{display:grid;gap:14px;justify-items:center;text-align:center}
+.bagua-wheel{position:relative;width:min(80vw,320px);height:min(80vw,320px);border-radius:50%;background:radial-gradient(circle,#fff7dc 0,#f4e1a7 38%,#d1b06d 39%,#6a3d17 40%,#b88e4e 65%,#7a4e22 100%);box-shadow:inset 0 0 0 8px rgba(255,242,205,.5),0 18px 40px rgba(0,0,0,.12)}
+.bagua-core{position:absolute;left:50%;top:50%;width:72px;height:72px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#fff7df,#d9bb76);box-shadow:0 0 0 6px rgba(105,66,28,.35)}
+.bagua-needle{position:absolute;left:50%;top:50%;width:10px;height:124px;transform-origin:50% 100%;transform:translate(-50%,-100%) rotate(0deg);transition:transform 4.6s cubic-bezier(.16,.84,.18,1);z-index:3}
+.bagua-needle:before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:84px solid #d35a3e;filter:drop-shadow(0 3px 4px rgba(0,0,0,.22))}
+.bagua-needle:after{content:"";position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);width:24px;height:24px;border-radius:50%;background:#7f4c21;border:5px solid #f9e4a8}
+.bagua-slot{position:absolute;left:50%;top:50%;width:92px;transform-origin:50% 50%;text-align:center;color:#5b3612;font-size:11px;font-weight:800}
+.bagua-slot span{display:block;font-size:22px;line-height:1.1}
+.bagua-slot strong{display:block;margin-bottom:2px}
+.bagua-wheel .slot-0{transform:translate(-50%,-50%) translate(0,-126px)}
+.bagua-wheel .slot-1{transform:translate(-50%,-50%) translate(88px,-88px)}
+.bagua-wheel .slot-2{transform:translate(-50%,-50%) translate(126px,0)}
+.bagua-wheel .slot-3{transform:translate(-50%,-50%) translate(88px,88px)}
+.bagua-wheel .slot-4{transform:translate(-50%,-50%) translate(0,126px)}
+.bagua-wheel .slot-5{transform:translate(-50%,-50%) translate(-88px,88px)}
+.bagua-wheel .slot-6{transform:translate(-50%,-50%) translate(-126px,0)}
+.bagua-wheel .slot-7{transform:translate(-50%,-50%) translate(-88px,-88px)}
+.divine-result{min-height:78px;width:100%;padding:12px 14px;border:1px solid #e5d2ad;border-radius:18px;background:#fffcf4;color:#6d5530;line-height:1.5;font-size:13px;font-weight:700}
+.btn.secondary{background:#efe4d1;color:#6d6558}
+@media(max-width:390px){.move-pad{width:110px;height:110px;bottom:96px;right:10px}.day-night-switch{top:calc(66px + env(safe-area-inset-top));}.day-night-switch button{padding:7px 11px;font-size:11px}.bagua-slot{width:82px;font-size:10px}.bagua-slot span{font-size:20px}.bagua-wheel .slot-0{transform:translate(-50%,-50%) translate(0,-113px)}.bagua-wheel .slot-1{transform:translate(-50%,-50%) translate(80px,-80px)}.bagua-wheel .slot-2{transform:translate(-50%,-50%) translate(113px,0)}.bagua-wheel .slot-3{transform:translate(-50%,-50%) translate(80px,80px)}.bagua-wheel .slot-4{transform:translate(-50%,-50%) translate(0,113px)}.bagua-wheel .slot-5{transform:translate(-50%,-50%) translate(-80px,80px)}.bagua-wheel .slot-6{transform:translate(-50%,-50%) translate(-113px,0)}.bagua-wheel .slot-7{transform:translate(-50%,-50%) translate(-80px,-80px)}}
+
 </style>
 </head>
 <body>
@@ -403,6 +462,18 @@
    <g transform="translate(245 732)"><path d="M-20 12h40l-6 30h-28z" fill="#b9aca0"/><ellipse cx="0" cy="13" rx="23" ry="7" fill="#d8c7a7"/><path d="M-11 8v-28M0 8v-38M11 8v-25" stroke="#9a633c" stroke-width="3"/></g>
   </svg>
   <img class="room-photo" id="yardPhoto" alt="Ảnh chùa thực tế" src="chua-binh-an.jpg">
+  <div class="yard-sky-fx" id="yardSkyFx" aria-hidden="true">
+    <div class="cloud cloud-left"></div>
+    <div class="cloud cloud-right"></div>
+    <img class="sky-buddha" id="skyBuddha" src="phat-bau-troi.jpg" alt="Phật hiện giữa trời sáng">
+    <div class="night-overlay"></div>
+    <div class="stars" id="yardStars"></div>
+    <img class="sky-dragon" id="skyDragon" src="rong-dem.jpg" alt="Rồng xuất hiện trên bầu trời đêm">
+  </div>
+  <div class="day-night-switch" id="yardThemeSwitch" role="group" aria-label="Công tắc sáng tối của sân chùa">
+    <button type="button" data-theme-mode="day" id="switchDay">☀️ Sáng</button>
+    <button type="button" data-theme-mode="night" id="switchNight">🌙 Tối</button>
+  </div>
   <div class="gradient-top"></div>
   <div class="room-header"><button class="where" id="yardWho">🙏 Sân chùa · xem thử</button><div class="header-actions"><button class="round" id="yardPhotoToggle" aria-label="Bật tắt ảnh chùa gốc" title="Xem ảnh ngôi chùa gốc">📷</button><button class="round" data-sound aria-label="Bật tắt nhạc nền và âm thanh" title="Bật/tắt nhạc">♫</button></div></div>
   <aside class="visitor-board" id="visitorBoard" aria-label="Danh sách Phật tử từng vào chùa">
@@ -412,6 +483,13 @@
   </aside>
   <div class="people-layer" id="yardPeople"></div>
   <div class="room-bubble" id="yardBubble">🌿 Mái chùa khang trang, cổ kính và thanh tịnh</div>
+  <div class="move-pad" id="yardMovePad" data-pad-for="yard" aria-label="Điều khiển di chuyển nhân vật ở sân chùa">
+    <button class="pad-btn up" data-move-room="yard" data-dir="up" type="button">▲</button>
+    <button class="pad-btn left" data-move-room="yard" data-dir="left" type="button">◀</button>
+    <button class="pad-btn center" type="button" tabindex="-1">🚶</button>
+    <button class="pad-btn right" data-move-room="yard" data-dir="right" type="button">▶</button>
+    <button class="pad-btn down" data-move-room="yard" data-dir="down" type="button">▼</button>
+  </div>
   <div class="screen-footer"><button class="tool important" id="yardHall"><span class="tool-icon">⛩️</span><span>Vào Chánh điện</span></button><button class="tool" id="yardAbbot"><span class="tool-icon">🍵</span><span>Gặp Trụ Trì</span></button><button class="tool highlight" id="yardWork"><span class="tool-icon">🧹</span><span>Làm Công quả</span></button></div>
 </section>
 <!-- SCREEN 3: HALL -->
@@ -505,7 +583,14 @@
  </aside>
  <div class="people-layer hall-people" id="hallPeople"></div>
  <div class="room-bubble" id="hallBubble">🪷 Tâm an, việc thuận, ngày thêm vui</div>
- <div class="screen-footer"><button class="tool" data-bell><span class="tool-icon">🔔</span><span>Chuông</span></button><button class="tool" data-incense><span class="tool-icon">🪔</span><span>Thắp hương</span></button><button class="tool highlight" data-prayer><span class="tool-icon">🙏</span><span>Cầu nguyện</span></button><button class="tool" data-bow><span class="tool-icon">🙇</span><span>Lạy Phật</span></button><button class="tool" data-meditate><span class="tool-icon">🧘</span><span>Ngồi thiền</span></button><button class="tool" data-chant><span class="tool-icon">📿</span><span>Niệm Phật</span></button><button class="tool" data-mala><span class="tool-icon">📿</span><span>Tràng hạt</span></button><button class="tool highlight" id="openOffering" type="button"><span class="tool-icon">🌸</span><span>Cúng dường</span></button><button class="tool important" data-exit><span class="tool-icon">⛩️</span><span>Ra sân</span></button></div>
+ <div class="move-pad hall-pad" id="hallMovePad" data-pad-for="hall" aria-label="Điều khiển di chuyển nhân vật trong chánh điện">
+   <button class="pad-btn up" data-move-room="hall" data-dir="up" type="button">▲</button>
+   <button class="pad-btn left" data-move-room="hall" data-dir="left" type="button">◀</button>
+   <button class="pad-btn center" type="button" tabindex="-1">🪷</button>
+   <button class="pad-btn right" data-move-room="hall" data-dir="right" type="button">▶</button>
+   <button class="pad-btn down" data-move-room="hall" data-dir="down" type="button">▼</button>
+ </div>
+ <div class="screen-footer"><button class="tool" data-divine><span class="tool-icon">☯️</span><span>Bói Quẻ</span></button><button class="tool" data-incense><span class="tool-icon">🪔</span><span>Thắp hương</span></button><button class="tool highlight" data-prayer><span class="tool-icon">🙏</span><span>Cầu nguyện</span></button><button class="tool" data-bow><span class="tool-icon">🙇</span><span>Lạy Phật</span></button><button class="tool" data-meditate><span class="tool-icon">🧘</span><span>Ngồi thiền</span></button><button class="tool" data-chant><span class="tool-icon">📿</span><span>Niệm Phật</span></button><button class="tool" data-mala><span class="tool-icon">📿</span><span>Tràng hạt</span></button><button class="tool highlight" id="openOffering" type="button"><span class="tool-icon">🌸</span><span>Cúng dường</span></button><button class="tool important" data-exit><span class="tool-icon">⛩️</span><span>Ra sân</span></button></div>
 </section>
 <!-- SCREEN 4: Làm Công quả -->
 <section id="karma" class="view room karma-scene" aria-label="Làm công quả">
@@ -585,6 +670,28 @@
   <div class="screen-footer"><button class="tool important" id="leaveAbbot" type="button"><span class="tool-icon">⛩️</span><span>Về sân chùa</span></button></div>
 </section>
 <!-- V18: xác nhận vui trước khi bước vào Sân chùa -->
+
+<section id="divinePanel" class="sheet" role="dialog" aria-label="Bói Quẻ Bát quái" aria-modal="true">
+ <div class="sheet-heading"><h2>☯️ Bói Quẻ Bát Quái</h2><button class="x-btn" data-close aria-label="Đóng">×</button></div>
+ <p class="small">Mỗi ngày một quẻ, may rủi tùy duyên. Bấm nút để cây kim quay 10 vòng rồi dừng ở một quẻ ngẫu nhiên.</p>
+ <div class="bagua-stage">
+   <div class="bagua-wheel" id="baguaWheel" aria-label="Bảng Bát quái">
+     <div class="bagua-core"></div>
+     <div class="bagua-needle" id="divineNeedle"></div>
+     <div class="bagua-slot slot-0"><strong>Càn</strong><span>☰</span></div>
+     <div class="bagua-slot slot-1"><strong>Khôn</strong><span>☷</span></div>
+     <div class="bagua-slot slot-2"><strong>Khảm</strong><span>☵</span></div>
+     <div class="bagua-slot slot-3"><strong>Ly</strong><span>☲</span></div>
+     <div class="bagua-slot slot-4"><strong>Chấn</strong><span>☳</span></div>
+     <div class="bagua-slot slot-5"><strong>Tốn</strong><span>☴</span></div>
+     <div class="bagua-slot slot-6"><strong>Cấn</strong><span>☶</span></div>
+     <div class="bagua-slot slot-7"><strong>Đoài</strong><span>☱</span></div>
+   </div>
+   <button class="btn" id="spinDivine" type="button">Mỗi ngày 1 quẻ, may rủi tùy duyên!</button>
+   <div class="divine-result" id="divineResult">Hãy tĩnh tâm rồi bấm quay kim.</div>
+   <button class="btn secondary" id="closeDivine" type="button">Vạn sự tùy duyên</button>
+ </div>
+</section>
 <div id="entryNotice" class="entry-notice" aria-hidden="true">
   <section class="entry-notice-card" role="dialog" aria-modal="true" aria-labelledby="entryNoticeTitle" aria-describedby="entryNoticeText">
     <div class="entry-notice-icon" aria-hidden="true">🤫🪷</div>
@@ -686,7 +793,7 @@ const $=id=>document.getElementById(id);
 const screens=['home','yard','hall','karma','abbot'];
 const safeGet=(key,fallback)=>{try{return JSON.parse(localStorage.getItem('cba3_'+key))??fallback}catch{return fallback}};
 const safeSet=(key,value)=>{try{localStorage.setItem('cba3_'+key,JSON.stringify(value))}catch{}};
-const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),offerings:safeGet('offerings_demo',[]),prayers:safeGet('prayers_demo',[]),visitors:safeGet('visitors_demo',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),sweptLeaves:safeGet('sweptLeaves',0),lastPrayer:'',presenceId:null,realtimeReady:false};
+const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),offerings:safeGet('offerings_demo',[]),prayers:safeGet('prayers_demo',[]),visitors:safeGet('visitors_demo',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),sweptLeaves:safeGet('sweptLeaves',0),lastPrayer:'',presenceId:null,realtimeReady:false,yardTheme:safeGet('yardTheme','day'),pos:safeGet('positions_v19',{yard:{x:51,y:82},hall:{x:52,y:77}})};
 let toastTimer, speechTimer, currentPanel=null, audioContext;
 
 // Trang chủ & Sân chùa: phát MP3 do chủ website cung cấp.
@@ -770,7 +877,7 @@ function toggleMusic(){
 const MOCKS=[{id:'sample-a',name:'An (mẫu)',gender:'female',scene:'yard',action:'stand',sample:true},{id:'sample-b',name:'Minh (mẫu)',gender:'male',scene:'yard',action:'stand',sample:true},{id:'sample-c',name:'Tịnh Tâm (mẫu)',gender:'female',scene:'hall',action:'meditate',sample:true},{id:'sample-d',name:'Bình (mẫu)',gender:'male',scene:'hall',action:'kneel',sample:true}];
 const positions={yard:[{x:34,y:77,s:'tiny'},{x:72,y:79,s:'small'},{x:47,y:87,s:''},{x:21,y:88,s:'small'},{x:80,y:90,s:''},{x:63,y:84,s:'small'}],hall:[{x:31,y:62,s:'small'},{x:72,y:62,s:'small'},{x:23,y:68,s:''},{x:80,y:68,s:''},{x:44,y:67,s:'small'},{x:62,y:67,s:'small'}],karma:[{x:73,y:70,s:'small'},{x:60,y:75,s:'small'}]};
 const mePosition={yard:{x:51,y:82},hall:{x:52,y:70},karma:{x:79,y:72}};
-function persist(){safeSet('name',state.name);safeSet('gender',state.gender);safeSet('malaCount',state.malaCount);safeSet('sweptLeaves',state.sweptLeaves)}
+function persist(){safeSet('name',state.name);safeSet('gender',state.gender);safeSet('malaCount',state.malaCount);safeSet('sweptLeaves',state.sweptLeaves);safeSet('positions_v19',state.pos);safeSet('yardTheme',state.yardTheme)}
 function niceName(raw){return String(raw||'').trim().replace(/\s+/g,' ').slice(0,24)}
 function escapeText(s){return String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
 function toast(msg){$('toast').textContent=msg;$('toast').classList.add('open');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('open'),2800)}
@@ -781,14 +888,21 @@ function charSVG(type,pose='stand'){
  const legs=pose==='meditate'||pose==='mala'?`<ellipse cx="40" cy="68" rx="29" ry="11" fill="#819aaa"/><path d="M14 64q30-13 52 0" stroke="#b4c7d0" stroke-width="10" fill="none" stroke-linecap="round"/>`:pose==='kneel'||pose==='bow'||pose==='pray'?`<path d="M29 58l-13 11 25 1 16-8" stroke="#8196a6" stroke-width="12" stroke-linecap="round" fill="none"/>`:`<rect x="27" y="58" width="11" height="22" rx="4" fill="#7c94a5"/><rect x="42" y="58" width="11" height="22" rx="4" fill="#7c94a5"/><ellipse cx="32" cy="81" rx="10" ry="4" fill="#354f5b"/><ellipse cx="47" cy="81" rx="10" ry="4" fill="#354f5b"/>`;
  return `<svg viewBox="0 0 80 88" aria-hidden="true"><ellipse cx="40" cy="84" rx="24" ry="5" fill="#000" opacity=".13"/>${legs}<path d="M23 35q17-10 34 0l-2 30H25z" fill="#a9c0ca" stroke="#718e9b" stroke-width="1.2"/><path d="M28 40q12 6 24-1" stroke="#d9e5e1" stroke-width="2" fill="none"/>${arms}<rect x="35" y="27" width="10" height="11" rx="5" fill="${skin}"/><ellipse cx="40" cy="18" rx="17" ry="19" fill="${skin}"/><path d="M23 17Q21-6 40-5q23-2 17 22Q51 4 42 5q-14-4-19 12z" fill="${hair}"/>${female?`<path d="M25 12q-11 15-4 27M55 12q10 15 5 26" stroke="${hair}" stroke-width="7" stroke-linecap="round"/>`:`<path d="M27 7q8-13 28 1" fill="none" stroke="${hair}" stroke-width="7"/>`}<path d="M32 20h2M46 20h2" stroke="#4b3530" stroke-width="3" stroke-linecap="round"/><path d="M36 29q4 3 9 0" fill="none" stroke="#ae7057" stroke-width="2" stroke-linecap="round"/></svg>`;
 }
+
+function positionForPresence(room,p,i){
+ const fallback=positions[room][i%positions[room].length];
+ const x=Number(p&&p.x), y=Number(p&&p.y);
+ if(Number.isFinite(x)&&Number.isFinite(y)) return {x,y,s:(p&&p.s)||fallback.s};
+ return fallback;
+}
 function renderAvatars(){
  for(const room of ['yard','hall','karma']){
   const layer=$(room+'People');layer.replaceChildren();
   let group=room==='karma'?[]:(state.localMode?MOCKS.filter(p=>p.scene===room):state.people.filter(p=>p.scene===room && p.id!=='me'));
   group=group.slice(0,11);
   group.forEach((p,i)=>{
-   const pos=positions[room][i%positions[room].length];
-   const el=document.createElement('div');el.className='character '+pos.s;
+   const pos=positionForPresence(room,p,i);
+   const el=document.createElement('div');el.className='character '+(pos.s||'');
    el.style.left=pos.x+'%';el.style.top=pos.y+'%';
    el.dataset.presenceId=p.id||'';
    el.classList.add((p.action||'stand')+'-loop');el.innerHTML=`<div class="char-name"></div>${charSVG(p.gender,p.action==='prayer'?'pray':p.action)}${p.sample?'<div class="char-tag">MẪU</div>':''}`;
@@ -797,8 +911,9 @@ function renderAvatars(){
    layer.appendChild(el);
   });
   if(state.joined){
-   const pos=mePosition[room], el=document.createElement('div');const mePose=room==='hall'?(state.action==='prayer'?'pray':state.action):'stand';el.className='character me '+(room==='hall'?(state.action+'-loop'):'');
-   el.style.left=pos.x+'%';el.style.top=pos.y+'%';
+   const ownPos=room==='karma'?mePosition.karma:(state.pos[room]||mePosition[room]);
+   const el=document.createElement('div');const mePose=room==='hall'?(state.action==='prayer'?'pray':state.action):'stand';el.className='character me '+(room==='hall'?(state.action+'-loop'):'');
+   el.style.left=ownPos.x+'%';el.style.top=ownPos.y+'%';
    el.dataset.presenceId=state.presenceId||'local';
    el.innerHTML=`<div class="char-name"></div>${charSVG(state.gender,mePose)}`;
    el.querySelector('.char-name').textContent=state.name;
@@ -841,7 +956,7 @@ function showView(which){
  if(which==='hall')bubble('🪷 Tâm an, việc thuận, ngày thêm vui');
  if(which==='karma'){bubble(state.sweptLeaves>=KARMA_LEAVES.length?'Công quả trọn vẹn, Tiêu trừ nghiệp chướng, Tâm an đến già.':'🧹 Từ bi, hỷ xả, buông bỏ chấp niệm, tu tâm dưỡng tánh!');renderLeaves();}
  else {const done=$('karmaComplete'); if(done) done.classList.remove('show');}
- renderAvatars(); publishPresence();
+ renderAvatars(); publishPresence(); syncMovePads(); if(which==='yard')applyYardTheme();
 }
 function join(){
  const n=niceName($('visitorName').value);
@@ -1280,7 +1395,14 @@ function malaReset(){ state.malaCount=0; persist(); renderMala(); publishPresenc
 async function sendWish(){const text=$('wishInput').value.trim().slice(0,220);if(!text){toast('Bạn viết lời chúc trước khi gửi nhé.');return}if(!state.joined){toast('Hãy vào chùa trước khi gửi lời chúc.');return}
  if(state.firebase){try{await state.firebase.addWish({name:state.name,text});$('wishInput').value='';toast('Lời nguyện đã gửi tới mọi người 🌷');return}catch(err){toast('Không gửi được. Vui lòng kiểm tra kết nối.');return}}
  state.wishes.push({name:state.name,text,when:new Date().toLocaleDateString('vi-VN')});state.wishes=state.wishes.slice(-50);safeSet('wishes',state.wishes);$('wishInput').value='';renderWishes();toast('Đã lưu lời chúc trên thiết bị này 🌷');}
-function publishPresence(){if(state.firebase&&state.joined){const scene=state.scene==='karma'?'yard':state.scene;const action=state.scene==='karma'?'stand':state.action;state.firebase.publish({name:state.name,gender:state.gender,scene,action,malaCount:state.malaCount}).catch(err=>console.warn('Không cập nhật được trạng thái:',err))}}
+
+function publishPresence(){
+ if(state.firebase&&state.joined){
+  const room=state.scene==='karma'?'yard':state.scene;
+  const pos=(room==='yard'||room==='hall')?(state.pos[room]||mePosition[room]):{x:50,y:80};
+  state.firebase.publish({name:state.name,gender:state.gender,scene,action:room==='hall'?state.action:'stand',malaCount:state.malaCount,x:pos.x,y:pos.y}).catch(err=>console.warn('Không cập nhật được trạng thái:',err))
+ }
+}
 function emitEvent(type,text){if(state.firebase&&state.joined){state.firebase.emitEvent(type,String(text||'').slice(0,180)).catch(err=>{console.warn('Không đồng bộ được hiệu ứng:',err);toast('Hiệu ứng hiện chỉ chạy trên thiết bị này. Vui lòng kiểm tra kết nối.')})}}
 function floatPrayerFrom(text,presenceId,roomId){
  const room=$(roomId);if(!room||!room.classList.contains('active'))return false;
@@ -1318,19 +1440,104 @@ function syncRemoteEvent(evt){
  }
 }
 
+
+const ROOM_BOUNDS={yard:{minX:14,maxX:86,minY:61,maxY:88},hall:{minX:17,maxX:83,minY:57,maxY:84}};
+const DIVINE_SIGNS=[
+ {name:'Càn',symbol:'☰',meaning:'Tượng trưng cho sự sáng tạo, cương kiện, mạnh mẽ.'},
+ {name:'Khôn',symbol:'☷',meaning:'Tượng trưng cho sự tiếp nhận, nhu thuận, mềm mỏng.'},
+ {name:'Khảm',symbol:'☵',meaning:'Tượng trưng cho hố sâu, hiểm trở, trắc trở.'},
+ {name:'Ly',symbol:'☲',meaning:'Tượng trưng cho sự sáng chói, bám giữ, văn minh.'},
+ {name:'Chấn',symbol:'☳',meaning:'Tượng trưng cho sự động dụng, sấm sét, khởi động.'},
+ {name:'Tốn',symbol:'☴',meaning:'Tượng trưng cho sự thuận nhập, gió thổi, uyển chuyển.'},
+ {name:'Cấn',symbol:'☶',meaning:'Tượng trưng cho sự ngưng nghỉ, dừng lại, vững chãi.'},
+ {name:'Đoài',symbol:'☱',meaning:'Tượng trưng cho niềm vui, sự hân hoan, lời nói.'}
+];
+let moveTimer=null,divineSpinning=false,divineAngle=0;
+function ensureStars(){
+ const host=$('yardStars'); if(!host||host.childElementCount) return;
+ for(let i=0;i<28;i++){
+  const s=document.createElement('span');s.className='star';
+  s.style.left=(8+Math.random()*84)+'%';s.style.top=(7+Math.random()*36)+'%';
+  s.style.animationDelay=(Math.random()*1.8).toFixed(2)+'s';
+  s.style.animationDuration=(1.1+Math.random()*1.6).toFixed(2)+'s';
+  host.appendChild(s);
+ }
+}
+function applyYardTheme(){
+ ensureStars();
+ const fx=$('yardSkyFx'); if(!fx) return;
+ fx.classList.toggle('day',state.yardTheme!=='night');
+ fx.classList.toggle('night',state.yardTheme==='night');
+ document.querySelectorAll('[data-theme-mode]').forEach(btn=>btn.classList.toggle('active',btn.dataset.themeMode===state.yardTheme));
+ safeSet('yardTheme',state.yardTheme);
+ bubble(state.yardTheme==='night'?'🌙 Đêm xuống, sao sáng lấp lánh quanh mái chùa.':'☀️ Trời sáng, mây tan và Phật quang hiện giữa trời.');
+}
+function clampMovement(room,x,y){
+ const b=ROOM_BOUNDS[room];
+ return {x:Math.max(b.minX,Math.min(b.maxX,x)),y:Math.max(b.minY,Math.min(b.maxY,y))};
+}
+function syncMovePads(){
+ const yardPad=$('yardMovePad'),hallPad=$('hallMovePad');
+ if(yardPad) yardPad.style.display=state.scene==='yard'?'grid':'none';
+ if(hallPad) hallPad.style.display=state.scene==='hall'?'grid':'none';
+}
+function moveSelf(room,dir,step=2.2){
+ if(state.scene!==room || !state.joined) return;
+ state.action='stand';
+ const now=state.pos[room]||{...mePosition[room]};
+ let {x,y}=now;
+ if(dir==='up') y-=step;
+ if(dir==='down') y+=step;
+ if(dir==='left') x-=step;
+ if(dir==='right') x+=step;
+ const clamped=clampMovement(room,x,y);
+ state.pos[room]=clamped;
+ persist(); renderAvatars(); publishPresence();
+ if(room==='yard' && clamped.y<=64 && clamped.x>=41 && clamped.x<=59){
+   bubble('🪷 Bạn đã tới cửa chính. Đang vào Chánh điện...');
+   setTimeout(()=>showView('hall'),180);
+ }
+}
+function startMove(room,dir){ stopMove(); moveSelf(room,dir,3); moveTimer=setInterval(()=>moveSelf(room,dir,2),110); }
+function stopMove(){ if(moveTimer){clearInterval(moveTimer);moveTimer=null;} }
+function bindMovePads(){
+ document.querySelectorAll('[data-move-room]').forEach(btn=>{
+  const start=e=>{e.preventDefault();startMove(btn.dataset.moveRoom,btn.dataset.dir)};
+  const stop=e=>{if(e)e.preventDefault();stopMove()};
+  btn.addEventListener('pointerdown',start);btn.addEventListener('pointerup',stop);btn.addEventListener('pointerleave',stop);btn.addEventListener('pointercancel',stop);
+  btn.addEventListener('touchstart',start,{passive:false});btn.addEventListener('touchend',stop,{passive:false});
+  btn.addEventListener('click',e=>{e.preventDefault();moveSelf(btn.dataset.moveRoom,btn.dataset.dir,3)});
+ });
+}
+function openDivinePanel(){ if(!state.joined){toast('Hãy vào chùa trước nhé.');return;} if(state.scene!=='hall')showView('hall'); openPanel('divinePanel'); }
+function spinDivination(){
+ if(divineSpinning) return;
+ divineSpinning=true;
+ const choiceIndex=Math.floor(Math.random()*DIVINE_SIGNS.length);
+ const choice=DIVINE_SIGNS[choiceIndex];
+ const targetAngle=(choiceIndex*45);
+ divineAngle += 3600 + targetAngle - (divineAngle%360);
+ $('divineNeedle').style.transform=`translate(-50%,-100%) rotate(${divineAngle}deg)`;
+ $('divineResult').textContent='Kim đang xoay... hãy đợi quẻ dừng đúng duyên.';
+ setTimeout(()=>{
+   $('divineResult').innerHTML=`<strong>${choice.name} (${choice.symbol})</strong><br>${choice.meaning}`;
+   divineSpinning=false;
+ },4700);
+}
+
 // Start listeners
 $('visitorName').value=state.name;$('visitorGender').value=state.gender;
 $('joinButton').onclick=join;$('visitorName').addEventListener('keydown',e=>{if(e.key==='Enter')join()});
 $('confirmEntry').onclick=confirmEntryAndJoin;
 $('homeInfo').onclick=()=>openPanel('infoPanel');
-$('yardHall').onclick=()=>showView('hall');$('yardAbbot').onclick=()=>showView('abbot');$('yardWork').onclick=()=>showView('karma');
+$('yardHall').onclick=()=>showView('hall');$('yardAbbot').onclick=()=>showView('abbot');$('yardWork').onclick=()=>showView('karma');document.querySelectorAll('[data-theme-mode]').forEach(b=>b.onclick=()=>{state.yardTheme=b.dataset.themeMode;applyYardTheme();});
 $('yardWho').onclick=()=>openPanel('peoplePanel');$('hallWho').onclick=()=>openPanel('peoplePanel');if($('karmaWho'))$('karmaWho').onclick=()=>openPanel('peoplePanel');
 $('yardPhotoToggle').onclick=()=>{const photo=$('yardPhoto');photo.classList.toggle('show');toast(photo.classList.contains('show')?'📷 Đây là ảnh chùa bạn đã gửi.':'🎨 Đã trở lại cảnh hoạt hình từ ảnh chùa.')};
 $('backdrop').onclick=closePanel;document.querySelectorAll('[data-close]').forEach(b=>b.onclick=closePanel);
 document.querySelectorAll('[data-home]').forEach(b=>b.onclick=()=>showView('home'));
 document.querySelectorAll('[data-exit]').forEach(b=>b.onclick=()=>{state.action='stand';$('hallSmoke').classList.remove('on');showView('yard')});
 document.querySelectorAll('[data-wishes]').forEach(b=>b.onclick=()=>openPanel('wishPanel'));
-document.querySelectorAll('[data-bell]').forEach(b=>b.onclick=doBell);
+document.querySelectorAll('[data-divine]').forEach(b=>b.onclick=openDivinePanel);
 document.querySelectorAll('[data-incense]').forEach(b=>b.onclick=()=>doAction('incense'));
 document.querySelectorAll('[data-kneel]').forEach(b=>b.onclick=()=>doAction('kneel'));
 document.querySelectorAll('[data-bow]').forEach(b=>b.onclick=()=>doAction('bow'));
@@ -1361,8 +1568,8 @@ if($('sweepYard'))$('sweepYard').onclick=sweepYardOnce;
 document.querySelectorAll('[data-offering-amount]').forEach(btn=>btn.onclick=()=>{$('offeringAmount').value=offeringMoney(Number(btn.dataset.offeringAmount)).replace('đ','');$('offeringError').textContent='';});
 $('offeringAmount').addEventListener('input',()=>{$('offeringError').textContent='';});
 $('sendOffering').onclick=sendOffering;
-$('sendWish').onclick=sendWish;$('sendPrayer').onclick=sendPrayer;$('malaStep').onclick=malaStep;$('malaReset').onclick=malaReset;window.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
-renderAvatars();renderWishes();renderMala();renderOfferings();renderPrayers();renderVisitors();refreshMusicButtons();
+$('sendWish').onclick=sendWish;$('sendPrayer').onclick=sendPrayer;$('malaStep').onclick=malaStep;$('malaReset').onclick=malaReset;$('spinDivine').onclick=spinDivination;$('closeDivine').onclick=closePanel;window.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
+bindMovePads();applyYardTheme();renderAvatars();renderWishes();renderMala();renderOfferings();renderPrayers();renderVisitors();refreshMusicButtons();syncMovePads();
 // Optional production realtime connector (starts only if user provides Firebase credentials).
 async function connectFirebase(){
  const config=window.CHUA_FIREBASE_CONFIG;
@@ -1394,8 +1601,9 @@ async function connectFirebase(){
     if(!disconnectRegistered){await onDisconnect(myRef).remove();disconnectRegistered=true;}
     const scene=(values.scene==='karma'?'yard':values.scene);
     const action=(values.scene==='karma'?'stand':values.action);
+    const currentPos=(scene==='yard'||scene==='hall')?(values.x!=null&&values.y!=null?{x:Number(values.x),y:Number(values.y)}:(state.pos[scene]||mePosition[scene])):{x:50,y:80};
     await set(myRef,{uid,name:niceName(values.name),gender:values.gender,scene,
-     action,malaCount:Math.max(0,Math.min(108,values.malaCount|0)),updatedAt:serverTimestamp()});
+     action,malaCount:Math.max(0,Math.min(108,values.malaCount|0)),x:Math.max(0,Math.min(100,currentPos.x)),y:Math.max(0,Math.min(100,currentPos.y)),updatedAt:serverTimestamp()});
   };
   onValue(ref(db,'.info/connected'),async snap=>{
     connected=snap.val()===true;
