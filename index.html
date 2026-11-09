@@ -314,8 +314,8 @@
 .yard-sky-fx .cloud-right{right:21%;transform:translateX(-35vw)}
 .yard-sky-fx .sky-buddha,.yard-sky-fx .sky-dragon{position:absolute;left:50%;transform:translateX(-50%);object-fit:contain;height:auto;transition:opacity 1.1s ease,transform 1.4s ease;pointer-events:none}
 .yard-sky-fx .sky-buddha,.yard-sky-fx .sky-dragon{position:absolute;left:50%;transform:translateX(-50%);object-fit:contain;height:auto;transition:opacity 1.1s ease,transform 1.4s ease;pointer-events:none;filter:drop-shadow(0 10px 18px rgba(0,0,0,.16))}
-.yard-sky-fx .sky-buddha{top:74px;width:min(28vw,150px);max-height:150px;opacity:0}
-.yard-sky-fx .sky-dragon{top:68px;width:min(31vw,170px);max-height:170px;opacity:0}
+.yard-sky-fx .sky-buddha{top:32px;width:min(20vw,108px);max-height:108px;opacity:0}
+.yard-sky-fx .sky-dragon{top:26px;width:min(23vw,126px);max-height:126px;opacity:0}
 .yard-sky-fx .night-overlay{position:absolute;inset:0;background:radial-gradient(circle at 50% 18%,rgba(40,55,88,.15),rgba(12,16,29,.72) 55%,rgba(7,10,19,.88));opacity:0;transition:opacity .9s ease}
 .yard-sky-fx .stars{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
 .yard-sky-fx .star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff2b7;box-shadow:0 0 10px rgba(255,249,196,.75);animation:twinkle 1.8s ease-in-out infinite alternate}
@@ -323,19 +323,19 @@
 .yard-sky-fx.current .cloud,.yard-sky-fx.current .sky-buddha,.yard-sky-fx.current .sky-dragon,.yard-sky-fx.current .night-overlay,.yard-sky-fx.current .stars{opacity:0}
 .yard-sky-fx.day .cloud-left{transform:translateX(-4vw)}
 .yard-sky-fx.day .cloud-right{transform:translateX(4vw)}
-.yard-sky-fx.day .sky-buddha{opacity:1;transform:translateX(-50%) scale(1)}
+.yard-sky-fx.day .sky-buddha{opacity:.5;transform:translateX(-50%) scale(1)}
 .yard-sky-fx.day .night-overlay,.yard-sky-fx.day .stars,.yard-sky-fx.day .sky-dragon{opacity:0}
 .yard-sky-fx.night .cloud,.yard-sky-fx.night .sky-buddha{opacity:0;transform:translateX(-50%) scale(.94)}
-.yard-sky-fx.night .night-overlay,.yard-sky-fx.night .stars,.yard-sky-fx.night .sky-dragon{opacity:1}
-.yard-sky-fx.night .sky-dragon{transform:translateX(-50%) translateY(0)}
-.day-night-switch{position:absolute;top:calc(70px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:7;display:flex;gap:6px;background:rgba(255,250,238,.8);backdrop-filter:blur(8px);padding:7px;border-radius:999px;box-shadow:0 10px 25px rgba(0,0,0,.12)}
-.day-night-switch button{border:0;border-radius:999px;padding:8px 11px;font-weight:800;font-size:12px;background:#f0ebdc;color:#6d644f}
+.yard-sky-fx.night .night-overlay,.yard-sky-fx.night .stars{opacity:1}
+.yard-sky-fx.night .sky-dragon{opacity:.5;transform:translateX(-50%) translateY(0)}
+.day-night-switch{position:absolute;top:calc(120px + env(safe-area-inset-top));right:8px;left:auto;transform:none;z-index:9;display:flex;flex-direction:column;gap:6px;background:rgba(255,250,238,.48);backdrop-filter:blur(8px);padding:6px;border-radius:16px;box-shadow:0 8px 22px rgba(0,0,0,.10)}
+.day-night-switch button{border:0;border-radius:12px;padding:7px 8px;font-weight:800;font-size:11px;line-height:1.15;background:rgba(240,235,220,.72);color:#6d644f;min-width:58px}
 .day-night-switch button.active{background:#5c7c58;color:#fff}
-.move-pad{position:absolute;right:12px;bottom:102px;z-index:8;width:118px;height:118px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:7px;background:rgba(248,240,233,.72);padding:8px;border-radius:26px;box-shadow:0 16px 42px rgba(0,0,0,.18);backdrop-filter:blur(10px)}
-.move-pad .pad-btn{border:0;border-radius:16px;background:#ffffffd9;color:#6d6a58;font-weight:900;font-size:18px;display:grid;place-items:center;box-shadow:inset 0 -2px 0 rgba(0,0,0,.08)}
-.move-pad .pad-btn:active{transform:scale(.96)}
-.move-pad .up{grid-column:2;grid-row:1}.move-pad .left{grid-column:1;grid-row:2}.move-pad .center{grid-column:2;grid-row:2;background:#e7f0d9;font-size:20px}.move-pad .right{grid-column:3;grid-row:2}.move-pad .down{grid-column:2;grid-row:3}
-.hall-pad{bottom:102px}
+.move-pad{position:absolute;right:10px;bottom:112px;z-index:12;width:92px;height:92px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:5px;background:rgba(248,240,233,.34);padding:6px;border-radius:22px;box-shadow:0 10px 26px rgba(0,0,0,.10);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.move-pad .pad-btn{border:0;border-radius:13px;background:rgba(255,255,255,.52);color:#62614f;font-weight:900;font-size:15px;display:grid;place-items:center;box-shadow:inset 0 -1px 0 rgba(0,0,0,.06);touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.move-pad .pad-btn:active{transform:scale(.95);background:rgba(255,255,255,.72)}
+.move-pad .up{grid-column:2;grid-row:1}.move-pad .left{grid-column:1;grid-row:2}.move-pad .center{grid-column:2;grid-row:2;background:rgba(231,240,217,.55);font-size:16px}.move-pad .right{grid-column:3;grid-row:2}.move-pad .down{grid-column:2;grid-row:3}
+.hall-pad{bottom:112px}
 #hall .buddha-real{top:46.8%!important;width:clamp(150px,41vw,190px)!important;max-width:190px!important;z-index:6}
 #hall .buddha-glow{top:41.5%!important;width:min(30vw,150px)!important;height:min(30vw,150px)!important}
 #hall .offering-board{top:24%!important}
@@ -344,6 +344,10 @@
 #hall .room-bubble{bottom:102px}
 #yard .room-bubble{bottom:102px}
 #divinePanel{max-height:min(66dvh,520px);padding:18px 16px calc(18px + env(safe-area-inset-bottom))}
+#yard .people-layer .character{transform:translate(-50%,-58%) scale(.92)}
+#yard .people-layer .character svg{width:48px;height:68px}
+#yard .people-layer .character.small svg{width:39px;height:55px}
+#yard .people-layer .character.tiny svg{width:30px;height:44px}
 .bagua-stage{display:grid;gap:10px;justify-items:center;text-align:center}
 .bagua-wheel{position:relative;width:min(58vw,220px);height:min(58vw,220px);border-radius:50%;background:radial-gradient(circle,#fff7dc 0,#f4e1a7 38%,#d1b06d 39%,#6a3d17 40%,#b88e4e 65%,#7a4e22 100%);box-shadow:inset 0 0 0 8px rgba(255,242,205,.5),0 18px 40px rgba(0,0,0,.12)}
 .bagua-core{position:absolute;left:50%;top:50%;width:56px;height:56px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#fff7df,#d9bb76);box-shadow:0 0 0 5px rgba(105,66,28,.35)}
@@ -363,7 +367,7 @@
 .bagua-wheel .slot-7{transform:translate(-50%,-50%) translate(-61px,-61px)}
 .divine-result{min-height:46px;width:100%;padding:10px 12px;border:1px solid #e5d2ad;border-radius:16px;background:#fffcf4;color:#6d5530;line-height:1.45;font-size:12px;font-weight:700}
 .btn.secondary{background:#efe4d1;color:#6d6558}
-@media(max-width:390px){.move-pad{width:100px;height:100px;bottom:96px;right:10px}.day-night-switch{top:calc(66px + env(safe-area-inset-top));}.day-night-switch button{padding:7px 9px;font-size:11px}.bagua-slot{width:60px;font-size:8px}.bagua-slot span{font-size:15px}.bagua-wheel .slot-0{transform:translate(-50%,-50%) translate(0,-79px)}.bagua-wheel .slot-1{transform:translate(-50%,-50%) translate(56px,-56px)}.bagua-wheel .slot-2{transform:translate(-50%,-50%) translate(79px,0)}.bagua-wheel .slot-3{transform:translate(-50%,-50%) translate(56px,56px)}.bagua-wheel .slot-4{transform:translate(-50%,-50%) translate(0,79px)}.bagua-wheel .slot-5{transform:translate(-50%,-50%) translate(-56px,56px)}.bagua-wheel .slot-6{transform:translate(-50%,-50%) translate(-79px,0)}.bagua-wheel .slot-7{transform:translate(-50%,-50%) translate(-56px,-56px)}}
+@media(max-width:390px){.move-pad{width:82px;height:82px;bottom:106px;right:8px}.move-pad .pad-btn{font-size:13px}.move-pad .center{font-size:14px}.day-night-switch{top:calc(114px + env(safe-area-inset-top));right:6px}.day-night-switch button{padding:6px 7px;font-size:10px;min-width:52px}.bagua-slot{width:60px;font-size:8px}.bagua-slot span{font-size:15px}.bagua-wheel .slot-0{transform:translate(-50%,-50%) translate(0,-79px)}.bagua-wheel .slot-1{transform:translate(-50%,-50%) translate(56px,-56px)}.bagua-wheel .slot-2{transform:translate(-50%,-50%) translate(79px,0)}.bagua-wheel .slot-3{transform:translate(-50%,-50%) translate(56px,56px)}.bagua-wheel .slot-4{transform:translate(-50%,-50%) translate(0,79px)}.bagua-wheel .slot-5{transform:translate(-50%,-50%) translate(-56px,56px)}.bagua-wheel .slot-6{transform:translate(-50%,-50%) translate(-79px,0)}.bagua-wheel .slot-7{transform:translate(-50%,-50%) translate(-56px,-56px)}}
 
 </style>
 </head>
@@ -1447,7 +1451,7 @@ function syncRemoteEvent(evt){
 }
 
 
-const ROOM_BOUNDS={yard:{minX:16,maxX:82,minY:52,maxY:74},hall:{minX:17,maxX:83,minY:57,maxY:82}};
+const ROOM_BOUNDS={yard:{minX:16,maxX:82,minY:50,maxY:68},hall:{minX:17,maxX:83,minY:56,maxY:79}};
 const DIVINE_SIGNS=[
  {name:'Càn',symbol:'☰',meaning:'Tượng trưng cho sự sáng tạo, cương kiện, mạnh mẽ.'},
  {name:'Khôn',symbol:'☷',meaning:'Tượng trưng cho sự tiếp nhận, nhu thuận, mềm mỏng.'},
@@ -1509,12 +1513,22 @@ function startMove(room,dir){ stopMove(); moveSelf(room,dir,3); moveTimer=setInt
 function stopMove(){ if(moveTimer){clearInterval(moveTimer);moveTimer=null;} }
 function bindMovePads(){
  document.querySelectorAll('[data-move-room]').forEach(btn=>{
-  const start=e=>{e.preventDefault();startMove(btn.dataset.moveRoom,btn.dataset.dir)};
-  const stop=e=>{if(e)e.preventDefault();stopMove()};
-  btn.addEventListener('pointerdown',start);btn.addEventListener('pointerup',stop);btn.addEventListener('pointerleave',stop);btn.addEventListener('pointercancel',stop);
-  btn.addEventListener('touchstart',start,{passive:false});btn.addEventListener('touchend',stop,{passive:false});
-  btn.addEventListener('click',e=>{e.preventDefault();moveSelf(btn.dataset.moveRoom,btn.dataset.dir,3)});
+  btn.style.touchAction='none';
+  const start=e=>{ if(e){e.preventDefault();e.stopPropagation();} startMove(btn.dataset.moveRoom,btn.dataset.dir); };
+  const stop=e=>{ if(e){e.preventDefault();e.stopPropagation();} stopMove(); };
+  btn.addEventListener('pointerdown',start);
+  btn.addEventListener('pointerup',stop);
+  btn.addEventListener('pointerleave',stop);
+  btn.addEventListener('pointercancel',stop);
+  btn.addEventListener('touchstart',start,{passive:false});
+  btn.addEventListener('touchend',stop,{passive:false});
+  btn.addEventListener('touchcancel',stop,{passive:false});
+  btn.addEventListener('mouseup',stop);
+  btn.addEventListener('mouseleave',stop);
+  btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();moveSelf(btn.dataset.moveRoom,btn.dataset.dir,3)});
  });
+ document.addEventListener('pointerup',stopMove);
+ document.addEventListener('touchend',stopMove,{passive:true});
 }
 function openDivinePanel(){ if(!state.joined){toast('Hãy vào chùa trước nhé.');return;} if(state.scene!=='hall')showView('hall'); openPanel('divinePanel'); }
 function spinDivination(){
