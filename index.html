@@ -460,6 +460,54 @@
 .yard-sky-fx.night .sky-dragon{top:8px !important;width:min(28vw,150px) !important;max-height:150px !important;opacity:.5 !important;transform:translateX(-50%) translateY(0) scale(1) !important}
 .character.me{transition:left .08s linear, top .08s linear}
 
+
+/* V25 - phục hồi và tăng thời lượng nghi thức thắp hương */
+#hall .incense-ceremony{
+  position:absolute;z-index:70;left:50%;top:63%;
+  width:clamp(145px,39vw,196px);max-width:46vw;
+  display:none;pointer-events:none;
+  transform:translate(-50%,-50%);
+  filter:drop-shadow(0 10px 11px rgba(48,25,12,.38));
+}
+#hall .incense-ceremony.playing{
+  display:block!important;visibility:visible!important;
+  animation:incenseThreeBowsV25 13.2s ease-in-out both!important;
+}
+#hall .incense-ceremony.playing .ritual-incense{
+  transform-box:fill-box;transform-origin:center;
+  animation:incenseOfferingV25 13.2s ease-in-out both!important;
+}
+#hall .incense-ceremony.playing .ritual-hands{
+  animation:incenseHandsV25 13.2s ease-in-out both!important;
+}
+#hall .incense-ceremony .incense-smoke path{animation:incenseSmokeV16 1.5s ease-in-out infinite alternate}
+@keyframes incenseThreeBowsV25{
+  0%{opacity:1;top:63%;transform:translate(-50%,-50%) rotate(0) scale(1)}
+  7%{opacity:1;top:66%;transform:translate(-50%,-50%) rotate(12deg) scale(.97)}
+  15%{opacity:1;top:63%;transform:translate(-50%,-50%) rotate(0) scale(1)}
+  23%{opacity:1;top:66%;transform:translate(-50%,-50%) rotate(12deg) scale(.97)}
+  31%{opacity:1;top:63%;transform:translate(-50%,-50%) rotate(0) scale(1)}
+  39%{opacity:1;top:66%;transform:translate(-50%,-50%) rotate(12deg) scale(.97)}
+  47%,91%{opacity:1;top:63%;transform:translate(-50%,-50%) rotate(0) scale(1)}
+  100%{opacity:0;top:60%;transform:translate(-50%,-50%) rotate(0) scale(.96)}
+}
+@keyframes incenseOfferingV25{
+  0%,55%{opacity:1;transform:translateY(0) scale(1)}
+  67%{opacity:1;transform:translateY(-40px) scale(.95)}
+  83%{opacity:1;transform:translateY(-160px) scale(.65)}
+  100%{opacity:0;transform:translateY(-240px) scale(.25)}
+}
+@keyframes incenseHandsV25{
+  0%,70%{opacity:1}
+  86%,100%{opacity:0}
+}
+@media(max-width:380px){#hall .incense-ceremony{top:62%;width:clamp(145px,44vw,168px);max-width:49vw}}
+@media(prefers-reduced-motion:reduce){
+ #hall .incense-ceremony.playing{animation:incenseThreeBowsV25 13.2s ease-in-out both!important}
+ #hall .incense-ceremony.playing .ritual-incense{animation:incenseOfferingV25 13.2s ease-in-out both!important}
+ #hall .incense-ceremony.playing .ritual-hands{animation:incenseHandsV25 13.2s ease-in-out both!important}
+}
+
 </style>
 </head>
 <body>
@@ -1103,20 +1151,26 @@ function doBell(){chime();toast('🔔 Boong… chúc tâm an, việc thuận.');
 let incenseRitualTimer=null;
 function startIncenseRitual(){
   const stage=$('incenseCeremony');
-  if(!stage||!$('hall').classList.contains('active'))return;
+  if(!stage||!$('hall')?.classList.contains('active'))return;
   if(incenseRitualTimer){clearTimeout(incenseRitualTimer);incenseRitualTimer=null;}
+  // Hiện ngay, không phụ thuộc việc vẽ lại nhân vật hoặc kết nối Firebase.
   stage.classList.remove('playing');
+  stage.style.display='block';
+  stage.style.visibility='visible';
   void stage.offsetWidth;
   stage.classList.add('playing');
   incenseRitualTimer=setTimeout(()=>{
     stage.classList.remove('playing');
+    stage.style.display='';
+    stage.style.visibility='';
     incenseRitualTimer=null;
     if($('hallSmoke'))$('hallSmoke').classList.remove('on');
-  },6350);
+  },13300);
 }
 function stopIncenseRitual(){
   if(incenseRitualTimer){clearTimeout(incenseRitualTimer);incenseRitualTimer=null;}
-  if($('incenseCeremony'))$('incenseCeremony').classList.remove('playing');
+  const stage=$('incenseCeremony');
+  if(stage){stage.classList.remove('playing');stage.style.display='';stage.style.visibility='';}
 }
 
 function doAction(action){if(!state.joined){toast('Hãy vào chùa trước nhé.');return}
@@ -1125,8 +1179,10 @@ function doAction(action){if(!state.joined){toast('Hãy vào chùa trước nhé
  $('hallSmoke').classList.toggle('on',action==='incense');
  const messages={incense:'🪔 Một nén tâm hương, vạn điều bình an.',kneel:'🙏 Thành tâm quỳ lạy.',bow:'🙏 Đang lạy Phật với lòng thành kính.',meditate:'🧘 Hít thở nhẹ nhàng, tâm trí thảnh thơi.',chant:'📿 Nam mô A Di Đà Phật.',mala:'📿 Bạn đang lần chuỗi tràng hạt.'};
  bubble(messages[action]);toast(messages[action]);
- renderAvatars();publishPresence();emitEvent(action,'');
+ // Bắt đầu nghi thức trước khi đồng bộ các tác vụ khác để tránh chậm/mất hiệu ứng.
  if(action==='incense')startIncenseRitual();
+ try{renderAvatars();}catch(err){console.warn('Lỗi hiển thị nhân vật không được chặn thắp hương:',err);}
+ try{publishPresence();emitEvent(action,'');}catch(err){console.warn('Lỗi đồng bộ không được chặn thắp hương:',err);}
  if(action==='chant'){state.chantCount++;speech('Nam mô A Di Đà Phật'); if(!speakMantra('Nam mô A Di Đà Phật')) doBell(); confetti('🪷')}
  else if(action==='mala'){openPanel('malaPanel'); renderMala(); confetti('📿')}
  else confetti(action==='incense'?'🌼':'✨');
