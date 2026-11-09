@@ -369,6 +369,82 @@
 .btn.secondary{background:#efe4d1;color:#6d6558}
 @media(max-width:390px){.move-pad{width:82px;height:82px;bottom:106px;right:8px}.move-pad .pad-btn{font-size:13px}.move-pad .center{font-size:14px}.day-night-switch{top:calc(114px + env(safe-area-inset-top));right:6px}.day-night-switch button{padding:6px 7px;font-size:10px;min-width:52px}.bagua-slot{width:60px;font-size:8px}.bagua-slot span{font-size:15px}.bagua-wheel .slot-0{transform:translate(-50%,-50%) translate(0,-79px)}.bagua-wheel .slot-1{transform:translate(-50%,-50%) translate(56px,-56px)}.bagua-wheel .slot-2{transform:translate(-50%,-50%) translate(79px,0)}.bagua-wheel .slot-3{transform:translate(-50%,-50%) translate(56px,56px)}.bagua-wheel .slot-4{transform:translate(-50%,-50%) translate(0,79px)}.bagua-wheel .slot-5{transform:translate(-50%,-50%) translate(-56px,56px)}.bagua-wheel .slot-6{transform:translate(-50%,-50%) translate(-79px,0)}.bagua-wheel .slot-7{transform:translate(-50%,-50%) translate(-56px,-56px)}}
 
+
+/* V22 — directional controls fixed for touch webviews */
+#yard.active #yardMovePad, #hall.active #hallMovePad {
+ display:grid !important;
+ visibility:visible !important;
+ opacity:1 !important;
+ pointer-events:auto !important;
+}
+#yard #yardMovePad, #hall #hallMovePad {
+ position:absolute;
+ right:9px !important;
+ bottom:calc(111px + env(safe-area-inset-bottom)) !important;
+ left:auto !important;
+ top:auto !important;
+ width:116px !important;
+ height:116px !important;
+ z-index:12 !important;
+ padding:7px !important;
+ gap:5px !important;
+ border:1px solid rgba(255,255,255,.82) !important;
+ border-radius:23px !important;
+ background:rgba(250,249,236,.76) !important;
+ box-shadow:0 4px 22px rgba(30,52,40,.25) !important;
+ -webkit-backdrop-filter:blur(8px);
+ backdrop-filter:blur(8px);
+ touch-action:none;
+ user-select:none;
+ -webkit-user-select:none;
+}
+#yard #yardMovePad::before,#hall #hallMovePad::before {
+ content:'DI CHUYỂN';
+ position:absolute;
+ right:4px;
+ top:-21px;
+ padding:3px 8px;
+ border-radius:12px;
+ font-size:9px;
+ font-weight:850;
+ letter-spacing:.5px;
+ line-height:1;
+ color:#3c5840;
+ background:rgba(255,251,233,.91);
+ border:1px solid #f7ecd5;
+ pointer-events:none;
+}
+#yard .move-pad .pad-btn,#hall .move-pad .pad-btn {
+ position:relative;
+ background:rgba(255,255,255,.93) !important;
+ color:#294c36 !important;
+ border:1px solid #d7e5d5 !important;
+ border-radius:12px !important;
+ font-size:18px !important;
+ font-weight:900 !important;
+ cursor:pointer;
+ touch-action:none !important;
+ pointer-events:auto !important;
+ -webkit-tap-highlight-color:transparent;
+}
+#yard .move-pad .pad-btn.center,#hall .move-pad .pad-btn.center{
+ background:rgba(218,233,213,.9) !important;
+ font-size:18px !important;
+ pointer-events:none !important;
+}
+#yard .move-pad .pad-btn:active,#hall .move-pad .pad-btn:active{
+ background:#cde5d0 !important;
+ transform:scale(.95);
+}
+#yard .screen-footer,#hall .screen-footer{z-index:8}
+#yard .people-layer .character.me,#hall .people-layer .character.me{
+ transition:left .115s linear,top .115s linear;
+}
+@media(max-width:360px){
+ #yard #yardMovePad,#hall #hallMovePad{right:7px !important;width:110px !important;height:110px !important;bottom:calc(107px + env(safe-area-inset-bottom)) !important}
+ #yard .move-pad .pad-btn,#hall .move-pad .pad-btn{font-size:17px !important}
+}
+
 </style>
 </head>
 <body>
@@ -493,11 +569,11 @@
   <div class="people-layer" id="yardPeople"></div>
   <div class="room-bubble" id="yardBubble">🌿 Mái chùa khang trang, cổ kính và thanh tịnh</div>
   <div class="move-pad" id="yardMovePad" data-pad-for="yard" aria-label="Điều khiển di chuyển nhân vật ở sân chùa">
-    <button class="pad-btn up" data-move-room="yard" data-dir="up" type="button">▲</button>
-    <button class="pad-btn left" data-move-room="yard" data-dir="left" type="button">◀</button>
+    <button class="pad-btn up" data-move-room="yard" data-dir="up" type="button" aria-label="Tiến lên" title="Tiến lên">▲</button>
+    <button class="pad-btn left" data-move-room="yard" data-dir="left" type="button" aria-label="Sang trái" title="Sang trái">◀</button>
     <button class="pad-btn center" type="button" tabindex="-1">🚶</button>
-    <button class="pad-btn right" data-move-room="yard" data-dir="right" type="button">▶</button>
-    <button class="pad-btn down" data-move-room="yard" data-dir="down" type="button">▼</button>
+    <button class="pad-btn right" data-move-room="yard" data-dir="right" type="button" aria-label="Sang phải" title="Sang phải">▶</button>
+    <button class="pad-btn down" data-move-room="yard" data-dir="down" type="button" aria-label="Lùi xuống" title="Lùi xuống">▼</button>
   </div>
   <div class="screen-footer"><button class="tool important" id="yardHall"><span class="tool-icon">⛩️</span><span>Vào Chánh điện</span></button><button class="tool" id="yardAbbot"><span class="tool-icon">🍵</span><span>Gặp Trụ Trì</span></button><button class="tool highlight" id="yardWork"><span class="tool-icon">🧹</span><span>Làm Công quả</span></button></div>
 </section>
@@ -593,11 +669,11 @@
  <div class="people-layer hall-people" id="hallPeople"></div>
  <div class="room-bubble" id="hallBubble">🪷 Tâm an, việc thuận, ngày thêm vui</div>
  <div class="move-pad hall-pad" id="hallMovePad" data-pad-for="hall" aria-label="Điều khiển di chuyển nhân vật trong chánh điện">
-   <button class="pad-btn up" data-move-room="hall" data-dir="up" type="button">▲</button>
-   <button class="pad-btn left" data-move-room="hall" data-dir="left" type="button">◀</button>
+   <button class="pad-btn up" data-move-room="hall" data-dir="up" type="button" aria-label="Tiến lên" title="Tiến lên">▲</button>
+   <button class="pad-btn left" data-move-room="hall" data-dir="left" type="button" aria-label="Sang trái" title="Sang trái">◀</button>
    <button class="pad-btn center" type="button" tabindex="-1">🪷</button>
-   <button class="pad-btn right" data-move-room="hall" data-dir="right" type="button">▶</button>
-   <button class="pad-btn down" data-move-room="hall" data-dir="down" type="button">▼</button>
+   <button class="pad-btn right" data-move-room="hall" data-dir="right" type="button" aria-label="Sang phải" title="Sang phải">▶</button>
+   <button class="pad-btn down" data-move-room="hall" data-dir="down" type="button" aria-label="Lùi xuống" title="Lùi xuống">▼</button>
  </div>
  <div class="screen-footer"><button class="tool" data-divine><span class="tool-icon">☯️</span><span>Bói Quẻ</span></button><button class="tool" data-incense><span class="tool-icon">🪔</span><span>Thắp hương</span></button><button class="tool highlight" data-prayer><span class="tool-icon">🙏</span><span>Cầu nguyện</span></button><button class="tool" data-bow><span class="tool-icon">🙇</span><span>Lạy Phật</span></button><button class="tool" data-meditate><span class="tool-icon">🧘</span><span>Ngồi thiền</span></button><button class="tool" data-chant><span class="tool-icon">📿</span><span>Niệm Phật</span></button><button class="tool" data-mala><span class="tool-icon">📿</span><span>Tràng hạt</span></button><button class="tool highlight" id="openOffering" type="button"><span class="tool-icon">🌸</span><span>Cúng dường</span></button><button class="tool important" data-exit><span class="tool-icon">⛩️</span><span>Ra sân</span></button></div>
 </section>
@@ -802,7 +878,7 @@ const $=id=>document.getElementById(id);
 const screens=['home','yard','hall','karma','abbot'];
 const safeGet=(key,fallback)=>{try{return JSON.parse(localStorage.getItem('cba3_'+key))??fallback}catch{return fallback}};
 const safeSet=(key,value)=>{try{localStorage.setItem('cba3_'+key,JSON.stringify(value))}catch{}};
-const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),offerings:safeGet('offerings_demo',[]),prayers:safeGet('prayers_demo',[]),visitors:safeGet('visitors_demo',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),sweptLeaves:safeGet('sweptLeaves',0),lastPrayer:'',presenceId:null,realtimeReady:false,yardTheme:safeGet('yardTheme_v20','current'),pos:safeGet('positions_v20',{yard:{x:50,y:72},hall:{x:52,y:77}})};
+const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),offerings:safeGet('offerings_demo',[]),prayers:safeGet('prayers_demo',[]),visitors:safeGet('visitors_demo',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),sweptLeaves:safeGet('sweptLeaves',0),lastPrayer:'',presenceId:null,realtimeReady:false,yardTheme:safeGet('yardTheme_v20','current'),pos:safeGet('positions_v20',{yard:{x:50,y:68},hall:{x:52,y:72}})};
 let toastTimer, speechTimer, currentPanel=null, audioContext;
 
 // Trang chủ & Sân chùa: phát MP3 do chủ website cung cấp.
@@ -921,7 +997,8 @@ function renderAvatars(){
    layer.appendChild(el);
   });
   if(state.joined){
-   const ownPos=room==='karma'?mePosition.karma:(state.pos[room]||mePosition[room]);
+   const rawPos=room==='karma'?mePosition.karma:(state.pos[room]||mePosition[room]);
+   const ownPos=room==='karma'?rawPos:clampMovement(room,rawPos.x,rawPos.y);
    const el=document.createElement('div');const mePose=room==='hall'?(state.action==='prayer'?'pray':state.action):'stand';el.className='character me '+(room==='hall'?(state.action+'-loop'):'');
    el.style.left=ownPos.x+'%';el.style.top=ownPos.y+'%';
    el.dataset.presenceId=state.presenceId||'local';
@@ -956,6 +1033,7 @@ function renderRoster(){
  $('peopleMode').textContent=state.localMode?'4 nhân vật được tạo để minh họa thiết kế; chỉ người trên thiết bị này là người tham gia thật.':'Danh sách người tham gia đang được đồng bộ từ Firebase.';
 }
 function showView(which){
+ stopMove();
  if(which!=='home'&&!state.joined){toast('Hãy nhập tên hoặc pháp danh trước khi vào chùa.');return}
  if(!screens.includes(which))return;
  if(which!=='hall')stopIncenseRitual();
@@ -1451,7 +1529,7 @@ function syncRemoteEvent(evt){
 }
 
 
-const ROOM_BOUNDS={yard:{minX:16,maxX:82,minY:50,maxY:68},hall:{minX:17,maxX:83,minY:56,maxY:79}};
+const ROOM_BOUNDS={yard:{minX:16,maxX:82,minY:52,maxY:68},hall:{minX:17,maxX:83,minY:57,maxY:79}};
 const DIVINE_SIGNS=[
  {name:'Càn',symbol:'☰',meaning:'Tượng trưng cho sự sáng tạo, cương kiện, mạnh mẽ.'},
  {name:'Khôn',symbol:'☷',meaning:'Tượng trưng cho sự tiếp nhận, nhu thuận, mềm mỏng.'},
@@ -1491,6 +1569,8 @@ function syncMovePads(){
  const yardPad=$('yardMovePad'),hallPad=$('hallMovePad');
  if(yardPad) yardPad.style.display=state.scene==='yard'?'grid':'none';
  if(hallPad) hallPad.style.display=state.scene==='hall'?'grid':'none';
+ if(yardPad)yardPad.hidden=state.scene!=='yard';
+ if(hallPad)hallPad.hidden=state.scene!=='hall';
 }
 function moveSelf(room,dir,step=2.2){
  if(state.scene!==room || !state.joined) return;
@@ -1503,32 +1583,68 @@ function moveSelf(room,dir,step=2.2){
  if(dir==='right') x+=step;
  const clamped=clampMovement(room,x,y);
  state.pos[room]=clamped;
- persist(); renderAvatars(); publishPresence();
- if(room==='yard' && clamped.y<=64 && clamped.x>=41 && clamped.x<=59){
+ persist(); updateSelfPosition(room);
+ if(Date.now()-lastMovePublish>260){publishPresence();lastMovePublish=Date.now();}
+ if(room==='yard' && clamped.y<=53 && clamped.x>=41 && clamped.x<=59){
+   stopMove();
    bubble('🪷 Bạn đã tới cửa chính. Đang vào Chánh điện...');
-   setTimeout(()=>showView('hall'),180);
+   setTimeout(()=>{if(state.scene==='yard')showView('hall');},180);
  }
 }
-function startMove(room,dir){ stopMove(); moveSelf(room,dir,3); moveTimer=setInterval(()=>moveSelf(room,dir,2),110); }
-function stopMove(){ if(moveTimer){clearInterval(moveTimer);moveTimer=null;} }
+let moveButtonDown=false;
+let movedOnPointer=false;
+let lastMovePublish=0;
+function updateSelfPosition(room){
+ const pos=state.pos[room],me=$(room+'People')?.querySelector('.character.me');
+ if(!pos){return;}
+ if(me){me.style.left=pos.x+'%';me.style.top=pos.y+'%';}
+ else renderAvatars();
+}
+function startMove(room,dir){
+ stopMove();
+ if(!state.joined||state.scene!==room)return;
+ moveButtonDown=true;movedOnPointer=true;
+ moveSelf(room,dir,3.2);
+ moveTimer=setInterval(()=>{
+  if(moveButtonDown&&state.scene===room)moveSelf(room,dir,1.6);
+  else stopMove();
+ },120);
+}
+function stopMove(){
+ const wasMoving=moveButtonDown;
+ moveButtonDown=false;
+ if(moveTimer){clearInterval(moveTimer);moveTimer=null;}
+ if(wasMoving)publishPresence();
+}
 function bindMovePads(){
  document.querySelectorAll('[data-move-room]').forEach(btn=>{
   btn.style.touchAction='none';
-  const start=e=>{ if(e){e.preventDefault();e.stopPropagation();} startMove(btn.dataset.moveRoom,btn.dataset.dir); };
-  const stop=e=>{ if(e){e.preventDefault();e.stopPropagation();} stopMove(); };
-  btn.addEventListener('pointerdown',start);
-  btn.addEventListener('pointerup',stop);
-  btn.addEventListener('pointerleave',stop);
-  btn.addEventListener('pointercancel',stop);
-  btn.addEventListener('touchstart',start,{passive:false});
-  btn.addEventListener('touchend',stop,{passive:false});
-  btn.addEventListener('touchcancel',stop,{passive:false});
-  btn.addEventListener('mouseup',stop);
-  btn.addEventListener('mouseleave',stop);
-  btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();moveSelf(btn.dataset.moveRoom,btn.dataset.dir,3)});
+  btn.addEventListener('pointerdown',e=>{
+   if(e.button!==undefined && e.button!==0)return;
+   e.preventDefault();e.stopPropagation();
+   if(btn.setPointerCapture)try{btn.setPointerCapture(e.pointerId)}catch{}
+   startMove(btn.dataset.moveRoom,btn.dataset.dir);
+  });
+  for(const event of ['pointerup','pointercancel','lostpointercapture']){
+   btn.addEventListener(event,e=>{e.preventDefault();stopMove();});
+  }
+  // Older in-app browsers without Pointer Events.
+  if(!window.PointerEvent){
+   btn.addEventListener('touchstart',e=>{e.preventDefault();startMove(btn.dataset.moveRoom,btn.dataset.dir)},{passive:false});
+   btn.addEventListener('touchend',e=>{e.preventDefault();stopMove()},{passive:false});
+   btn.addEventListener('touchcancel',stopMove,{passive:true});
+   btn.addEventListener('mousedown',()=>startMove(btn.dataset.moveRoom,btn.dataset.dir));
+   btn.addEventListener('mouseup',stopMove);
+  }
+  btn.addEventListener('click',e=>{
+   e.preventDefault();e.stopPropagation();
+   if(!movedOnPointer)moveSelf(btn.dataset.moveRoom,btn.dataset.dir,3.2);
+   movedOnPointer=false;
+  });
  });
  document.addEventListener('pointerup',stopMove);
- document.addEventListener('touchend',stopMove,{passive:true});
+ document.addEventListener('pointercancel',stopMove);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)stopMove()});
 }
 function openDivinePanel(){ if(!state.joined){toast('Hãy vào chùa trước nhé.');return;} if(state.scene!=='hall')showView('hall'); openPanel('divinePanel'); }
 function spinDivination(){
