@@ -76,7 +76,8 @@
 
 
 /* ===== V14 upgrades ===== */
-#yard .screen-footer{justify-content:center;gap:10px;padding:10px 14px}
+#yard .screen-footer{justify-content:center;gap:8px;padding:8px 10px;bottom:calc(10px + env(safe-area-inset-bottom))}
+#yard .move-pad{width:104px;height:104px;right:10px;bottom:108px;gap:6px;padding:7px}
 #yard .tool{width:92px;min-width:92px;height:70px}
 #yard .tool span:last-child{font-size:10px}
 #yard .visitor-board{top:18%;left:10px;height:clamp(150px,23dvh,205px);background:linear-gradient(145deg,#fffef7f0,#ece5cff3)}
@@ -312,12 +313,14 @@
 .yard-sky-fx .cloud-left{left:21%;transform:translateX(35vw)}
 .yard-sky-fx .cloud-right{right:21%;transform:translateX(-35vw)}
 .yard-sky-fx .sky-buddha,.yard-sky-fx .sky-dragon{position:absolute;left:50%;transform:translateX(-50%);object-fit:contain;height:auto;transition:opacity 1.1s ease,transform 1.4s ease;pointer-events:none}
-.yard-sky-fx .sky-buddha{top:82px;width:min(42vw,220px);border-radius:24px;opacity:0;box-shadow:0 0 30px rgba(255,214,116,.4)}
-.yard-sky-fx .sky-dragon{top:62px;width:min(54vw,260px);opacity:0}
+.yard-sky-fx .sky-buddha,.yard-sky-fx .sky-dragon{position:absolute;left:50%;transform:translateX(-50%);object-fit:contain;height:auto;transition:opacity 1.1s ease,transform 1.4s ease;pointer-events:none;filter:drop-shadow(0 10px 18px rgba(0,0,0,.16))}
+.yard-sky-fx .sky-buddha{top:74px;width:min(28vw,150px);max-height:150px;opacity:0}
+.yard-sky-fx .sky-dragon{top:68px;width:min(31vw,170px);max-height:170px;opacity:0}
 .yard-sky-fx .night-overlay{position:absolute;inset:0;background:radial-gradient(circle at 50% 18%,rgba(40,55,88,.15),rgba(12,16,29,.72) 55%,rgba(7,10,19,.88));opacity:0;transition:opacity .9s ease}
 .yard-sky-fx .stars{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
 .yard-sky-fx .star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff2b7;box-shadow:0 0 10px rgba(255,249,196,.75);animation:twinkle 1.8s ease-in-out infinite alternate}
 @keyframes twinkle{from{opacity:.25;transform:scale(.7)}to{opacity:1;transform:scale(1.25)}}
+.yard-sky-fx.current .cloud,.yard-sky-fx.current .sky-buddha,.yard-sky-fx.current .sky-dragon,.yard-sky-fx.current .night-overlay,.yard-sky-fx.current .stars{opacity:0}
 .yard-sky-fx.day .cloud-left{transform:translateX(-4vw)}
 .yard-sky-fx.day .cloud-right{transform:translateX(4vw)}
 .yard-sky-fx.day .sky-buddha{opacity:1;transform:translateX(-50%) scale(1)}
@@ -325,8 +328,8 @@
 .yard-sky-fx.night .cloud,.yard-sky-fx.night .sky-buddha{opacity:0;transform:translateX(-50%) scale(.94)}
 .yard-sky-fx.night .night-overlay,.yard-sky-fx.night .stars,.yard-sky-fx.night .sky-dragon{opacity:1}
 .yard-sky-fx.night .sky-dragon{transform:translateX(-50%) translateY(0)}
-.day-night-switch{position:absolute;top:calc(70px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:7;display:flex;gap:8px;background:rgba(255,250,238,.8);backdrop-filter:blur(8px);padding:7px;border-radius:999px;box-shadow:0 10px 25px rgba(0,0,0,.12)}
-.day-night-switch button{border:0;border-radius:999px;padding:8px 13px;font-weight:800;font-size:12px;background:#f0ebdc;color:#6d644f}
+.day-night-switch{position:absolute;top:calc(70px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:7;display:flex;gap:6px;background:rgba(255,250,238,.8);backdrop-filter:blur(8px);padding:7px;border-radius:999px;box-shadow:0 10px 25px rgba(0,0,0,.12)}
+.day-night-switch button{border:0;border-radius:999px;padding:8px 11px;font-weight:800;font-size:12px;background:#f0ebdc;color:#6d644f}
 .day-night-switch button.active{background:#5c7c58;color:#fff}
 .move-pad{position:absolute;right:12px;bottom:102px;z-index:8;width:118px;height:118px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:7px;background:rgba(248,240,233,.72);padding:8px;border-radius:26px;box-shadow:0 16px 42px rgba(0,0,0,.18);backdrop-filter:blur(10px)}
 .move-pad .pad-btn{border:0;border-radius:16px;background:#ffffffd9;color:#6d6a58;font-weight:900;font-size:18px;display:grid;place-items:center;box-shadow:inset 0 -2px 0 rgba(0,0,0,.08)}
@@ -340,26 +343,27 @@
 #hall .people-layer .character{z-index:5}
 #hall .room-bubble{bottom:102px}
 #yard .room-bubble{bottom:102px}
-.bagua-stage{display:grid;gap:14px;justify-items:center;text-align:center}
-.bagua-wheel{position:relative;width:min(80vw,320px);height:min(80vw,320px);border-radius:50%;background:radial-gradient(circle,#fff7dc 0,#f4e1a7 38%,#d1b06d 39%,#6a3d17 40%,#b88e4e 65%,#7a4e22 100%);box-shadow:inset 0 0 0 8px rgba(255,242,205,.5),0 18px 40px rgba(0,0,0,.12)}
-.bagua-core{position:absolute;left:50%;top:50%;width:72px;height:72px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#fff7df,#d9bb76);box-shadow:0 0 0 6px rgba(105,66,28,.35)}
-.bagua-needle{position:absolute;left:50%;top:50%;width:10px;height:124px;transform-origin:50% 100%;transform:translate(-50%,-100%) rotate(0deg);transition:transform 4.6s cubic-bezier(.16,.84,.18,1);z-index:3}
-.bagua-needle:before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:84px solid #d35a3e;filter:drop-shadow(0 3px 4px rgba(0,0,0,.22))}
-.bagua-needle:after{content:"";position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);width:24px;height:24px;border-radius:50%;background:#7f4c21;border:5px solid #f9e4a8}
-.bagua-slot{position:absolute;left:50%;top:50%;width:92px;transform-origin:50% 50%;text-align:center;color:#5b3612;font-size:11px;font-weight:800}
-.bagua-slot span{display:block;font-size:22px;line-height:1.1}
+#divinePanel{max-height:min(66dvh,520px);padding:18px 16px calc(18px + env(safe-area-inset-bottom))}
+.bagua-stage{display:grid;gap:10px;justify-items:center;text-align:center}
+.bagua-wheel{position:relative;width:min(58vw,220px);height:min(58vw,220px);border-radius:50%;background:radial-gradient(circle,#fff7dc 0,#f4e1a7 38%,#d1b06d 39%,#6a3d17 40%,#b88e4e 65%,#7a4e22 100%);box-shadow:inset 0 0 0 8px rgba(255,242,205,.5),0 18px 40px rgba(0,0,0,.12)}
+.bagua-core{position:absolute;left:50%;top:50%;width:56px;height:56px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#fff7df,#d9bb76);box-shadow:0 0 0 5px rgba(105,66,28,.35)}
+.bagua-needle{position:absolute;left:50%;top:50%;width:10px;height:94px;transform-origin:50% 100%;transform:translate(-50%,-100%) rotate(0deg);transition:transform 4.6s cubic-bezier(.16,.84,.18,1);z-index:3}
+.bagua-needle:before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:64px solid #d35a3e;filter:drop-shadow(0 3px 4px rgba(0,0,0,.22))}
+.bagua-needle:after{content:"";position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);width:20px;height:20px;border-radius:50%;background:#7f4c21;border:4px solid #f9e4a8}
+.bagua-slot{position:absolute;left:50%;top:50%;width:66px;transform-origin:50% 50%;text-align:center;color:#5b3612;font-size:9px;font-weight:800}
+.bagua-slot span{display:block;font-size:17px;line-height:1.05}
 .bagua-slot strong{display:block;margin-bottom:2px}
-.bagua-wheel .slot-0{transform:translate(-50%,-50%) translate(0,-126px)}
-.bagua-wheel .slot-1{transform:translate(-50%,-50%) translate(88px,-88px)}
-.bagua-wheel .slot-2{transform:translate(-50%,-50%) translate(126px,0)}
-.bagua-wheel .slot-3{transform:translate(-50%,-50%) translate(88px,88px)}
-.bagua-wheel .slot-4{transform:translate(-50%,-50%) translate(0,126px)}
-.bagua-wheel .slot-5{transform:translate(-50%,-50%) translate(-88px,88px)}
-.bagua-wheel .slot-6{transform:translate(-50%,-50%) translate(-126px,0)}
-.bagua-wheel .slot-7{transform:translate(-50%,-50%) translate(-88px,-88px)}
-.divine-result{min-height:78px;width:100%;padding:12px 14px;border:1px solid #e5d2ad;border-radius:18px;background:#fffcf4;color:#6d5530;line-height:1.5;font-size:13px;font-weight:700}
+.bagua-wheel .slot-0{transform:translate(-50%,-50%) translate(0,-87px)}
+.bagua-wheel .slot-1{transform:translate(-50%,-50%) translate(61px,-61px)}
+.bagua-wheel .slot-2{transform:translate(-50%,-50%) translate(87px,0)}
+.bagua-wheel .slot-3{transform:translate(-50%,-50%) translate(61px,61px)}
+.bagua-wheel .slot-4{transform:translate(-50%,-50%) translate(0,87px)}
+.bagua-wheel .slot-5{transform:translate(-50%,-50%) translate(-61px,61px)}
+.bagua-wheel .slot-6{transform:translate(-50%,-50%) translate(-87px,0)}
+.bagua-wheel .slot-7{transform:translate(-50%,-50%) translate(-61px,-61px)}
+.divine-result{min-height:46px;width:100%;padding:10px 12px;border:1px solid #e5d2ad;border-radius:16px;background:#fffcf4;color:#6d5530;line-height:1.45;font-size:12px;font-weight:700}
 .btn.secondary{background:#efe4d1;color:#6d6558}
-@media(max-width:390px){.move-pad{width:110px;height:110px;bottom:96px;right:10px}.day-night-switch{top:calc(66px + env(safe-area-inset-top));}.day-night-switch button{padding:7px 11px;font-size:11px}.bagua-slot{width:82px;font-size:10px}.bagua-slot span{font-size:20px}.bagua-wheel .slot-0{transform:translate(-50%,-50%) translate(0,-113px)}.bagua-wheel .slot-1{transform:translate(-50%,-50%) translate(80px,-80px)}.bagua-wheel .slot-2{transform:translate(-50%,-50%) translate(113px,0)}.bagua-wheel .slot-3{transform:translate(-50%,-50%) translate(80px,80px)}.bagua-wheel .slot-4{transform:translate(-50%,-50%) translate(0,113px)}.bagua-wheel .slot-5{transform:translate(-50%,-50%) translate(-80px,80px)}.bagua-wheel .slot-6{transform:translate(-50%,-50%) translate(-113px,0)}.bagua-wheel .slot-7{transform:translate(-50%,-50%) translate(-80px,-80px)}}
+@media(max-width:390px){.move-pad{width:100px;height:100px;bottom:96px;right:10px}.day-night-switch{top:calc(66px + env(safe-area-inset-top));}.day-night-switch button{padding:7px 9px;font-size:11px}.bagua-slot{width:60px;font-size:8px}.bagua-slot span{font-size:15px}.bagua-wheel .slot-0{transform:translate(-50%,-50%) translate(0,-79px)}.bagua-wheel .slot-1{transform:translate(-50%,-50%) translate(56px,-56px)}.bagua-wheel .slot-2{transform:translate(-50%,-50%) translate(79px,0)}.bagua-wheel .slot-3{transform:translate(-50%,-50%) translate(56px,56px)}.bagua-wheel .slot-4{transform:translate(-50%,-50%) translate(0,79px)}.bagua-wheel .slot-5{transform:translate(-50%,-50%) translate(-56px,56px)}.bagua-wheel .slot-6{transform:translate(-50%,-50%) translate(-79px,0)}.bagua-wheel .slot-7{transform:translate(-50%,-50%) translate(-56px,-56px)}}
 
 </style>
 </head>
@@ -465,12 +469,13 @@
   <div class="yard-sky-fx" id="yardSkyFx" aria-hidden="true">
     <div class="cloud cloud-left"></div>
     <div class="cloud cloud-right"></div>
-    <img class="sky-buddha" id="skyBuddha" src="phat-bau-troi.jpg" alt="Phật hiện giữa trời sáng">
+    <img class="sky-buddha" id="skyBuddha" src="phat-bau-troi.png" alt="Phật hiện giữa trời sáng">
     <div class="night-overlay"></div>
     <div class="stars" id="yardStars"></div>
-    <img class="sky-dragon" id="skyDragon" src="rong-dem.jpg" alt="Rồng xuất hiện trên bầu trời đêm">
+    <img class="sky-dragon" id="skyDragon" src="rong-dem.png" alt="Rồng xuất hiện trên bầu trời đêm">
   </div>
   <div class="day-night-switch" id="yardThemeSwitch" role="group" aria-label="Công tắc sáng tối của sân chùa">
+    <button type="button" data-theme-mode="current" id="switchCurrent">🏯 Hiện tại</button>
     <button type="button" data-theme-mode="day" id="switchDay">☀️ Sáng</button>
     <button type="button" data-theme-mode="night" id="switchNight">🌙 Tối</button>
   </div>
@@ -793,7 +798,7 @@ const $=id=>document.getElementById(id);
 const screens=['home','yard','hall','karma','abbot'];
 const safeGet=(key,fallback)=>{try{return JSON.parse(localStorage.getItem('cba3_'+key))??fallback}catch{return fallback}};
 const safeSet=(key,value)=>{try{localStorage.setItem('cba3_'+key,JSON.stringify(value))}catch{}};
-const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),offerings:safeGet('offerings_demo',[]),prayers:safeGet('prayers_demo',[]),visitors:safeGet('visitors_demo',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),sweptLeaves:safeGet('sweptLeaves',0),lastPrayer:'',presenceId:null,realtimeReady:false,yardTheme:safeGet('yardTheme','day'),pos:safeGet('positions_v19',{yard:{x:51,y:82},hall:{x:52,y:77}})};
+const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),offerings:safeGet('offerings_demo',[]),prayers:safeGet('prayers_demo',[]),visitors:safeGet('visitors_demo',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),sweptLeaves:safeGet('sweptLeaves',0),lastPrayer:'',presenceId:null,realtimeReady:false,yardTheme:safeGet('yardTheme_v20','current'),pos:safeGet('positions_v20',{yard:{x:50,y:72},hall:{x:52,y:77}})};
 let toastTimer, speechTimer, currentPanel=null, audioContext;
 
 // Trang chủ & Sân chùa: phát MP3 do chủ website cung cấp.
@@ -876,8 +881,8 @@ function toggleMusic(){
 
 const MOCKS=[{id:'sample-a',name:'An (mẫu)',gender:'female',scene:'yard',action:'stand',sample:true},{id:'sample-b',name:'Minh (mẫu)',gender:'male',scene:'yard',action:'stand',sample:true},{id:'sample-c',name:'Tịnh Tâm (mẫu)',gender:'female',scene:'hall',action:'meditate',sample:true},{id:'sample-d',name:'Bình (mẫu)',gender:'male',scene:'hall',action:'kneel',sample:true}];
 const positions={yard:[{x:34,y:77,s:'tiny'},{x:72,y:79,s:'small'},{x:47,y:87,s:''},{x:21,y:88,s:'small'},{x:80,y:90,s:''},{x:63,y:84,s:'small'}],hall:[{x:31,y:62,s:'small'},{x:72,y:62,s:'small'},{x:23,y:68,s:''},{x:80,y:68,s:''},{x:44,y:67,s:'small'},{x:62,y:67,s:'small'}],karma:[{x:73,y:70,s:'small'},{x:60,y:75,s:'small'}]};
-const mePosition={yard:{x:51,y:82},hall:{x:52,y:70},karma:{x:79,y:72}};
-function persist(){safeSet('name',state.name);safeSet('gender',state.gender);safeSet('malaCount',state.malaCount);safeSet('sweptLeaves',state.sweptLeaves);safeSet('positions_v19',state.pos);safeSet('yardTheme',state.yardTheme)}
+const mePosition={yard:{x:50,y:72},hall:{x:52,y:70},karma:{x:79,y:72}};
+function persist(){safeSet('name',state.name);safeSet('gender',state.gender);safeSet('malaCount',state.malaCount);safeSet('sweptLeaves',state.sweptLeaves);safeSet('positions_v20',state.pos);safeSet('yardTheme_v20',state.yardTheme)}
 function niceName(raw){return String(raw||'').trim().replace(/\s+/g,' ').slice(0,24)}
 function escapeText(s){return String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
 function toast(msg){$('toast').textContent=msg;$('toast').classList.add('open');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('open'),2800)}
@@ -892,8 +897,9 @@ function charSVG(type,pose='stand'){
 function positionForPresence(room,p,i){
  const fallback=positions[room][i%positions[room].length];
  const x=Number(p&&p.x), y=Number(p&&p.y);
- if(Number.isFinite(x)&&Number.isFinite(y)) return {x,y,s:(p&&p.s)||fallback.s};
- return fallback;
+ if(Number.isFinite(x)&&Number.isFinite(y)){const clamped=clampMovement(room,x,y); return {x:clamped.x,y:clamped.y,s:(p&&p.s)||fallback.s};}
+ const fallbackPos=clampMovement(room,fallback.x,fallback.y);
+ return {...fallbackPos,s:fallback.s};
 }
 function renderAvatars(){
  for(const room of ['yard','hall','karma']){
@@ -1441,7 +1447,7 @@ function syncRemoteEvent(evt){
 }
 
 
-const ROOM_BOUNDS={yard:{minX:14,maxX:86,minY:61,maxY:88},hall:{minX:17,maxX:83,minY:57,maxY:84}};
+const ROOM_BOUNDS={yard:{minX:16,maxX:82,minY:52,maxY:74},hall:{minX:17,maxX:83,minY:57,maxY:82}};
 const DIVINE_SIGNS=[
  {name:'Càn',symbol:'☰',meaning:'Tượng trưng cho sự sáng tạo, cương kiện, mạnh mẽ.'},
  {name:'Khôn',symbol:'☷',meaning:'Tượng trưng cho sự tiếp nhận, nhu thuận, mềm mỏng.'},
@@ -1466,11 +1472,12 @@ function ensureStars(){
 function applyYardTheme(){
  ensureStars();
  const fx=$('yardSkyFx'); if(!fx) return;
- fx.classList.toggle('day',state.yardTheme!=='night');
+ fx.classList.toggle('current',state.yardTheme==='current');
+ fx.classList.toggle('day',state.yardTheme==='day');
  fx.classList.toggle('night',state.yardTheme==='night');
  document.querySelectorAll('[data-theme-mode]').forEach(btn=>btn.classList.toggle('active',btn.dataset.themeMode===state.yardTheme));
- safeSet('yardTheme',state.yardTheme);
- bubble(state.yardTheme==='night'?'🌙 Đêm xuống, sao sáng lấp lánh quanh mái chùa.':'☀️ Trời sáng, mây tan và Phật quang hiện giữa trời.');
+ safeSet('yardTheme_v20',state.yardTheme);
+ bubble(state.yardTheme==='night'?'🌙 Đêm xuống, sao sáng lấp lánh và rồng hiện trên trời.':state.yardTheme==='day'?'☀️ Trời sáng, mây tan và Phật quang hiện giữa trời.':'🏯 Trở về khung cảnh hiện tại của sân chùa.');
 }
 function clampMovement(room,x,y){
  const b=ROOM_BOUNDS[room];
@@ -1521,6 +1528,7 @@ function spinDivination(){
  $('divineResult').textContent='Kim đang xoay... hãy đợi quẻ dừng đúng duyên.';
  setTimeout(()=>{
    $('divineResult').innerHTML=`<strong>${choice.name} (${choice.symbol})</strong><br>${choice.meaning}`;
+   toast(`☯️ ${choice.name} (${choice.symbol}): ${choice.meaning}`);
    divineSpinning=false;
  },4700);
 }
