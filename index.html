@@ -445,6 +445,20 @@
  #yard .move-pad .pad-btn,#hall .move-pad .pad-btn{font-size:17px !important}
 }
 
+
+/* ===== V23: chạm để di chuyển + chỉnh hiệu ứng bầu trời ===== */
+#yard,#hall{touch-action:manipulation}
+#yard .screen-footer,#hall .screen-footer,#yard .room-header,#hall .room-header,#yard .visitor-board,#hall .prayer-board,#hall .offering-board,#yard .day-night-switch,#hall .hall-actions,.panel,.modal,.where,.round,.tool,.tool-mini,.board-action,input,textarea,select,button{touch-action:manipulation}
+#yard .move-pad,#hall .move-pad{display:none !important}
+.tap-move-hint{position:absolute;right:12px;bottom:110px;z-index:8;font-size:10px;font-weight:700;color:#5f6654;background:rgba(255,250,235,.78);border:1px solid rgba(233,219,177,.95);padding:6px 10px;border-radius:999px;box-shadow:0 8px 22px rgba(56,40,16,.12);backdrop-filter:blur(3px);pointer-events:none;opacity:.92;max-width:42vw;text-align:center}
+.hall-tap-hint{bottom:104px;right:12px}
+.day-night-switch{right:8px !important;top:98px !important;transform:scale(.92);transform-origin:top right}
+.day-night-switch button{padding:8px 10px !important;font-size:11px !important}
+.yard-sky-fx.current .sky-buddha,.yard-sky-fx.current .sky-dragon{opacity:0;transform:translateX(-50%) translateY(-12px) scale(.92)}
+.yard-sky-fx.day .sky-buddha{top:10px !important;width:min(22vw,116px) !important;max-height:116px !important;opacity:.52 !important;transform:translateX(-50%) translateY(0) scale(1) !important}
+.yard-sky-fx.night .sky-dragon{top:8px !important;width:min(28vw,150px) !important;max-height:150px !important;opacity:.5 !important;transform:translateX(-50%) translateY(0) scale(1) !important}
+.character.me{transition:left .08s linear, top .08s linear}
+
 </style>
 </head>
 <body>
@@ -568,13 +582,7 @@
   </aside>
   <div class="people-layer" id="yardPeople"></div>
   <div class="room-bubble" id="yardBubble">🌿 Mái chùa khang trang, cổ kính và thanh tịnh</div>
-  <div class="move-pad" id="yardMovePad" data-pad-for="yard" aria-label="Điều khiển di chuyển nhân vật ở sân chùa">
-    <button class="pad-btn up" data-move-room="yard" data-dir="up" type="button" aria-label="Tiến lên" title="Tiến lên">▲</button>
-    <button class="pad-btn left" data-move-room="yard" data-dir="left" type="button" aria-label="Sang trái" title="Sang trái">◀</button>
-    <button class="pad-btn center" type="button" tabindex="-1">🚶</button>
-    <button class="pad-btn right" data-move-room="yard" data-dir="right" type="button" aria-label="Sang phải" title="Sang phải">▶</button>
-    <button class="pad-btn down" data-move-room="yard" data-dir="down" type="button" aria-label="Lùi xuống" title="Lùi xuống">▼</button>
-  </div>
+  <div class="tap-move-hint" id="yardTapHint" aria-hidden="true">👆 Chạm vào khoảng trống trên sân để di chuyển</div>
   <div class="screen-footer"><button class="tool important" id="yardHall"><span class="tool-icon">⛩️</span><span>Vào Chánh điện</span></button><button class="tool" id="yardAbbot"><span class="tool-icon">🍵</span><span>Gặp Trụ Trì</span></button><button class="tool highlight" id="yardWork"><span class="tool-icon">🧹</span><span>Làm Công quả</span></button></div>
 </section>
 <!-- SCREEN 3: HALL -->
@@ -668,13 +676,7 @@
  </aside>
  <div class="people-layer hall-people" id="hallPeople"></div>
  <div class="room-bubble" id="hallBubble">🪷 Tâm an, việc thuận, ngày thêm vui</div>
- <div class="move-pad hall-pad" id="hallMovePad" data-pad-for="hall" aria-label="Điều khiển di chuyển nhân vật trong chánh điện">
-   <button class="pad-btn up" data-move-room="hall" data-dir="up" type="button" aria-label="Tiến lên" title="Tiến lên">▲</button>
-   <button class="pad-btn left" data-move-room="hall" data-dir="left" type="button" aria-label="Sang trái" title="Sang trái">◀</button>
-   <button class="pad-btn center" type="button" tabindex="-1">🪷</button>
-   <button class="pad-btn right" data-move-room="hall" data-dir="right" type="button" aria-label="Sang phải" title="Sang phải">▶</button>
-   <button class="pad-btn down" data-move-room="hall" data-dir="down" type="button" aria-label="Lùi xuống" title="Lùi xuống">▼</button>
- </div>
+ <div class="tap-move-hint hall-tap-hint" id="hallTapHint" aria-hidden="true">👆 Chạm vào nền chánh điện để di chuyển</div>
  <div class="screen-footer"><button class="tool" data-divine><span class="tool-icon">☯️</span><span>Bói Quẻ</span></button><button class="tool" data-incense><span class="tool-icon">🪔</span><span>Thắp hương</span></button><button class="tool highlight" data-prayer><span class="tool-icon">🙏</span><span>Cầu nguyện</span></button><button class="tool" data-bow><span class="tool-icon">🙇</span><span>Lạy Phật</span></button><button class="tool" data-meditate><span class="tool-icon">🧘</span><span>Ngồi thiền</span></button><button class="tool" data-chant><span class="tool-icon">📿</span><span>Niệm Phật</span></button><button class="tool" data-mala><span class="tool-icon">📿</span><span>Tràng hạt</span></button><button class="tool highlight" id="openOffering" type="button"><span class="tool-icon">🌸</span><span>Cúng dường</span></button><button class="tool important" data-exit><span class="tool-icon">⛩️</span><span>Ra sân</span></button></div>
 </section>
 <!-- SCREEN 4: Làm Công quả -->
@@ -1566,12 +1568,13 @@ function clampMovement(room,x,y){
  return {x:Math.max(b.minX,Math.min(b.maxX,x)),y:Math.max(b.minY,Math.min(b.maxY,y))};
 }
 function syncMovePads(){
- const yardPad=$('yardMovePad'),hallPad=$('hallMovePad');
- if(yardPad) yardPad.style.display=state.scene==='yard'?'grid':'none';
- if(hallPad) hallPad.style.display=state.scene==='hall'?'grid':'none';
- if(yardPad)yardPad.hidden=state.scene!=='yard';
- if(hallPad)hallPad.hidden=state.scene!=='hall';
+ const yardHint=$('yardTapHint'),hallHint=$('hallTapHint');
+ if(yardHint) yardHint.style.display=state.scene==='yard'?'block':'none';
+ if(hallHint) hallHint.style.display=state.scene==='hall'?'block':'none';
 }
+let movePathTimer=null;
+let moveTarget=null;
+let lastMovePublish=0;
 function moveSelf(room,dir,step=2.2){
  if(state.scene!==room || !state.joined) return;
  state.action='stand';
@@ -1591,60 +1594,84 @@ function moveSelf(room,dir,step=2.2){
    setTimeout(()=>{if(state.scene==='yard')showView('hall');},180);
  }
 }
-let moveButtonDown=false;
-let movedOnPointer=false;
-let lastMovePublish=0;
 function updateSelfPosition(room){
  const pos=state.pos[room],me=$(room+'People')?.querySelector('.character.me');
  if(!pos){return;}
  if(me){me.style.left=pos.x+'%';me.style.top=pos.y+'%';}
  else renderAvatars();
 }
-function startMove(room,dir){
- stopMove();
+function stopMovePath(){
+ if(movePathTimer){clearInterval(movePathTimer);movePathTimer=null;}
+ moveTarget=null;
+}
+function moveToPoint(room,targetX,targetY){
+ stopMovePath();
  if(!state.joined||state.scene!==room)return;
- moveButtonDown=true;movedOnPointer=true;
- moveSelf(room,dir,3.2);
- moveTimer=setInterval(()=>{
-  if(moveButtonDown&&state.scene===room)moveSelf(room,dir,1.6);
-  else stopMove();
- },120);
+ state.action='stand';
+ const target=clampMovement(room,targetX,targetY);
+ moveTarget={room,x:target.x,y:target.y};
+ const stepOnce=()=>{
+   if(!moveTarget||state.scene!==room){stopMovePath();return;}
+   const now=state.pos[room]||{...mePosition[room]};
+   const dx=moveTarget.x-now.x, dy=moveTarget.y-now.y;
+   const dist=Math.hypot(dx,dy);
+   if(dist<1){
+     state.pos[room]=clampMovement(room,moveTarget.x,moveTarget.y);
+     persist(); updateSelfPosition(room); publishPresence();
+     stopMovePath();
+     if(room==='yard' && state.pos[room].y<=53 && state.pos[room].x>=41 && state.pos[room].x<=59){
+       bubble('🪷 Bạn đã tới cửa chính. Đang vào Chánh điện...');
+       setTimeout(()=>{if(state.scene==='yard')showView('hall');},180);
+     }
+     return;
+   }
+   const step=Math.min(2.3,dist);
+   const next=clampMovement(room, now.x+(dx/dist)*step, now.y+(dy/dist)*step);
+   state.pos[room]=next;
+   persist(); updateSelfPosition(room);
+   if(Date.now()-lastMovePublish>220){publishPresence();lastMovePublish=Date.now();}
+   if(room==='yard' && next.y<=53 && next.x>=41 && next.x<=59){
+     publishPresence();
+     stopMovePath();
+     bubble('🪷 Bạn đã tới cửa chính. Đang vào Chánh điện...');
+     setTimeout(()=>{if(state.scene==='yard')showView('hall');},180);
+   }
+ };
+ stepOnce();
+ movePathTimer=setInterval(stepOnce,70);
 }
 function stopMove(){
- const wasMoving=moveButtonDown;
- moveButtonDown=false;
- if(moveTimer){clearInterval(moveTimer);moveTimer=null;}
- if(wasMoving)publishPresence();
+ stopMovePath();
+ if(state.joined) publishPresence();
 }
-function bindMovePads(){
- document.querySelectorAll('[data-move-room]').forEach(btn=>{
-  btn.style.touchAction='none';
-  btn.addEventListener('pointerdown',e=>{
-   if(e.button!==undefined && e.button!==0)return;
-   e.preventDefault();e.stopPropagation();
-   if(btn.setPointerCapture)try{btn.setPointerCapture(e.pointerId)}catch{}
-   startMove(btn.dataset.moveRoom,btn.dataset.dir);
-  });
-  for(const event of ['pointerup','pointercancel','lostpointercapture']){
-   btn.addEventListener(event,e=>{e.preventDefault();stopMove();});
-  }
-  // Older in-app browsers without Pointer Events.
-  if(!window.PointerEvent){
-   btn.addEventListener('touchstart',e=>{e.preventDefault();startMove(btn.dataset.moveRoom,btn.dataset.dir)},{passive:false});
-   btn.addEventListener('touchend',e=>{e.preventDefault();stopMove()},{passive:false});
-   btn.addEventListener('touchcancel',stopMove,{passive:true});
-   btn.addEventListener('mousedown',()=>startMove(btn.dataset.moveRoom,btn.dataset.dir));
-   btn.addEventListener('mouseup',stopMove);
-  }
-  btn.addEventListener('click',e=>{
-   e.preventDefault();e.stopPropagation();
-   if(!movedOnPointer)moveSelf(btn.dataset.moveRoom,btn.dataset.dir,3.2);
-   movedOnPointer=false;
-  });
+function movementTapAllowed(target){
+ return !target.closest('button,input,textarea,select,option,label,a,.panel,.modal,.screen-footer,.room-header,.visitor-board,.day-night-switch,.offering-board,.prayer-board,.board-action,.round,.where,[data-no-move]');
+}
+function bindTapMovement(){
+ ['yard','hall'].forEach(room=>{
+   const area=$(room); if(!area) return;
+   area.addEventListener('click',e=>{
+     if(state.scene!==room||!state.joined) return;
+     if(!movementTapAllowed(e.target)) return;
+     const rect=area.getBoundingClientRect();
+     const x=((e.clientX-rect.left)/rect.width)*100;
+     const y=((e.clientY-rect.top)/rect.height)*100;
+     moveToPoint(room,x,y);
+   });
+   if(!window.PointerEvent){
+     area.addEventListener('touchend',e=>{
+       if(state.scene!==room||!state.joined) return;
+       if(!movementTapAllowed(e.target)) return;
+       const touch=e.changedTouches&&e.changedTouches[0];
+       if(!touch)return;
+       const rect=area.getBoundingClientRect();
+       const x=((touch.clientX-rect.left)/rect.width)*100;
+       const y=((touch.clientY-rect.top)/rect.height)*100;
+       moveToPoint(room,x,y);
+     },{passive:true});
+   }
  });
- document.addEventListener('pointerup',stopMove);
- document.addEventListener('pointercancel',stopMove);
- document.addEventListener('visibilitychange',()=>{if(document.hidden)stopMove()});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)stopMovePath()});
 }
 function openDivinePanel(){ if(!state.joined){toast('Hãy vào chùa trước nhé.');return;} if(state.scene!=='hall')showView('hall'); openPanel('divinePanel'); }
 function spinDivination(){
@@ -1707,7 +1734,8 @@ document.querySelectorAll('[data-offering-amount]').forEach(btn=>btn.onclick=()=
 $('offeringAmount').addEventListener('input',()=>{$('offeringError').textContent='';});
 $('sendOffering').onclick=sendOffering;
 $('sendWish').onclick=sendWish;$('sendPrayer').onclick=sendPrayer;$('malaStep').onclick=malaStep;$('malaReset').onclick=malaReset;$('spinDivine').onclick=spinDivination;$('closeDivine').onclick=closePanel;window.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
-bindMovePads();applyYardTheme();renderAvatars();renderWishes();renderMala();renderOfferings();renderPrayers();renderVisitors();refreshMusicButtons();syncMovePads();
+bindTapMovement();
+applyYardTheme();renderAvatars();renderWishes();renderMala();renderOfferings();renderPrayers();renderVisitors();refreshMusicButtons();syncMovePads();
 // Optional production realtime connector (starts only if user provides Firebase credentials).
 async function connectFirebase(){
  const config=window.CHUA_FIREBASE_CONFIG;
