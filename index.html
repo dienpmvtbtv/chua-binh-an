@@ -508,6 +508,24 @@
  #hall .incense-ceremony.playing .ritual-hands{animation:incenseHandsV25 13.2s ease-in-out both!important}
 }
 
+
+/* V27: Hoa sen Công đức — quầy tích lũy nhỏ, giao diện cúng dường hai loại */
+.lotus-compact{display:none;align-items:center;justify-content:center;height:31px;min-width:52px;max-width:82px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 8px;background:rgba(255,249,231,.88);color:#775d2a;border:1px solid rgba(238,212,148,.9);border-radius:18px;font-size:12px;font-weight:850;box-shadow:0 5px 15px #0001;backdrop-filter:blur(8px);pointer-events:none}
+.room-header .header-actions{gap:5px}
+#yard .room-header .where{max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.offering-tabs{display:flex;gap:6px;border-radius:16px;padding:4px;background:#f5ead8;margin:9px 0 12px}
+.offering-tabs button{flex:1;border:0;border-radius:13px;padding:10px 7px;font-size:12px;font-weight:850;color:#7c6b52;background:transparent}
+.offering-tabs button.chosen{background:#fffdf6;color:#55704b;box-shadow:0 2px 9px #0001}
+#offeringCashSection[hidden],#offeringLotusSection[hidden]{display:none!important}
+.lotus-credit{display:flex;justify-content:space-between;align-items:center;background:#f6f7e8;border:1px solid #dce6c0;border-radius:16px;padding:11px 13px;margin:10px 0;color:#597141;font-size:13px;font-weight:800}
+.lotus-credit strong{font-size:21px;color:#456741;font-variant-numeric:tabular-nums}
+.lotus-input{display:block;width:100%;font-size:17px;padding:13px 14px;border:1px solid #e5d7b9;border-radius:15px;background:#fffdf8;color:#4e594b;margin:8px 0}
+.lotus-btn{width:100%;border:none;border-radius:17px;background:#4b7358;color:#fff;font-size:13px;font-weight:850;line-height:1.45;padding:12px 10px}
+.lotus-btn:disabled{opacity:.5}
+#lotusOfferingError{min-height:17px;color:#ae4f3d;font-size:11px;margin:5px 0}
+.lotus-info{font-size:11px;line-height:1.55;color:#7f7b68;margin:11px 0 2px}
+.offering-board-lotus{color:#e9cf93!important}
+@media(max-width:380px){.lotus-compact{padding:0 6px;min-width:44px;font-size:11px}#yard .room-header .where{max-width:115px}.room-header .header-actions{gap:4px}}
 </style>
 </head>
 <body>
@@ -874,6 +892,11 @@
 
 <section id="offeringPanel" class="sheet" role="dialog" aria-modal="true" aria-label="Lòng thành tùy tâm">
   <div class="sheet-heading"><h2>Lòng thành tùy tâm</h2><button class="x-btn" data-close aria-label="Đóng">×</button></div>
+  <div class="offering-tabs" role="group" aria-label="Chọn hình thức cúng dường">
+    <button type="button" class="chosen" id="offeringCashTab">🌼 Tượng trưng bằng VNĐ</button>
+    <button type="button" id="offeringLotusTab">🪷 Bằng Hoa sen</button>
+  </div>
+  <div id="offeringCashSection">
   <p class="sheet-subtitle" style="font-size:14px;color:#705b41;margin:14px 0">Quý phật tử muốn Cúng dường bao nhiêu ạ?</p>
   <label for="offeringAmount">Số tiền cúng dường (VNĐ)</label>
   <input id="offeringAmount" class="offering-input" type="text" inputmode="numeric" autocomplete="off" maxlength="9" placeholder="Ví dụ: 50.000" aria-describedby="offeringLimit offeringError">
@@ -888,6 +911,16 @@
   <p class="offering-error" id="offeringError" role="alert"></p>
   <button type="button" class="offering-submit" id="sendOffering">Con thành tâm Cúng dường Tam Bảo! Mô phật!</button>
   <p class="offering-disclaimer">🌼 Đây là hoạt động tương tác tượng trưng trên website. Không thu tiền, không thanh toán và không xác nhận đã chuyển tiền thật.</p>
+  </div>
+  <div id="offeringLotusSection" hidden>
+    <p class="sheet-subtitle">Lòng thành tùy tâm — Cúng dường Tam Bảo bằng Hoa sen đã tích lũy.</p>
+    <div class="lotus-credit"><span>🪷 Hoa sen hiện có</span><strong id="lotusAvailable">0</strong></div>
+    <label for="lotusOfferingAmount">Số Hoa sen muốn cúng dường</label>
+    <input class="lotus-input" type="number" inputmode="numeric" min="1" max="1000" step="1" id="lotusOfferingAmount" placeholder="Ví dụ: 1">
+    <div id="lotusOfferingError" role="alert"></div>
+    <button type="button" class="lotus-btn" id="sendLotusOffering">🪷 Con thành tâm Cúng dường Hoa sen</button>
+    <p class="lotus-info">1 Hoa sen = 1 công đức. Bạn có thể cúng dường tối đa số Hoa sen đang có. Đây chỉ là điểm trong trò chơi, không phải tiền thật.</p>
+  </div>
 </section>
 <section id="offeringListPanel" class="sheet" role="dialog" aria-modal="true" aria-label="Danh sách cúng dường">
   <div class="sheet-heading"><h2>🌸 Bảng cúng dường</h2><button class="x-btn" data-close aria-label="Đóng">×</button></div>
@@ -912,7 +945,7 @@
  <div class="sheet-heading"><h2>🪷 Chùa Bình An</h2><button class="x-btn" data-close aria-label="Đóng">×</button></div>
  <p class="sheet-subtitle">Không gian trải nghiệm hoạt hình riêng cho KHDN VietinBank TV, dựa trên ảnh chùa do bạn cung cấp.</p>
  <p style="font-size:13px;line-height:1.7">Nhạc MP3 ở Trang chủ/Sân chùa và nhạc thiền riêng trong Chánh điện; bật bằng nút 🎵 hoặc khi bạn vào sân chùa. Vào sân chùa, chọn nam/nữ áo lam, đến chánh điện để thắp hương, cầu nguyện, lạy Phật, ngồi thiền, niệm Phật và đếm tràng hạt 108 hạt và cúng dường tượng trưng. Nhấn vào số người ở góc trên để xem danh sách nhân vật.</p>
- <div class="divider"></div><p style="font-size:12px;color:#846a4c;line-height:1.7"><b>Trạng thái hiện tại:</b> <span id="infoMode">Bản xem thử trên thiết bị, chưa kết nối dữ liệu nhiều người.</span><br>Chức năng Cúng dường Tam Bảo chỉ ghi nhận tượng trưng trên web, không thu tiền thật hay xử lý thanh toán. Link GitHub Pages là trang công khai; người có link có thể vào và xem lời chúc/cầu nguyện nếu Firebase dùng đăng nhập ẩn danh. Không nhập dữ liệu nội bộ hoặc khách hàng. Logo được dùng theo hình bạn cung cấp; cần xác nhận quyền sử dụng trước khi công khai.</p>
+ <div class="divider"></div><p style="font-size:12px;color:#846a4c;line-height:1.7"><b>Trạng thái hiện tại:</b> <span id="infoMode">Bản xem thử trên thiết bị, chưa kết nối dữ liệu nhiều người.</span><br>Công đức Hoa sen chỉ là điểm tương tác tượng trưng (1 hoa sen = 1 công đức); không có giá trị quy đổi thành tiền. Chức năng Cúng dường Tam Bảo không thu tiền thật hay xử lý thanh toán. Link GitHub Pages là trang công khai; người có link có thể vào và xem lời chúc/cầu nguyện nếu Firebase dùng đăng nhập ẩn danh. Không nhập dữ liệu nội bộ hoặc khách hàng. Logo được dùng theo hình bạn cung cấp; cần xác nhận quyền sử dụng trước khi công khai.</p>
  <button class="primary" data-close style="width:100%">Đã hiểu</button>
 </section>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -929,7 +962,7 @@ const $=id=>document.getElementById(id);
 const screens=['home','yard','hall','karma','abbot'];
 const safeGet=(key,fallback)=>{try{return JSON.parse(localStorage.getItem('cba3_'+key))??fallback}catch{return fallback}};
 const safeSet=(key,value)=>{try{localStorage.setItem('cba3_'+key,JSON.stringify(value))}catch{}};
-const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),offerings:safeGet('offerings_demo',[]),prayers:safeGet('prayers_demo',[]),visitors:safeGet('visitors_demo',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),sweptLeaves:safeGet('sweptLeaves',0),lastPrayer:'',presenceId:null,realtimeReady:false,yardTheme:safeGet('yardTheme_v20','current'),pos:safeGet('positions_v20',{yard:{x:50,y:68},hall:{x:52,y:72}})};
+const state={name:safeGet('name',''),gender:safeGet('gender','female'),scene:'home',action:'stand',sound:safeGet('soundOn',true),wishes:safeGet('wishes',[]),offerings:safeGet('offerings_demo',[]),prayers:safeGet('prayers_demo',[]),visitors:safeGet('visitors_demo',[]),joined:false,online:false,people:[],firebase:null,localMode:true,chantCount:0,malaCount:safeGet('malaCount',0),sweptLeaves:safeGet('sweptLeaves',0),lastPrayer:'',presenceId:null,realtimeReady:false,yardTheme:safeGet('yardTheme_v20','current'),pos:safeGet('positions_v20',{yard:{x:50,y:68},hall:{x:52,y:72}}),merit:{balance:0,earned:0,donated:0,chantProgress:0,incenseDay:'0000-00-00',incenseCount:0,donations:{}},meritProfile:null,meritReady:false,lotusOfferings:[]};
 let toastTimer, speechTimer, currentPanel=null, audioContext;
 
 // Trang chủ & Sân chùa: phát MP3 do chủ website cung cấp.
@@ -1027,6 +1060,182 @@ const positions={yard:[{x:34,y:77,s:'tiny'},{x:72,y:79,s:'small'},{x:47,y:87,s:'
 const mePosition={yard:{x:50,y:72},hall:{x:52,y:70},karma:{x:79,y:72}};
 function persist(){safeSet('name',state.name);safeSet('gender',state.gender);safeSet('malaCount',state.malaCount);safeSet('sweptLeaves',state.sweptLeaves);safeSet('positions_v20',state.pos);safeSet('yardTheme_v20',state.yardTheme)}
 function niceName(raw){return String(raw||'').trim().replace(/\s+/g,' ').slice(0,24)}
+/* V27 — Công đức Hoa sen. Chỉ dùng cho hoạt động giải trí, không quy đổi thành tiền. */
+const MERIT_DEFAULT=()=>({balance:0,earned:0,donated:0,chantProgress:0,incenseDay:'0000-00-00',incenseCount:0,donations:{}});
+function meritWalletFrom(raw){
+ const w=raw&&typeof raw==='object'?raw:{};
+ const nonNeg=n=>Number.isSafeInteger(n)&&n>=0&&n<=1000000?n:0;
+ const earned=nonNeg(w.earned),donated=Math.min(earned,nonNeg(w.donated));
+ return {
+  balance:earned-donated,earned,donated,
+  chantProgress:Number.isInteger(w.chantProgress)?Math.max(0,Math.min(9,w.chantProgress)):0,
+  incenseDay:typeof w.incenseDay==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(w.incenseDay)?w.incenseDay:'0000-00-00',
+  incenseCount:Number.isInteger(w.incenseCount)?Math.max(0,Math.min(2,w.incenseCount)):0,
+  donations:w.donations&&typeof w.donations==='object'&&!Array.isArray(w.donations)?{...w.donations}:{}
+ };
+}
+function meritDateInVietnam(){
+ const parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Ho_Chi_Minh',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+ const get=t=>parts.find(x=>x.type===t)?.value||'00';
+ return `${get('year')}-${get('month')}-${get('day')}`;
+}
+function meritProfileId(name){
+ let h=2166136261;
+ const normalized=niceName(name).normalize('NFC').toLocaleLowerCase('vi-VN');
+ for(let i=0;i<normalized.length;i++){h^=normalized.charCodeAt(i);h=Math.imul(h,16777619);}
+ return 'p'+(h>>>0).toString(16).padStart(8,'0');
+}
+function meritMutate(raw,kind,options={}){
+ const wallet=meritWalletFrom(raw);
+ const next={...wallet,donations:{...wallet.donations}};
+ let gained=false,changed=false,reason='',progress=0,gift=null;
+ if(kind==='sweep'||kind==='meditate'){
+  if(next.earned>=999999){reason='limit';}
+  else {next.earned++;next.balance++;gained=changed=true;}
+ }
+ else if(kind==='chant'){
+  next.chantProgress=(next.chantProgress+1)%10;
+  progress=next.chantProgress;changed=true;
+  if(next.chantProgress===0&&next.earned<999999){next.earned++;next.balance++;gained=true;}
+ }
+ else if(kind==='incense'){
+  const date=options.today||meritDateInVietnam();
+  if(next.incenseDay!==date){next.incenseDay=date;next.incenseCount=0;}
+  if(next.incenseCount>=2){reason='daily';}
+  else {
+    next.incenseCount++;changed=true;progress=next.incenseCount;
+    if(next.incenseCount===2&&next.earned<999999){next.earned++;next.balance++;gained=true;}
+  }
+ }
+ else if(kind==='donate'){
+  const qty=Number(options.amount);
+  if(!Number.isSafeInteger(qty)||qty<1||qty>1000000){reason='invalid';}
+  else if(next.balance<qty){reason='insufficient';}
+  else {
+   const giftId=String(options.id||'');
+   if(!/^[a-zA-Z0-9_-]{12,48}$/.test(giftId))reason='invalid';
+   else if(next.donations[giftId])reason='duplicate';
+   else {
+    const gift={name:niceName(options.name),lotus:qty,createdAt:Number(options.now)||Date.now()};
+    next.donations[giftId]=gift;
+    const ids=Object.keys(next.donations).sort((a,b)=>(next.donations[a].createdAt||0)-(next.donations[b].createdAt||0));
+    ids.slice(0,Math.max(0,ids.length-24)).forEach(key=>delete next.donations[key]);
+    next.balance-=qty;next.donated+=qty;changed=true;
+   }
+  }
+ }
+ if(!changed&&kind==='incense'&&next.incenseDay!==wallet.incenseDay){
+   // Chỉ đổi ngày sau khi hoàn tất một lượt thắp hương mới.
+   return {wallet,changed:false,gained:false,reason:reason||'daily',progress:wallet.incenseCount};
+ }
+ return {wallet:next,changed,gained,reason,progress,gift};
+}
+function initMeritBadges(){
+ document.querySelectorAll('.room-header .header-actions').forEach(el=>{
+  if(el.querySelector('.lotus-compact'))return;
+  const badge=document.createElement('span');badge.className='lotus-compact';badge.title='Số công đức Hoa sen có thể dùng để cúng dường';badge.setAttribute('aria-label','Công đức hoa sen');badge.textContent='🪷 0';
+  el.insertBefore(badge,el.firstChild);
+ });
+ updateMeritUI();
+}
+function updateMeritUI(){
+ const count=state.meritReady?String(state.merit.balance):'…';
+ document.querySelectorAll('.lotus-compact').forEach(el=>{
+  el.textContent='🪷 '+count;el.style.display=state.joined?'inline-flex':'none';
+  el.title=state.meritReady?`Hoa sen hiện có: ${state.merit.balance} (đã nhận ${state.merit.earned}, đã cúng dường ${state.merit.donated})`:'Đang tải công đức từ Firebase';
+ });
+ const available=$('lotusAvailable');if(available)available.textContent=count;
+ const qty=$('lotusOfferingAmount');if(qty){qty.max=String(state.merit.balance);}
+}
+function initMeritIdentity(){
+ if(!state.joined)return;
+ state.meritProfile=meritProfileId(state.name);
+ const configured=Boolean(window.CHUA_FIREBASE_CONFIG?.databaseURL);
+ state.merit=meritWalletFrom(configured?null:safeGet('lotus_wallet_'+state.meritProfile,null));
+ state.meritReady=!configured;
+ state.chantCount=state.merit.chantProgress;
+ updateMeritUI();
+ if(state.firebase?.watchMerit)state.firebase.watchMerit();
+}
+function storeLocalMerit(wallet){
+ safeSet('lotus_wallet_'+state.meritProfile,wallet);
+ state.merit=meritWalletFrom(wallet);state.meritReady=true;state.chantCount=wallet.chantProgress;
+ updateMeritUI();
+}
+let meritQueue=Promise.resolve();
+function meritAction(kind,options={}){
+ const capturedProfile=state.meritProfile;
+ const task=meritQueue.then(async()=>{
+  if(!state.joined||!capturedProfile||capturedProfile!==state.meritProfile)return null;
+  let result;
+  if(window.CHUA_FIREBASE_CONFIG?.databaseURL){
+   if(!state.realtimeReady||!state.meritReady||!state.firebase?.meritAction){
+    toast('🪷 Công đức đang chờ Firebase. Hãy kiểm tra kết nối và Rules V27.');return null;
+   }
+   try{result=await state.firebase.meritAction(kind,options,capturedProfile);}
+   catch(err){console.error('Không ghi nhận Hoa sen:',err);toast('🪷 Chưa lưu được Hoa sen. Kiểm tra Firebase Rules V27.');return null;}
+  }else{
+   const outcome=meritMutate(state.merit,kind,{...options,name:state.name});
+   if(outcome.changed){storeLocalMerit(outcome.wallet);result=outcome;
+    if(kind==='donate'){state.lotusOfferings=[{name:state.name,lotus:options.amount,createdAt:Date.now()},...state.lotusOfferings].slice(0,50);renderOfferings();}}
+   else result=outcome;
+  }
+  if(!result)return null;
+  if(result.wallet&&capturedProfile===state.meritProfile){state.merit=meritWalletFrom(result.wallet);state.meritReady=true;state.chantCount=state.merit.chantProgress;updateMeritUI();}
+  if(result.gained){toast('🪷 +1 Hoa sen công đức! Hiện có '+state.merit.balance+' hoa sen.');confetti('🪷');}
+  else if(kind==='incense'&&result.changed&&result.progress===1){toast('🪔 Đã thắp hương 1/2 lượt hôm nay.');}
+  else if(kind==='incense'&&result.reason==='daily'){toast('🪷 Bạn đã nhận Hoa sen thắp hương hôm nay rồi.');}
+  else if(kind==='chant'&&result.changed){if(result.progress===5)toast('📿 Đã niệm 5/10 lần để nhận Hoa sen.');}
+  return result;
+ });
+ meritQueue=task.catch(()=>null);
+ return task;
+}
+let meditationTimer=null,meditationElapsed=0,meditationTickAt=0;
+function stopMeritMeditation(){
+ if(meditationTimer){clearInterval(meditationTimer);meditationTimer=null;}
+ meditationElapsed=0;meditationTickAt=0;
+}
+function startMeritMeditation(){
+ stopMeritMeditation();meditationTickAt=Date.now();
+ meditationTimer=setInterval(()=>{
+  if(state.scene!=='hall'||state.action!=='meditate'||!state.joined){stopMeritMeditation();return;}
+  const now=Date.now();
+  if(document.hidden){meditationTickAt=now;return;}
+  meditationElapsed+=Math.max(0,Math.min(1200,now-meditationTickAt));meditationTickAt=now;
+  if(meditationElapsed>=300000){meditationElapsed-=300000;meritAction('meditate');}
+ },1000);
+}
+function switchOfferingKind(kind){
+ const cash=kind!=='lotus';
+ const c=$('offeringCashSection'),l=$('offeringLotusSection');
+ if(c)c.hidden=!cash;
+ if(l)l.hidden=cash;
+ $('offeringCashTab')?.classList.toggle('chosen',cash);
+ $('offeringLotusTab')?.classList.toggle('chosen',!cash);
+ updateMeritUI();
+}
+async function sendLotusOffering(){
+ if(!state.joined){toast('Bạn cần vào chùa trước.');return;}
+ const amtEl=$('lotusOfferingAmount'),errEl=$('lotusOfferingError'),button=$('sendLotusOffering');
+ const amount=Number(amtEl.value);
+ if(!Number.isSafeInteger(amount)||amount<1||amount>1000000){errEl.textContent='Hãy nhập số Hoa sen nguyên từ 1 đến số dư hiện có.';return;}
+ if(!state.meritReady){errEl.textContent='Số dư đang đồng bộ. Vui lòng kiểm tra kết nối Firebase.';return;}
+ if(amount>state.merit.balance){errEl.textContent='Bạn chưa có đủ Hoa sen để cúng dường.';return;}
+ if(button.disabled)return;
+ button.disabled=true;button.textContent='Đang ghi nhận...';errEl.textContent='';
+ try{
+  const id='g'+Date.now().toString(36)+Math.random().toString(36).slice(2,11);
+  const result=await meritAction('donate',{amount,id});
+  if(!result?.changed){errEl.textContent=result?.reason==='insufficient'?'Không đủ Hoa sen.':'Chưa cúng dường được. Hãy kiểm tra Firebase.';return;}
+  closePanel();
+  setTimeout(()=>floatOffering(state.name+' đã Cúng dường '+amount+' Hoa sen 🪷'),120);
+  toast('🪷 Đã cúng dường '+amount+' Hoa sen. Hiện còn '+state.merit.balance+'.');
+  amtEl.value='';
+  if(state.firebase?.emitEvent){try{await state.firebase.emitEvent('lotusOffering',String(amount));}catch(err){console.warn('Không đồng bộ được hoạt ảnh Hoa sen:',err)}}
+ }finally{button.disabled=false;button.textContent='🪷 Con thành tâm Cúng dường Hoa sen';}
+}
+
 function escapeText(s){return String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
 function toast(msg){$('toast').textContent=msg;$('toast').classList.add('open');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('open'),2800)}
 function bubble(s){const map={hall:'hallBubble',yard:'yardBubble',karma:'karmaBubble'};const id=map[state.scene]||'yardBubble';if($(id))$(id).textContent=s}
@@ -1102,6 +1311,7 @@ function showView(which){
  if(!screens.includes(which))return;
  try{stopMove();}catch(err){console.warn('Dừng di chuyển thất bại:',err);}
  if(which!=='hall')try{stopIncenseRitual();}catch(err){console.warn('Tắt hiệu ứng nhang:',err);}
+ if(which!=='hall')stopMeritMeditation();
  state.scene=which;
  screens.forEach(screen=>{const el=$(screen);if(el)el.classList.toggle('active',screen===which);});
  const runSafe=(fn,part)=>{try{fn();}catch(err){console.error('Không cập nhật được '+part,err);}};
@@ -1130,6 +1340,7 @@ function confirmEntryAndJoin(){
  // V24: không cho việc đọc lưu trữ, Firebase, nhạc hoặc hoạt ảnh chặn bước vào chùa.
  notice.classList.remove('open');notice.setAttribute('aria-hidden','true');
  state.name=n;state.gender=$('visitorGender').value;state.joined=true;state.action='stand';
+ try{initMeritIdentity();}catch(err){console.warn('Khởi tạo Hoa sen:',err);}
  try{persist();}catch(err){console.warn('Không lưu được thông tin người dùng:',err);}
  try{showView('yard');}catch(err){
    console.error('Lỗi chuyển sang Sân chùa, đang dùng cách dự phòng:',err);
@@ -1143,7 +1354,7 @@ function confirmEntryAndJoin(){
  try{confetti('🌸');}catch(err){}
 }
 function confetti(symbol){const area=$(state.scene);for(let i=0;i<8;i++){const t=document.createElement('span');t.className='sparkle';t.textContent=symbol;t.style.left=(25+Math.random()*50)+'%';t.style.top=(38+Math.random()*32)+'%';t.style.animationDelay=(i*.1)+'s';area.append(t);setTimeout(()=>t.remove(),2200)}}
-function openPanel(panel){closePanel();currentPanel=panel;$('backdrop').classList.add('open');$(panel).classList.add('open');if(panel==='wishPanel'){$('wishInput').value='';renderWishes()}if(panel==='peoplePanel')renderRoster();if(panel==='prayerListPanel')renderPrayers();if(panel==='visitorListPanel')renderVisitors();if(panel==='malaPanel')renderMala();if(panel==='offeringPanel'){$('offeringAmount').value='';$('offeringError').textContent='';}if(panel==='offeringListPanel')renderOfferings();if(panel==='prayerPanel'){$('prayerPreview').textContent='Sau khi gửi, lời cầu nguyện sẽ bay lên từ vị trí nhân vật của bạn.';}}
+function openPanel(panel){closePanel();currentPanel=panel;$('backdrop').classList.add('open');$(panel).classList.add('open');if(panel==='wishPanel'){$('wishInput').value='';renderWishes()}if(panel==='peoplePanel')renderRoster();if(panel==='prayerListPanel')renderPrayers();if(panel==='visitorListPanel')renderVisitors();if(panel==='malaPanel')renderMala();if(panel==='offeringPanel'){$('offeringAmount').value='';$('offeringError').textContent='';$('lotusOfferingError').textContent='';switchOfferingKind('cash');}if(panel==='offeringListPanel')renderOfferings();if(panel==='prayerPanel'){$('prayerPreview').textContent='Sau khi gửi, lời cầu nguyện sẽ bay lên từ vị trí nhân vật của bạn.';}}
 function closePanel(){currentPanel&&$(currentPanel).classList.remove('open');$('backdrop').classList.remove('open');currentPanel=null}
 function chime(){if(!state.sound)return;try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioContext=audioContext||new AC();audioContext.resume();const now=audioContext.currentTime;for(const [h,v] of [[261.63,.12],[523.25,.045],[783.99,.025],[1046.5,.012],[1318.51,.009]]){const o=audioContext.createOscillator(),g=audioContext.createGain();o.type='sine';o.frequency.setValueAtTime(h,now);g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(v,now+.02);g.gain.exponentialRampToValueAtTime(.0001,now+3.1);o.connect(g);g.connect(audioContext.destination);o.start(now);o.stop(now+3.2)}}catch(err){console.info('Audio unavailable',err)}}
 function doBell(){chime();toast('🔔 Boong… chúc tâm an, việc thuận.');confetti('✨');emitEvent('bell','')}
@@ -1165,6 +1376,7 @@ function startIncenseRitual(){
     stage.style.visibility='';
     incenseRitualTimer=null;
     if($('hallSmoke'))$('hallSmoke').classList.remove('on');
+    if(state.joined && state.scene==='hall' && state.action==='incense')meritAction('incense');
   },13300);
 }
 function stopIncenseRitual(){
@@ -1174,7 +1386,10 @@ function stopIncenseRitual(){
 }
 
 function doAction(action){if(!state.joined){toast('Hãy vào chùa trước nhé.');return}
+ if(action==='incense'&&incenseRitualTimer){toast('🪔 Đang hoàn thành lượt thắp hương, xin đợi nghi thức kết thúc.');return;}
  if(state.scene!=='hall'){showView('hall')}
+ if(action!=='incense')stopIncenseRitual();
+ if(action==='meditate')startMeritMeditation();else stopMeritMeditation();
  state.action=action;
  $('hallSmoke').classList.toggle('on',action==='incense');
  const messages={incense:'🪔 Một nén tâm hương, vạn điều bình an.',kneel:'🙏 Thành tâm quỳ lạy.',bow:'🙏 Đang lạy Phật với lòng thành kính.',meditate:'🧘 Hít thở nhẹ nhàng, tâm trí thảnh thơi.',chant:'📿 Nam mô A Di Đà Phật.',mala:'📿 Bạn đang lần chuỗi tràng hạt.'};
@@ -1183,7 +1398,7 @@ function doAction(action){if(!state.joined){toast('Hãy vào chùa trước nhé
  if(action==='incense')startIncenseRitual();
  try{renderAvatars();}catch(err){console.warn('Lỗi hiển thị nhân vật không được chặn thắp hương:',err);}
  try{publishPresence();emitEvent(action,'');}catch(err){console.warn('Lỗi đồng bộ không được chặn thắp hương:',err);}
- if(action==='chant'){state.chantCount++;speech('Nam mô A Di Đà Phật'); if(!speakMantra('Nam mô A Di Đà Phật')) doBell(); confetti('🪷')}
+ if(action==='chant'){meritAction('chant');speech('Nam mô A Di Đà Phật'); if(!speakMantra('Nam mô A Di Đà Phật')) doBell(); confetti('🪷')}
  else if(action==='mala'){openPanel('malaPanel'); renderMala(); confetti('📿')}
  else confetti(action==='incense'?'🌼':'✨');
 }
@@ -1342,6 +1557,7 @@ function sweepYardOnce(){
  state.sweptLeaves=Math.min(KARMA_LEAVES.length,state.sweptLeaves+1);persist();renderLeaves();
  if(state.sweptLeaves>=KARMA_LEAVES.length){
    bubble(completeMessage);toast(completeMessage);confetti('✨');
+   meritAction('sweep');
    const done=$('karmaComplete'); if(done) done.classList.add('show');
  } else {
    bubble(normalMessage);toast(normalMessage);confetti('🍃');
@@ -1467,30 +1683,37 @@ function parseOfferingAmount(raw){
  return Number.isSafeInteger(amount)?amount:null;
 }
 function renderOfferings(){
- const list=Array.isArray(state.offerings)?state.offerings:[];
- const sorted=[...list].filter(x=>x&&typeof x.name==='string'&&Number.isInteger(x.amount)&&x.amount>=10000&&x.amount<=1000000)
-  .sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+ const money=(Array.isArray(state.offerings)?state.offerings:[])
+  .filter(x=>x&&typeof x.name==='string'&&Number.isInteger(x.amount)&&x.amount>=10000&&x.amount<=1000000)
+  .map(x=>({...x,_kind:'money'}));
+ const lotus=(Array.isArray(state.lotusOfferings)?state.lotusOfferings:[])
+  .filter(x=>x&&typeof x.name==='string'&&Number.isInteger(x.lotus)&&x.lotus>=1&&x.lotus<=1000000)
+  .map(x=>({...x,_kind:'lotus'}));
+ const sorted=[...money,...lotus].sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
  const board=$('offeringBoardBody');board.replaceChildren();
  if(!sorted.length){const empty=document.createElement('div');empty.className='offering-board-empty';empty.textContent='Chưa có lời cúng dường tượng trưng';board.append(empty);}
  else sorted.slice(0,5).forEach(x=>{
-  const row=document.createElement('div');row.className='offering-board-entry';
-  const name=document.createElement('span');name.className='offering-board-name';name.textContent=niceName(x.name);
-  const amount=document.createElement('span');amount.className='offering-board-money';amount.textContent=offeringMoney(x.amount);
-  row.append(name,amount);board.append(row);
+   const row=document.createElement('div');row.className='offering-board-entry';
+   const name=document.createElement('span');name.className='offering-board-name';name.textContent=niceName(x.name);
+   const value=document.createElement('span');value.className='offering-board-money';
+   value.textContent=x._kind==='lotus'?'🪷 '+x.lotus:offeringMoney(x.amount);
+   if(x._kind==='lotus')value.classList.add('offering-board-lotus');
+   row.append(name,value);board.append(row);
  });
  const full=$('offeringFullList');full.replaceChildren();
  if(!sorted.length){const p=document.createElement('p');p.className='offering-muted';p.textContent='Chưa có ai cúng dường tượng trưng.';full.append(p);return;}
- sorted.slice(0,50).forEach(x=>{
-  const row=document.createElement('div');row.className='offering-list-card';
-  const left=document.createElement('div'),name=document.createElement('strong'),time=document.createElement('small'),amount=document.createElement('b');
-  name.textContent=niceName(x.name);time.textContent=x.createdAt?new Date(x.createdAt).toLocaleString('vi-VN'):'';
-  amount.textContent=offeringMoney(x.amount);left.append(name,time);row.append(left,amount);full.append(row);
+ sorted.slice(0,60).forEach(x=>{
+   const row=document.createElement('div');row.className='offering-list-card';
+   const left=document.createElement('div'),name=document.createElement('strong'),time=document.createElement('small'),value=document.createElement('b');
+   name.textContent=niceName(x.name);time.textContent=x.createdAt?new Date(x.createdAt).toLocaleString('vi-VN'):'';
+   value.textContent=x._kind==='lotus'?'🪷 '+x.lotus+' Hoa sen':offeringMoney(x.amount);
+   left.append(name,time);row.append(left,value);full.append(row);
  });
 }
 async function sendOffering(){
  if(!state.joined){toast('Hãy vào chùa và nhập tên/pháp danh trước nhé.');return;}
  const amount=parseOfferingAmount($('offeringAmount').value);
- if(amount===null||amount<10000||amount>1000000){
+ if(amount===null||amount<10000||amount>1000000000){
   $('offeringError').textContent='Vui lòng nhập số tiền từ 10.000đ đến 1.000.000đ.';
   $('offeringAmount').focus();return;
  }
@@ -1594,6 +1817,11 @@ function syncRemoteEvent(evt){
  if(!evt||!evt.presenceId||evt.presenceId===state.presenceId||!state.joined)return;
  const names=state.people.find(p=>p.id===evt.presenceId);
  const displayName=niceName(names?.name||'Một đồng nghiệp');
+ if(evt.type==='lotusOffering'){
+   const amount=Number(evt.text);
+   if(Number.isSafeInteger(amount)&&amount>=1&&amount<=1000){const msg=displayName+' đã Cúng dường '+amount+' Hoa sen 🪷';if(!floatOffering(msg,evt.presenceId)&&state.scene==='hall')toast(msg);}
+   return;
+ }
  if(evt.type==='offering'){
    const amount=Number(evt.text);
    if(Number.isSafeInteger(amount)&&amount>=10000&&amount<=1000000){
@@ -1811,8 +2039,12 @@ if($('sweepYard'))$('sweepYard').onclick=sweepYardOnce;
 document.querySelectorAll('[data-offering-amount]').forEach(btn=>btn.onclick=()=>{$('offeringAmount').value=offeringMoney(Number(btn.dataset.offeringAmount)).replace('đ','');$('offeringError').textContent='';});
 $('offeringAmount').addEventListener('input',()=>{$('offeringError').textContent='';});
 $('sendOffering').onclick=sendOffering;
+ $('offeringCashTab').onclick=()=>switchOfferingKind('cash');
+ $('offeringLotusTab').onclick=()=>switchOfferingKind('lotus');
+ $('sendLotusOffering').onclick=sendLotusOffering;
+ $('lotusOfferingAmount').oninput=()=>{$('lotusOfferingError').textContent='';};
 $('sendWish').onclick=sendWish;$('sendPrayer').onclick=sendPrayer;$('malaStep').onclick=malaStep;$('malaReset').onclick=malaReset;$('spinDivine').onclick=spinDivination;$('closeDivine').onclick=closePanel;window.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
-bindTapMovement();
+bindTapMovement();initMeritBadges();
 applyYardTheme();renderAvatars();renderWishes();renderMala();renderOfferings();renderPrayers();renderVisitors();refreshMusicButtons();syncMovePads();
 // Optional production realtime connector (starts only if user provides Firebase credentials).
 async function connectFirebase(){
@@ -1820,7 +2052,7 @@ async function connectFirebase(){
  if(!config||!config.apiKey||!config.databaseURL){return;}
  try{
   const ver='12.5.0';
-  const [{initializeApp},{getAuth,signInAnonymously},{getDatabase,ref,onValue,onDisconnect,set,get,push,query,limitToLast,serverTimestamp}]=await Promise.all([
+  const [{initializeApp},{getAuth,signInAnonymously},{getDatabase,ref,onValue,onDisconnect,set,get,push,query,limitToLast,serverTimestamp,runTransaction}]=await Promise.all([
    import(`https://www.gstatic.com/firebasejs/${ver}/firebase-app.js`),
    import(`https://www.gstatic.com/firebasejs/${ver}/firebase-auth.js`),
    import(`https://www.gstatic.com/firebasejs/${ver}/firebase-database.js`)
@@ -1837,6 +2069,9 @@ async function connectFirebase(){
   const offeringsRef=ref(db,`${room}/offerings`);
   const prayersRef=ref(db,`${room}/prayers`);
   const visitorsRef=ref(db,`${room}/visitors`);
+  const lotusOffersRef=ref(db,`${room}/lotusOfferings`);
+  let stopMeritWatch=null;
+  const syncedGiftKeys=new Set();
   const eventKeysSeen=new Set();
   let eventInitialized=false,disconnectRegistered=false,connected=false;
   state.presenceId=presenceId;
@@ -1857,7 +2092,57 @@ async function connectFirebase(){
       catch(e){console.warn('Presence update error',e);toast('Chưa đăng trạng thái lên Firebase. Hãy kiểm tra Rules.')}}
     updateCounts();
   });
+  async function syncPublicLotusGift(profile,id,gift){
+    if(!connected||!gift)return;
+    const target=ref(db,`${room}/lotusOfferings/${id}`);
+    const existing=await get(target);
+    if(existing.exists())return;
+    await set(target,{uid,profile,name:niceName(gift.name),lotus:Number(gift.lotus),createdAt:Number(gift.createdAt)});
+  }
+  function watchMeritWallet(){
+    if(stopMeritWatch){stopMeritWatch();stopMeritWatch=null;}
+    if(!state.joined||!state.meritProfile)return;
+    const profile=state.meritProfile;
+    const walletRef=ref(db,`${room}/lotusWallets/${uid}/${profile}`);
+    state.meritReady=false;updateMeritUI();
+    stopMeritWatch=onValue(walletRef,snap=>{
+      if(state.meritProfile!==profile)return;
+      state.merit=meritWalletFrom(snap.val());state.meritReady=true;
+      state.chantCount=state.merit.chantProgress;updateMeritUI();
+      if(connected){
+        Object.entries(state.merit.donations).slice(-12).forEach(([id,gift])=>{
+          if(syncedGiftKeys.has(id))return;
+          syncedGiftKeys.add(id);
+          syncPublicLotusGift(profile,id,gift).catch(e=>{syncedGiftKeys.delete(id);console.warn('Sẽ thử đồng bộ hoa sen sau:',e)});
+        });
+      }
+    },err=>{console.error('Không tải được số dư Hoa sen:',err);state.meritReady=false;updateMeritUI();toast('🪷 Không đọc được Công đức. Kiểm tra Rules V27.');});
+  }
+  async function applyMeritTransaction(kind,options={},profile){
+    if(!connected)throw new Error('Firebase chưa kết nối');
+    if(profile!==state.meritProfile)throw new Error('Phiên nhân vật đã thay đổi');
+    const walletRef=ref(db,`${room}/lotusWallets/${uid}/${profile}`);
+    const attrs={...options,today:meritDateInVietnam(),name:state.name,now:Date.now()};
+    let last=null;
+    const tx=await runTransaction(walletRef,raw=>{
+      last=meritMutate(raw,kind,attrs);
+      return last.changed?last.wallet:undefined;
+    },{applyLocally:false});
+    if(!tx.committed)return {...(last||{changed:false,reason:'cancelled'}),changed:false};
+    const wallet=meritWalletFrom(tx.snapshot.val());
+    const result={...last,changed:true,wallet};
+    if(kind==='donate'){
+      const gift=wallet.donations[options.id];
+      if(gift){
+        try{await syncPublicLotusGift(profile,options.id,gift);syncedGiftKeys.add(options.id);}
+        catch(e){console.warn('Số dư đã trừ; bảng cúng dường sẽ đồng bộ khi kết nối:',e);result.publicSyncPending=true;}
+      }
+    }
+    return result;
+  }
   state.firebase={
+    watchMerit:watchMeritWallet,
+    meritAction:applyMeritTransaction,
     publish:publishSafe,
     recordVisit:async()=>{
       if(!connected||!state.joined)return;
@@ -1916,6 +2201,11 @@ async function connectFirebase(){
     console.warn('Firebase chưa cho phép đọc Bảng cúng dường. Hãy cập nhật Rules.',err);
     $('offeringBoardBody').textContent='Cần cập nhật Rules';
   });
+  onValue(query(lotusOffersRef,limitToLast(60)),snap=>{
+    state.lotusOfferings=Object.entries(snap.val()||{}).map(([id,entry])=>({...entry,id}));
+    renderOfferings();
+  },err=>console.warn('Không thể đọc Bảng Hoa sen. Kiểm tra Rules V27.',err));
+  if(state.joined)watchMeritWallet();
   onValue(query(eventsRef,limitToLast(40)),snap=>{
     const entries=Object.entries(snap.val()||{}).sort((a,b)=>(a[1].createdAt||0)-(b[1].createdAt||0));
     if(!eventInitialized){entries.forEach(([id])=>eventKeysSeen.add(id));eventInitialized=true;return;}
